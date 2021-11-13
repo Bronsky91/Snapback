@@ -14,7 +14,6 @@ var player: KinematicBody2D = null
 func _ready():
 	pass # Replace with function body.
 
-
 func _process(delta):
 	if state == 'patrol':
 		patrol(delta)
@@ -24,6 +23,11 @@ func _process(delta):
 				state = 'return'
 			velocity = global_position.direction_to(player.global_position) * run_speed
 			velocity = move_and_slide(velocity)
+			for i in get_slide_count():
+				var collision = get_slide_collision(i)
+				if collision.collider.name == 'Player':
+					pass
+					# TODO: Restart game from last checkpoint
 	if state == 'return':
 		velocity = global_position.direction_to(last_patrol_pos) * run_speed
 		velocity = move_and_slide(velocity)

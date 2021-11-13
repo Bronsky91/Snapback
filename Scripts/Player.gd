@@ -7,6 +7,7 @@ onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel
 var item_count: int = 0
 var velocity: Vector2 = Vector2()
 var safe = false
+var inverted = false
 
 func _ready():
 	print(item_count_label)
@@ -22,6 +23,13 @@ func get_input():
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
 	velocity = velocity.normalized() * speed
+	
+	if Input.is_action_just_pressed("invert"):
+		inverted = !inverted
+		if inverted:
+			$ColorRect.show()
+		else:
+			$ColorRect.hide()
 
 func _physics_process(delta):
 	get_input()
