@@ -38,7 +38,8 @@ func patrol(delta):
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':
 		player = body
-		state = 'chase'
+		if not player.safe:
+			state = 'chase'
 
 func _on_DetectionArea_body_exited(body):
 	if body.name == 'Player':
