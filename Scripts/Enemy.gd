@@ -1,11 +1,11 @@
 extends KinematicBody2D
 
 export (String, "loop", "linear") var patrol_type = "linear"
+export (int) var pat_speed = 50
+export (int) var run_speed = 100
 
 onready var pathfollow = get_parent()
 
-var speed: int = 70
-var run_speed: int = 90
 var state: String = 'patrol'
 var last_patrol_pos: Vector2 = position
 var velocity = Vector2.ZERO
@@ -30,7 +30,7 @@ func _process(delta):
 
 func patrol(delta):
 	if patrol_type == 'loop':
-		pathfollow.offset += speed * delta
+		pathfollow.offset += pat_speed * delta
 		last_patrol_pos = global_position
 
 func _on_DetectionArea_body_entered(body):
@@ -39,6 +39,7 @@ func _on_DetectionArea_body_entered(body):
 		state = 'chase'
 
 func _on_DetectionArea_body_exited(body):
+	print(body.name)
 	if body.name == 'Player':
 		player = null
 		state = 'return'
