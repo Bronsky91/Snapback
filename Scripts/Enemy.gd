@@ -29,6 +29,10 @@ func _process(delta):
 			var move_distance = run_speed * delta
 			move_along_path(move_distance)
 			if path.size() == 0:
+				# TODO: Since the player position is the end path and they collide
+				# the enemy just pushes the player and never stops
+				# this shouldn't be an issue once we start the game over but will need
+				# extra logic around this code to make work
 				state = 'return'
 			for i in get_slide_count():
 				var collision = get_slide_collision(i)
