@@ -1,8 +1,10 @@
 extends KinematicBody2D
 
-export (String, "loop", "linear") var patrol_type = "loop"
 export (int) var pat_speed = 50
 export (int) var run_speed = 100
+# This is what tells the enemy to change properties based on g.inverted
+# e.g. Player is now invisible, switch sprite to base silhouette, etc
+export (String, 'normal', 'inverted', 'both') var type = 'normal'
 
 onready var pathfollow = get_parent()
 
@@ -35,9 +37,8 @@ func _process(delta):
 			state = 'patrol'
 
 func patrol(delta):
-	if patrol_type == 'loop':
-		pathfollow.offset += pat_speed * delta
-		last_patrol_pos = global_position
+	pathfollow.offset += pat_speed * delta
+	last_patrol_pos = global_position
 
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':

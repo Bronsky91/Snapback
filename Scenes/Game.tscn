@@ -138,7 +138,7 @@ position = Vector2( 915, -55 )
 scale = Vector2( 1, 1 )
 
 [node name="Item4" parent="." instance=ExtResource( 3 )]
-position = Vector2( 503, 114 )
+position = Vector2( 1484, 1197 )
 scale = Vector2( 1, 1 )
 
 [node name="Item5" parent="." instance=ExtResource( 3 )]
