@@ -9,7 +9,7 @@ var velocity: Vector2 = Vector2()
 var safe = false
 
 func _ready():
-	print(item_count_label)
+	pass
 	
 func get_input():
 	velocity = Vector2()
