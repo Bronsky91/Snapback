@@ -6,6 +6,7 @@ onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel
 
 var item_count: int = 0
 var velocity: Vector2 = Vector2()
+var safe = false
 
 func _ready():
 	print(item_count_label)
@@ -31,3 +32,9 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 		item_count = item_count + 1
 		item_count_label.text = "Item Count: " + str(item_count)
 		area.get_parent().queue_free()
+	if area.name == 'SafeZoneArea':
+		safe = true
+
+func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	if area and area.name == 'SafeZoneArea':
+		safe = false
