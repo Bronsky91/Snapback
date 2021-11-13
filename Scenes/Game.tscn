@@ -215,7 +215,6 @@ pat_speed = 120
 run_speed = 50
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
-speed = 100
 
 [node name="Camera2D" type="Camera2D" parent="Player"]
 current = true

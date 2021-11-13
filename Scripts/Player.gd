@@ -1,13 +1,14 @@
 extends KinematicBody2D
 
-export (int) var speed = 200
+export (int) var run_speed = 200
+export (int) var sneak_speed = 100
 
 onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel")
 
+var speed = run_speed
 var item_count: int = 0
 var velocity: Vector2 = Vector2()
 var safe = false
-
 
 func _ready():
 	pass
@@ -27,7 +28,15 @@ func get_input():
 	
 	if Input.is_action_just_pressed("invert"):
 		toggle_inversion()
-
+	
+	if Input.is_action_just_pressed("crouch"):
+		speed = sneak_speed
+		#g.sneaking = true
+		g.emit_signal('sneak', true)
+	if Input.is_action_just_released("crouch"):
+		speed = run_speed
+		g.emit_signal('sneak', false)
+		#g.sneaking = false
 
 func _physics_process(delta):
 	get_input()
@@ -44,8 +53,6 @@ func toggle_inversion():
 		set_collision_layer_bit(3, true)
 		set_collision_layer_bit(4, false)
 		$ColorRect.hide()
-	print(get_collision_layer_bit(3))
-	print(get_collision_layer_bit(4))
 
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):

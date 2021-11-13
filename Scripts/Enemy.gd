@@ -14,9 +14,10 @@ var state: String = 'patrol'
 var last_patrol_pos: Vector2 = position
 var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
+var player_sneaking = false
 
 func _ready():
-	pass # Replace with function body.
+	g.connect("sneak", self, "_on_Player_sneak")
 
 func _process(delta):
 	if state == 'patrol':
@@ -74,5 +75,17 @@ func _on_DetectionArea_body_exited(body):
 		player = null
 		state = 'return'
 
+func _on_Player_sneak(sneaking):
+	# TODO: May refactor how exactly the sneak affects the enemy range
+	# for now it will be halved
+	if sneaking:
+		$DetectionArea/CollisionShape2D.scale.x = 0.5
+		$DetectionArea/CollisionShape2D.scale.y = 0.5
+	else:
+		$DetectionArea/CollisionShape2D.scale.x = 1
+		$DetectionArea/CollisionShape2D.scale.y = 1
+
 func round_pos(pos: Vector2) -> Vector2:
 	return Vector2(stepify(pos.x, 10), stepify(pos.y, 10))
+
+
