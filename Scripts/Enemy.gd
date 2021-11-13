@@ -2,12 +2,10 @@ extends KinematicBody2D
 
 export (int) var pat_speed = 50
 export (int) var run_speed = 100
-# This is what tells the enemy to change properties based on g.inverted
-# e.g. Player is now invisible, switch sprite to base silhouette, etc
-export (String, 'normal', 'inverted', 'both') var type = 'normal'
 
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
+onready var sprite = $Sprite
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
@@ -15,9 +13,16 @@ var last_patrol_pos: Vector2 = position
 var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
+var blur_sprite = null
+var base_sprite = null
+
 
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
+	g.connect("invert", self, "_on_Player_invert")
+	blur_sprite = preload("res://Assets/Blur.png")
+	base_sprite = load("res://Assets/" + self.name + ".png")
+
 
 func _process(delta):
 	if state == 'patrol':
@@ -46,7 +51,8 @@ func _process(delta):
 		move_along_path(move_distance)
 		if path.size() == 0:
 			state = 'patrol'
-			
+
+
 func move_along_path(move_distance):
 	while move_distance > 0 and path.size() > 0:
 		var distance_to_next_point = global_position.distance_to(path[0])
@@ -60,15 +66,18 @@ func move_along_path(move_distance):
 		# Update the distance to walk
 		move_distance -= distance_to_next_point
 
+
 func patrol(delta):
 	pathfollow.offset += pat_speed * delta
 	last_patrol_pos = global_position
+
 
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':
 		player = body
 		if not player.safe:
 			state = 'chase'
+
 
 func _on_DetectionArea_body_exited(body):
 	if body.name == 'Player':
@@ -84,6 +93,15 @@ func _on_Player_sneak(sneaking):
 	else:
 		$DetectionArea/CollisionShape2D.scale.x = 1
 		$DetectionArea/CollisionShape2D.scale.y = 1
+
+
+func _on_Player_invert(inverted):
+	# If player is on opposite inversion of enemy, blur enemy sprite
+	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
+		sprite.set_texture(blur_sprite)
+	else:
+		sprite.set_texture(base_sprite)
+
 
 func round_pos(pos: Vector2) -> Vector2:
 	return Vector2(stepify(pos.x, 10), stepify(pos.y, 10))

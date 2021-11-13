@@ -46,13 +46,26 @@ func _physics_process(delta):
 func toggle_inversion():
 	g.inverted = !g.inverted
 	if g.inverted:
-		set_collision_layer_bit(3, false)
-		set_collision_layer_bit(4, true)
 		$ColorRect.show()
+		# change layer
+		set_collision_layer_bit(3, false) # player_normal
+		set_collision_layer_bit(4, true)  # player_inverted
+		# change masks
+		set_collision_mask_bit(1, false)  # walls_normal
+		set_collision_mask_bit(2, true)   # walls_inverted
+		set_collision_mask_bit(6, false)  # enemy_normal
+		set_collision_mask_bit(7, true)   # enemy_inverted
 	else:
-		set_collision_layer_bit(3, true)
-		set_collision_layer_bit(4, false)
 		$ColorRect.hide()
+		# change layer
+		set_collision_layer_bit(3, true) # player_normal
+		set_collision_layer_bit(4, false)  # player_inverted
+		# change masks
+		set_collision_mask_bit(1, true)  # walls_normal
+		set_collision_mask_bit(2, false)   # walls_inverted
+		set_collision_mask_bit(6, true)  # enemy_normal
+		set_collision_mask_bit(7, false)   # enemy_inverted
+	g.emit_signal('invert', g.inverted)
 
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
