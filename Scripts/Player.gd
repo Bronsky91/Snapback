@@ -48,9 +48,9 @@ func get_input():
 	
 	# store necessary information to determine which way to face player in sprite_animation()
 	# x axis
+	x_changed = false
 	if Input.is_action_pressed("right") and Input.is_action_pressed("left"):
 		x_facing = x_facing
-		x_changed = false
 	elif Input.is_action_pressed("right"):
 		x_facing = "Right"
 		x_changed = true
@@ -58,9 +58,9 @@ func get_input():
 		x_facing = "Left"
 		x_changed = true
 	# y axis
+	y_changed = false
 	if Input.is_action_pressed("up") and Input.is_action_pressed("down"):
 		y_facing = y_facing
-		y_changed = false
 	elif Input.is_action_pressed("up"):
 		y_facing = "Back"
 		y_changed = true
