@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/Player_Test.png-5a9f2c47b58fee7d0b7e7f38e7ab6e3d.stex"
+path="res://.import/LichBody.png-0a5f265ab2344af4c53490a1c21e994b.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Player_Test.png"
-dest_files=[ "res://.import/Player_Test.png-5a9f2c47b58fee7d0b7e7f38e7ab6e3d.stex" ]
+source_file="res://Assets/Lich/LichBody.png"
+dest_files=[ "res://.import/LichBody.png-0a5f265ab2344af4c53490a1c21e994b.stex" ]
 
 [params]
 
@@ -20,7 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-flags/filter=false
+flags/filter=true
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
