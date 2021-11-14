@@ -114,7 +114,7 @@ func chase_check():
 		raycast.cast_to = direction_to_player * vision_range
 		raycast.force_raycast_update()
 		var collision_object = raycast.get_collider()
-		if collision_object and collision_object.name == "Player":
+		if collision_object == player:
 			state = "chase"
 
 
