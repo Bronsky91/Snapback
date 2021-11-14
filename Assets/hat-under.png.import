@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/LichArms.png-d0b4aa07ad59bdd8181b61e06d2f6f22.stex"
+path="res://.import/hat-under.png-a220b01dade1c760de967468bc1c0ba3.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Lich/LichArms.png"
-dest_files=[ "res://.import/LichArms.png-d0b4aa07ad59bdd8181b61e06d2f6f22.stex" ]
+source_file="res://Assets/hat-under.png"
+dest_files=[ "res://.import/hat-under.png-a220b01dade1c760de967468bc1c0ba3.stex" ]
 
 [params]
 
