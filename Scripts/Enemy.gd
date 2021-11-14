@@ -56,7 +56,10 @@ func _process(delta):
 
 func move_along_path(move_distance):
 	while move_distance > 0 and path.size() > 0:
-		animate_sprite(global_position, path[0])
+		for p in range(5, -1, -1):
+			if path.size() > p:
+				animate_sprite(global_position, path[p])
+				break
 		var distance_to_next_point = global_position.distance_to(path[0])
 		if move_distance <= distance_to_next_point:
 			# The enemy does not have enough movement left to get to the next point.
