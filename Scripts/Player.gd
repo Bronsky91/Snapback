@@ -30,12 +30,10 @@ var new_facing: String = facing
 
 
 func _ready():
-	print(inverse_mana_bar)
 	inverse_mana_bar.value = inverse_mana
 	mana_bar_label.text = str(inverse_mana) + '%'
 	last_checkpoint_pos = player_start_node.global_position
 	life_count_label.text = "Lives: " + str(life_count)
-
 
 func get_input():
 	velocity = Vector2()
@@ -180,3 +178,13 @@ func _on_ManaIncreaseTimer_timeout():
 		inverse_mana += 1
 		inverse_mana_bar.value += 1
 		mana_bar_label.text = str(inverse_mana) + '%'
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == 'Inverse':
+		if g.inverted:
+			$Sprite.texture = load('Assets/Player_002.png')
+		else:
+			$Sprite.texture = load('Assets/Player_001.png')
+		# TODO: If Jenna makes more hat flip animations this will need updating
+		$Sprite.frame = 1
