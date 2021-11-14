@@ -9,7 +9,7 @@ radius = 4.0
 height = 18.0
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 7.0
+radius = 4.0
 height = 18.0
 
 [sub_resource type="Animation" id=3]
@@ -362,7 +362,7 @@ position = Vector2( 0, 1 )
 texture = ExtResource( 3 )
 texture_scale = 0.75
 mode = 3
-range_item_cull_mask = 2
+range_item_cull_mask = 6
 shadow_enabled = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -386,15 +386,11 @@ anims/SneakIdleRight = SubResource( 17 )
 anims/SneakLeft = SubResource( 18 )
 anims/SneakRight = SubResource( 19 )
 
-[node name="ManaIncreaseTimer" type="Timer" parent="."]
-autostart = true
-
 [node name="InverseCooldown" type="Timer" parent="."]
-wait_time = 5.0
+wait_time = 0.3
 
 [connection signal="area_shape_entered" from="PickupArea" to="." method="_on_PickupArea_area_shape_entered"]
 [connection signal="area_shape_exited" from="PickupArea" to="." method="_on_PickupArea_area_shape_exited"]
 [connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
 [connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
-[connection signal="timeout" from="ManaIncreaseTimer" to="." method="_on_ManaIncreaseTimer_timeout"]
 [connection signal="timeout" from="InverseCooldown" to="." method="_on_InverseCooldown_timeout"]

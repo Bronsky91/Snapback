@@ -14,6 +14,7 @@ scale = Vector2( 1.5, 1.5 )
 texture = ExtResource( 1 )
 
 [node name="SafeZoneArea" type="Area2D" parent="."]
+visible = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SafeZoneArea"]
 shape = SubResource( 1 )

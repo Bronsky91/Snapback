@@ -6,8 +6,6 @@ export (int) var sneak_speed: int = 100
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
-onready var inverse_mana_bar: TextureProgress = get_parent().get_node("CanvasLayer/InverseManaBar")
-onready var mana_bar_label: Label = get_parent().get_node("CanvasLayer/ManaBarLabel")
 onready var life_count_label: Label = get_parent().get_node("CanvasLayer/LifeCountLabel")
 
 var life_count: int = 3
@@ -16,7 +14,6 @@ var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
 var sneaking: bool = false
 var inverse_ready: bool = true
-var inverse_mana: int = 100
 var last_checkpoint_pos: Vector2 = Vector2()
 
 var x_facing: String = "Right"
@@ -29,9 +26,6 @@ var new_facing: String = facing
 
 
 func _ready():
-	g.player = self
-	inverse_mana_bar.value = inverse_mana
-	mana_bar_label.text = str(inverse_mana) + '%'
 	last_checkpoint_pos = player_start_node.global_position
 	life_count_label.text = "Lives: " + str(life_count)
 
@@ -140,10 +134,6 @@ func toggle_inversion(velocity):
 	g.emit_signal('invert', g.inverted)
 	inverse_ready = false
 	$InverseCooldown.start()
-	if inverse_mana >= 20:
-		inverse_mana -= 20
-		inverse_mana_bar.value -= 20
-		mana_bar_label.text = str(inverse_mana) + '%'
 	
 func attacked():
 	if life_count == 1:
@@ -171,12 +161,6 @@ func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_sh
 
 func _on_InverseCooldown_timeout():
 	inverse_ready = true
-
-func _on_ManaIncreaseTimer_timeout():
-	if inverse_mana < 100:
-		inverse_mana += 1
-		inverse_mana_bar.value += 1
-		mana_bar_label.text = str(inverse_mana) + '%'
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
