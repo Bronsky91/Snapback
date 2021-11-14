@@ -3,12 +3,20 @@ extends KinematicBody2D
 export (int) var run_speed = 200
 export (int) var sneak_speed = 100
 
-onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel")
-
 var speed = run_speed
 var item_count: int = 0
 var velocity: Vector2 = Vector2()
 var safe = false
+var sneaking = false
+var x_facing = "Right"
+var x_changed = false
+var y_facing = "Up"
+var y_changed = false
+var facing = "Right"
+var animation = "Idle"
+
+onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel")
+onready var anim_player = $AnimationPlayer
 
 func _ready():
 	pass
@@ -31,12 +39,61 @@ func get_input():
 	
 	if Input.is_action_just_pressed("crouch"):
 		speed = sneak_speed
-		#g.sneaking = true
+		sneaking = true
 		g.emit_signal('sneak', true)
 	if Input.is_action_just_released("crouch"):
 		speed = run_speed
+		sneaking = false
 		g.emit_signal('sneak', false)
-		#g.sneaking = false
+	
+	# store necessary information to determine which way to face player in sprite_animation()
+	# x axis
+	if Input.is_action_pressed("right") and Input.is_action_pressed("left"):
+		x_facing = x_facing
+		x_changed = false
+	elif Input.is_action_pressed("right"):
+		x_facing = "Right"
+		x_changed = true
+	elif Input.is_action_pressed("left"):
+		x_facing = "Left"
+		x_changed = true
+	# y axis
+	if Input.is_action_pressed("up") and Input.is_action_pressed("down"):
+		y_facing = y_facing
+		y_changed = false
+	elif Input.is_action_pressed("up"):
+		y_facing = "Back"
+		y_changed = true
+	elif Input.is_action_pressed("down"):
+		y_facing = "Front"
+		y_changed = true
+	
+	sprite_animation()
+
+
+func sprite_animation():
+	# If X and Y both changed, Y currently takes precedence
+	var new_facing = facing
+	if x_changed:
+		new_facing = x_facing
+	elif y_changed:
+		new_facing = y_facing
+		
+	var new_animation = animation
+	if velocity == Vector2(0,0) and sneaking:
+		new_animation = "SneakIdle"
+	elif velocity == Vector2(0,0) and not sneaking:
+		new_animation = "Idle"
+	elif velocity != Vector2(0,0) and sneaking:
+		new_animation = "Sneak"
+	elif velocity != Vector2(0,0) and not sneaking:
+		new_animation = "Run"
+	
+	if new_facing != facing or new_animation != animation:
+		facing = new_facing
+		animation = new_animation
+		anim_player.play(animation + facing)
+
 
 func _physics_process(delta):
 	get_input()
