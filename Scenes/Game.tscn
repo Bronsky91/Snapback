@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scenes/Enemy.tscn" type="PackedScene" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Scenes/SafeZone.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Scenes/Ghost.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Scenes/Skeleton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/Music.gd" type="Script" id=9]
 
 [sub_resource type="Curve2D" id=1]
 _data = {
@@ -188,3 +189,8 @@ __meta__ = {
 }
 
 [node name="PizzaTimer" type="Timer" parent="."]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+volume_db = -25.0
+script = ExtResource( 9 )
