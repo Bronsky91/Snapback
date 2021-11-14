@@ -6,6 +6,7 @@ export (int) var run_speed = 100
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
 onready var sprite = $Sprite
+onready var blur = $Blur
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
@@ -13,15 +14,12 @@ var last_patrol_pos: Vector2 = position
 var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
-var blur_sprite = null
-var base_sprite = null
 
 
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
-	blur_sprite = preload("res://Assets/Blur.png")
-	base_sprite = load("res://Assets/" + self.name + ".png")
+	invert(g.inverted)
 
 
 func _process(delta):
@@ -84,6 +82,7 @@ func _on_DetectionArea_body_exited(body):
 		player = null
 		state = 'return'
 
+
 func _on_Player_sneak(sneaking):
 	# TODO: May refactor how exactly the sneak affects the enemy range
 	# for now it will be halved
@@ -96,11 +95,17 @@ func _on_Player_sneak(sneaking):
 
 
 func _on_Player_invert(inverted):
+	invert(inverted)
+
+
+func invert(inverted):
 	# If player is on opposite inversion of enemy, blur enemy sprite
 	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
-		sprite.set_texture(blur_sprite)
+		sprite.visible = false
+		blur.visible = true
 	else:
-		sprite.set_texture(base_sprite)
+		sprite.visible = true
+		blur.visible = false
 
 
 func round_pos(pos: Vector2) -> Vector2:
