@@ -7,6 +7,7 @@ onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
 onready var sprite = $Sprite
 onready var blur = $Blur
+onready var anim_player = $AnimationPlayer
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
@@ -14,7 +15,7 @@ var last_patrol_pos: Vector2 = position
 var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
-
+var facing = "Right"
 
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
@@ -53,6 +54,7 @@ func _process(delta):
 
 func move_along_path(move_distance):
 	while move_distance > 0 and path.size() > 0:
+		animate_sprite(global_position, path[0])
 		var distance_to_next_point = global_position.distance_to(path[0])
 		if move_distance <= distance_to_next_point:
 			# The enemy does not have enough movement left to get to the next point.
@@ -66,9 +68,28 @@ func move_along_path(move_distance):
 
 
 func patrol(delta):
+	# Move enemy along patrol path
 	pathfollow.offset += pat_speed * delta
+	animate_sprite(last_patrol_pos, global_position)
+	
+	# Prepare last patrol pos for next cycle
 	last_patrol_pos = global_position
 
+
+func animate_sprite(from, to):
+	# Determine which way to face enemy based on prior position
+	var dir = from.direction_to(to)
+	var dominant_axis = "x" if abs(dir.x) > abs(dir.y) else "y"
+	var new_facing = facing
+	if dominant_axis == "x":
+		new_facing = "Right" if dir.x > 0 else "Left"
+	else:
+		new_facing = "Down" if dir.y > 0 else "Front"
+	
+	# Animate enemy in appropriate direction
+	if facing != new_facing:
+		facing = new_facing
+		anim_player.play("Walk" + facing)
 
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':
