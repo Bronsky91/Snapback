@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 92.0
+radius = 100.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "IdleBack"
@@ -197,6 +197,11 @@ anims/WalkBack = SubResource( 9 )
 anims/WalkFront = SubResource( 10 )
 anims/WalkLeft = SubResource( 11 )
 anims/WalkRight = SubResource( 12 )
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 0, 92 )
+collision_mask = 16
 
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]

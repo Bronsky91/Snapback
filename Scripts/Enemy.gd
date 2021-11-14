@@ -2,12 +2,15 @@ extends KinematicBody2D
 
 export (int) var pat_speed = 50
 export (int) var run_speed = 100
+export (int) var vision_range = 100
 
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
 onready var sprite = $Sprite
 onready var blur = $Blur
 onready var anim_player = $AnimationPlayer
+onready var raycast = $RayCast2D
+onready var detection_shape = $DetectionArea/CollisionShape2D
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
@@ -16,11 +19,13 @@ var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
 var facing = "Right"
+var chasing = false
 
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
 	invert(g.inverted)
+	detection_shape.shape.radius = vision_range
 
 
 func _process(delta):
@@ -28,7 +33,7 @@ func _process(delta):
 		patrol(delta)
 	if state == 'chase':
 		if player:
-			if player.safe:
+			if g.safe:
 				state = 'return'
 			path = nav.get_simple_path(global_position, player.global_position)
 			var move_distance = run_speed * delta
@@ -42,6 +47,11 @@ func _process(delta):
 		move_along_path(move_distance)
 		if path.size() == 0:
 			state = 'patrol'
+
+
+func _physics_process(delta):
+	if player and state != "chase":
+		chase_check()
 
 
 func move_along_path(move_distance):
@@ -89,14 +99,23 @@ func animate_sprite(from, to):
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':
 		player = body
-		if not player.safe:
-			state = 'chase'
+		chase_check()
 
 
 func _on_DetectionArea_body_exited(body):
 	if body.name == 'Player':
 		player = null
 		state = 'return'
+
+
+func chase_check():
+	if player and not g.safe:
+		var direction_to_player = global_position.direction_to(player.global_position)
+		raycast.cast_to = direction_to_player * vision_range
+		raycast.force_raycast_update()
+		var collision_object = raycast.get_collider()
+		if collision_object and collision_object.name == "Player":
+			state = "chase"
 
 
 func _on_Player_sneak(sneaking):

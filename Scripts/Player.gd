@@ -14,7 +14,6 @@ var life_count: int = 3
 var speed: int = run_speed
 var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
-var safe: bool = false
 var sneaking: bool = false
 var inverse_ready: bool = true
 var inverse_mana: int = 100
@@ -30,6 +29,7 @@ var new_facing: String = facing
 
 
 func _ready():
+	g.player = self
 	inverse_mana_bar.value = inverse_mana
 	mana_bar_label.text = str(inverse_mana) + '%'
 	last_checkpoint_pos = player_start_node.global_position
@@ -146,7 +146,6 @@ func toggle_inversion(velocity):
 		mana_bar_label.text = str(inverse_mana) + '%'
 	
 func attacked():
-	print('player is being attacked')
 	if life_count == 1:
 		# Game over
 		global_position = player_start_node.global_position
@@ -162,13 +161,13 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 		item_count = item_count + 1
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
-		safe = true
+		g.safe = true
 		# TODO: Show floating text telling the player they've got to a checkpoint?
 		last_checkpoint_pos = area.global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':
-		safe = false
+		g.safe = false
 
 func _on_InverseCooldown_timeout():
 	inverse_ready = true
