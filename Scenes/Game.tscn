@@ -133,6 +133,18 @@ scale = Vector2( 1, 1 )
 position = Vector2( 1411, 770 )
 scale = Vector2( 1, 1 )
 
+[node name="SafeZone" parent="." instance=ExtResource( 5 )]
+position = Vector2( 233, 200 )
+
+[node name="SafeZone4" parent="." instance=ExtResource( 5 )]
+position = Vector2( 879, 1177 )
+
+[node name="SafeZone2" parent="." instance=ExtResource( 5 )]
+position = Vector2( 646, 580 )
+
+[node name="SafeZone3" parent="." instance=ExtResource( 5 )]
+position = Vector2( 487, 838 )
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="ItemCountLabel" type="Label" parent="CanvasLayer"]
@@ -146,15 +158,3 @@ text = "Item Count: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
-
-[node name="SafeZone" parent="." instance=ExtResource( 5 )]
-position = Vector2( 233, 200 )
-
-[node name="SafeZone4" parent="." instance=ExtResource( 5 )]
-position = Vector2( 879, 1177 )
-
-[node name="SafeZone2" parent="." instance=ExtResource( 5 )]
-position = Vector2( 646, 580 )
-
-[node name="SafeZone3" parent="." instance=ExtResource( 5 )]
-position = Vector2( 487, 838 )

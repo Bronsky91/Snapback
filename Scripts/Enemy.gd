@@ -84,7 +84,7 @@ func animate_sprite(from, to):
 	if dominant_axis == "x":
 		new_facing = "Right" if dir.x > 0 else "Left"
 	else:
-		new_facing = "Down" if dir.y > 0 else "Front"
+		new_facing = "Front" if dir.y > 0 else "Back"
 	
 	# Animate enemy in appropriate direction
 	if facing != new_facing:
@@ -131,5 +131,3 @@ func invert(inverted):
 
 func round_pos(pos: Vector2) -> Vector2:
 	return Vector2(stepify(pos.x, 10), stepify(pos.y, 10))
-
-
