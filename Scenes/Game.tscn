@@ -75,8 +75,9 @@ rotate = false
 curve = SubResource( 9 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Path2D3"]
-position = Vector2( 928, -69 )
-rotation = 0.947598
+position = Vector2( 889.369, -71.6164 )
+rotation = -0.0964757
+offset = 745.73
 rotate = false
 
 [node name="Enemy" parent="Navigation2D/Path2D3/PathFollow2D" instance=ExtResource( 2 )]
