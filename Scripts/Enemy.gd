@@ -34,18 +34,8 @@ func _process(delta):
 			var move_distance = run_speed * delta
 			move_along_path(move_distance)
 			if path.size() == 0:
-				# TODO: Since the player position is the end path and they collide
-				# the enemy just pushes the player and never stops
-				# this shouldn't be an issue once we start the game over but will need
-				# extra logic around this code to make work
+				# Shouldn't get to path 0, but as a safeguard end chase if it does happen
 				state = 'return'
-			for i in get_slide_count():
-				var collision = get_slide_collision(i)
-				if collision.collider.name == 'Player':
-					# TODO: Ross, the collisions are "working" in the game
-					# but not detecting here in the code. Help
-					print('enemy collided with player')
-					collision.collider.attacked()
 	if state == 'return':
 		path = nav.get_simple_path(global_position, last_patrol_pos)
 		var move_distance = run_speed * delta

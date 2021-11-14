@@ -188,3 +188,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$Sprite.texture = load('Assets/Player_001.png')
 		# TODO: If Jenna makes more hat flip animations this will need updating
 		$Sprite.frame = 1
+
+
+func _on_PickupArea_body_entered(body):
+	if body.name in g.enemies:
+		attacked()
