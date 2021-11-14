@@ -8,6 +8,9 @@ var item_count: int = 0
 var velocity: Vector2 = Vector2()
 var safe = false
 var sneaking = false
+var inverse_ready = true
+var inverse_mana = 100
+
 var x_facing = "Right"
 var x_changed = false
 var y_facing = "Up"
@@ -16,7 +19,7 @@ var facing = "Right"
 var animation = "Idle"
 var new_facing = facing
 
-onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel")
+onready var inverse_mana_bar = get_parent().get_node("CanvasLayer/InverseManaBar")
 onready var anim_player = $AnimationPlayer
 
 func _ready():
@@ -36,9 +39,8 @@ func get_input():
 	velocity = velocity.normalized() * speed
 	
 	if Input.is_action_just_pressed("invert"):
-		if new_facing == "Front" and velocity == Vector2(0, 0):
-			anim_player.play('Inverse')
-		toggle_inversion()
+		if inverse_ready:
+			toggle_inversion(velocity)
 	
 	if Input.is_action_just_pressed("crouch"):
 		speed = sneak_speed
@@ -102,7 +104,9 @@ func _physics_process(delta):
 	velocity = move_and_slide(velocity)
 
 
-func toggle_inversion():
+func toggle_inversion(velocity):
+	if new_facing == "Front" and velocity == Vector2(0, 0):
+		anim_player.play('Inverse')
 	g.inverted = !g.inverted
 	if g.inverted:
 		$ColorRect.show()
@@ -125,12 +129,15 @@ func toggle_inversion():
 		set_collision_mask_bit(6, true)  # enemy_normal
 		set_collision_mask_bit(7, false)   # enemy_inverted
 	g.emit_signal('invert', g.inverted)
+	inverse_ready = false
+	$InverseCooldown.start()
+	inverse_mana -= 20
+	inverse_mana_bar.value -= 20
 
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
 		item_count = item_count + 1
-		item_count_label.text = "Item Count: " + str(item_count)
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
 		safe = true
@@ -139,3 +146,11 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':
 		safe = false
+
+func _on_InverseCooldown_timeout():
+	inverse_ready = true
+
+func _on_ManaIncreaseTimer_timeout():
+	if inverse_mana < 100:
+		inverse_mana += 1
+		inverse_mana_bar.value += 1

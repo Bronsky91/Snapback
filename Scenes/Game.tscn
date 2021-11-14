@@ -147,14 +147,30 @@ position = Vector2( 487, 838 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="ItemCountLabel" type="Label" parent="CanvasLayer"]
+[node name="PizzaTimerLabel" type="Label" parent="CanvasLayer"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -119.0
 margin_top = 8.0
 margin_right = -39.0
 margin_bottom = 22.0
-text = "Item Count: "
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="InverseManaBar" type="ProgressBar" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -86.0
+margin_top = -21.0
+margin_right = -8.0
+margin_bottom = -7.0
+step = 1.0
+value = 100.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PizzaTimer" type="Timer" parent="."]

@@ -369,5 +369,13 @@ anims/SneakIdleRight = SubResource( 17 )
 anims/SneakLeft = SubResource( 18 )
 anims/SneakRight = SubResource( 19 )
 
+[node name="ManaIncreaseTimer" type="Timer" parent="."]
+autostart = true
+
+[node name="InverseCooldown" type="Timer" parent="."]
+wait_time = 5.0
+
 [connection signal="area_shape_entered" from="PickupArea" to="." method="_on_PickupArea_area_shape_entered"]
 [connection signal="area_shape_exited" from="PickupArea" to="." method="_on_PickupArea_area_shape_exited"]
+[connection signal="timeout" from="ManaIncreaseTimer" to="." method="_on_ManaIncreaseTimer_timeout"]
+[connection signal="timeout" from="InverseCooldown" to="." method="_on_InverseCooldown_timeout"]
