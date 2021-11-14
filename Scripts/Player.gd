@@ -14,6 +14,7 @@ var y_facing = "Up"
 var y_changed = false
 var facing = "Right"
 var animation = "Idle"
+var new_facing = facing
 
 onready var item_count_label = get_parent().get_node("CanvasLayer/ItemCountLabel")
 onready var anim_player = $AnimationPlayer
@@ -35,6 +36,8 @@ func get_input():
 	velocity = velocity.normalized() * speed
 	
 	if Input.is_action_just_pressed("invert"):
+		if new_facing == "Front" and velocity == Vector2(0, 0):
+			anim_player.play('Inverse')
 		toggle_inversion()
 	
 	if Input.is_action_just_pressed("crouch"):
@@ -73,7 +76,6 @@ func get_input():
 
 func sprite_animation():
 	# If X and Y both changed, Y currently takes precedence
-	var new_facing = facing
 	if x_changed:
 		new_facing = x_facing
 	elif y_changed:
