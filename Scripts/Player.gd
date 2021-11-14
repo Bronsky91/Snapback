@@ -1,29 +1,35 @@
 extends KinematicBody2D
 
-export (int) var run_speed = 200
-export (int) var sneak_speed = 100
+export (int) var run_speed: int = 200
+export (int) var sneak_speed: int = 100
 
-var speed = run_speed
-var item_count: int = 0
+onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
+onready var inverse_mana_bar: ProgressBar = get_parent().get_node("CanvasLayer/InverseManaBar")
+onready var life_count_label: Label = get_parent().get_node("CanvasLayer/LifeCountLabel")
+onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+var life_count: int = 3
+var speed: int = run_speed
+var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
-var safe = false
-var sneaking = false
-var inverse_ready = true
-var inverse_mana = 100
+var safe: bool = false
+var sneaking: bool = false
+var inverse_ready: bool = true
+var inverse_mana: int = 100
+var last_checkpoint_pos: Vector2 = Vector2()
 
-var x_facing = "Right"
-var x_changed = false
-var y_facing = "Up"
-var y_changed = false
-var facing = "Right"
-var animation = "Idle"
-var new_facing = facing
+var x_facing: String = "Right"
+var x_changed: bool = false
+var y_facing: String = "Up"
+var y_changed: bool = false
+var facing: String = "Right"
+var animation: String = "Idle"
+var new_facing: String = facing
 
-onready var inverse_mana_bar = get_parent().get_node("CanvasLayer/InverseManaBar")
-onready var anim_player = $AnimationPlayer
 
 func _ready():
-	pass
+	last_checkpoint_pos = player_start_node.global_position
+	life_count_label.text = "Lives: " + str(life_count)
 
 
 func get_input():
@@ -133,7 +139,18 @@ func toggle_inversion(velocity):
 	$InverseCooldown.start()
 	inverse_mana -= 20
 	inverse_mana_bar.value -= 20
-
+	
+func attacked():
+	print('player is being attacked')
+	if life_count == 1:
+		# Game over
+		global_position = player_start_node.global_position
+		# TODO: Reset any relevant state here
+		life_count = 3
+	else:
+		life_count -= 1
+		global_position = last_checkpoint_pos
+	life_count_label.text = "Lives: " + str(life_count)
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
@@ -141,7 +158,8 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
 		safe = true
-
+		# TODO: Show floating text telling the player they've got to a checkpoint?
+		last_checkpoint_pos = area.global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':

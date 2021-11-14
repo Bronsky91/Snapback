@@ -42,8 +42,10 @@ func _process(delta):
 			for i in get_slide_count():
 				var collision = get_slide_collision(i)
 				if collision.collider.name == 'Player':
-					pass
-					# TODO: Restart game from last checkpoint
+					# TODO: Ross, the collisions are "working" in the game
+					# but not detecting here in the code. Help
+					print('enemy collided with player')
+					collision.collider.attacked()
 	if state == 'return':
 		path = nav.get_simple_path(global_position, last_patrol_pos)
 		var move_distance = run_speed * delta
