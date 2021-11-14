@@ -3,10 +3,12 @@ extends KinematicBody2D
 export (int) var run_speed: int = 200
 export (int) var sneak_speed: int = 100
 
-onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
-onready var inverse_mana_bar: ProgressBar = get_parent().get_node("CanvasLayer/InverseManaBar")
-onready var life_count_label: Label = get_parent().get_node("CanvasLayer/LifeCountLabel")
 onready var anim_player: AnimationPlayer = $AnimationPlayer
+
+onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
+onready var inverse_mana_bar: TextureProgress = get_parent().get_node("CanvasLayer/InverseManaBar")
+onready var mana_bar_label: Label = get_parent().get_node("CanvasLayer/ManaBarLabel")
+onready var life_count_label: Label = get_parent().get_node("CanvasLayer/LifeCountLabel")
 
 var life_count: int = 3
 var speed: int = run_speed
@@ -28,6 +30,9 @@ var new_facing: String = facing
 
 
 func _ready():
+	print(inverse_mana_bar)
+	inverse_mana_bar.value = inverse_mana
+	mana_bar_label.text = str(inverse_mana) + '%'
 	last_checkpoint_pos = player_start_node.global_position
 	life_count_label.text = "Lives: " + str(life_count)
 
@@ -137,8 +142,10 @@ func toggle_inversion(velocity):
 	g.emit_signal('invert', g.inverted)
 	inverse_ready = false
 	$InverseCooldown.start()
-	inverse_mana -= 20
-	inverse_mana_bar.value -= 20
+	if inverse_mana >= 20:
+		inverse_mana -= 20
+		inverse_mana_bar.value -= 20
+		mana_bar_label.text = str(inverse_mana) + '%'
 	
 func attacked():
 	print('player is being attacked')
@@ -172,3 +179,4 @@ func _on_ManaIncreaseTimer_timeout():
 	if inverse_mana < 100:
 		inverse_mana += 1
 		inverse_mana_bar.value += 1
+		mana_bar_label.text = str(inverse_mana) + '%'
