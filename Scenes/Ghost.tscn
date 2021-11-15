@@ -8,7 +8,7 @@
 [sub_resource type="CircleShape2D" id=3]
 
 [sub_resource type="CircleShape2D" id=2]
-radius = 100.0
+radius = 92.0
 
 [sub_resource type="Animation" id=4]
 resource_name = "IdleBack"

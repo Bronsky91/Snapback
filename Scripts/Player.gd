@@ -26,6 +26,7 @@ var new_facing: String = facing
 
 
 func _ready():
+	speed = run_speed
 	last_checkpoint_pos = player_start_node.global_position
 	life_count_label.text = "Lives: " + str(life_count)
 
