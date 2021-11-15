@@ -9,6 +9,7 @@ onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
 onready var life_count_label: Label = get_node("/root/Game/UI/LifeCountLabel")
 onready var slices_count_label: Label = get_node("/root/Game/UI/SlicesCountLabel")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
+onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
 var slices_count: int = 4
 var speed: int = run_speed
@@ -121,7 +122,7 @@ func toggle_inversion(velocity):
 		else:
 			$Sprite.texture = load('Assets/Player_001.png')
 	if g.inverted:
-		$ColorRect.show()
+		invert_screen.show()
 		# change layer
 		set_collision_layer_bit(3, false) # player_normal
 		set_collision_layer_bit(4, true)  # player_inverted
@@ -131,7 +132,7 @@ func toggle_inversion(velocity):
 		set_collision_mask_bit(6, false)  # enemy_normal
 		set_collision_mask_bit(7, true)   # enemy_inverted
 	else:
-		$ColorRect.hide()
+		invert_screen.hide()
 		# change layer
 		set_collision_layer_bit(3, true) # player_normal
 		set_collision_layer_bit(4, false)  # player_inverted

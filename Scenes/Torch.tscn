@@ -1,0 +1,47 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Decorations/Torch_b.png" type="Texture" id=1]
+[ext_resource path="res://Assets/Decorations/Torch_c.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Decorations/Torch_a.png" type="Texture" id=3]
+[ext_resource path="res://Assets/LightSprite.png" type="Texture" id=4]
+[ext_resource path="res://Scripts/Torch.gd" type="Script" id=5]
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ ExtResource( 3 ), ExtResource( 1 ), ExtResource( 2 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="Animation" id=24]
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Light2D:energy")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ 0.75, 0.65, 0.7 ]
+}
+
+[node name="Torch" type="AnimatedSprite"]
+position = Vector2( -12, -104 )
+frames = SubResource( 23 )
+frame = 1
+playing = true
+script = ExtResource( 5 )
+
+[node name="Light2D" type="Light2D" parent="."]
+texture = ExtResource( 4 )
+texture_scale = 0.15
+color = Color( 0.568627, 0.341176, 0.101961, 1 )
+energy = 0.9375
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D"]
+root_node = NodePath("../..")
+anims/flicker = SubResource( 24 )
