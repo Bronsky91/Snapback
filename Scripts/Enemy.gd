@@ -148,6 +148,8 @@ func invert(inverted):
 	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
 		sprite.visible = false
 		shadow.visible = true
+		eyes.visible = false
+		exclamation.visible = false
 	else:
 		sprite.visible = true
 		shadow.visible = false
