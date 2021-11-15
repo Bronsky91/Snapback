@@ -8,7 +8,7 @@ extends AnimatedSprite
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$Light2D/AnimationPlayer.play("flicker")
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
