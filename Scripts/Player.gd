@@ -109,8 +109,13 @@ func _physics_process(delta):
 
 
 func toggle_inversion(velocity):
-	if new_facing == "Front" and velocity == Vector2(0, 0):
-		anim_player.play('Inverse')
+	if "Idle" in animation:
+		anim_player.play("Inverse" + animation + facing)
+	else:
+		if g.inverted:
+			$Sprite.texture = load('Assets/Player_002.png')
+		else:
+			$Sprite.texture = load('Assets/Player_001.png')
 	g.inverted = !g.inverted
 	if g.inverted:
 		$ColorRect.show()
@@ -140,7 +145,7 @@ func attacked():
 	if life_count == 1:
 		# Game over
 		global_position = player_start_node.global_position
-		# TODO: Reset any relevant state here
+		last_checkpoint_pos = player_start_node.global_position
 		life_count = 3
 		get_parent().reset_pizza_time()
 	else:
@@ -166,13 +171,12 @@ func _on_InverseCooldown_timeout():
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
-	if anim_name == 'Inverse':
+	if 'Inverse' in anim_name:
 		if g.inverted:
 			$Sprite.texture = load('Assets/Player_002.png')
 		else:
 			$Sprite.texture = load('Assets/Player_001.png')
-		# TODO: If Jenna makes more hat flip animations this will need updating
-		$Sprite.frame = 1
+		
 
 
 func _on_PickupArea_body_entered(body):
