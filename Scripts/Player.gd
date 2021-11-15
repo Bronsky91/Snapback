@@ -6,8 +6,9 @@ export (int) var sneak_speed: int = 100
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
-onready var slices_count_label: Label = get_parent().get_node("CanvasLayer/SlicesCountLabel")
-onready var slices_icon: TextureRect = get_parent().get_node("CanvasLayer/PizzaSlices")
+onready var life_count_label: Label = get_parent().get_node("UI/LifeCountLabel")
+onready var slices_count_label: Label = get_parent().get_node("UI/SlicesCountLabel")
+onready var slices_icon: TextureRect = get_parent().get_node("UI/PizzaSlices")
 
 var slices_count: int = 4
 var speed: int = run_speed

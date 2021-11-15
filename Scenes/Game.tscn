@@ -1,11 +1,14 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/DungeonTileset.tres" type="TileSet" id=4]
 [ext_resource path="res://Assets/Slices4.png" type="Texture" id=5]
+[ext_resource path="res://Scripts/Tutorial.gd" type="Script" id=6]
 [ext_resource path="res://Scenes/Skeleton.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Scripts/UI.gd" type="Script" id=8]
+[ext_resource path="res://Scenes/Ghost.tscn" type="PackedScene" id=9]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=10]
 
 [sub_resource type="Curve2D" id=12]
@@ -36,6 +39,16 @@ _data = {
 [sub_resource type="Curve2D" id=17]
 _data = {
 "points": PoolVector2Array( -12.3946, -3.69112, 12.3946, 3.69112, 730, -52, 1.2523, -51.2143, -1.2523, 51.2143, 816, -13.1974, 0, 0, 0, 0, 732, 26, 29.7302, 1.18921, -29.7302, -1.18921, 701, 30.6977, 0, 0, 0, 0, 661, 29.6003, 0.413152, 42.5388, -0.413152, -42.5388, 539, -13.1974, -7.55332, 0.16591, 7.55332, -0.16591, 618, -49.4108, -16.0543, -0.594603, 16.0543, 0.594603, 698, -58.1898, 0, 0, 0, 0, 730, -52 )
+}
+
+[sub_resource type="Curve2D" id=18]
+_data = {
+"points": PoolVector2Array( -1.68369, -6.45416, 1.68369, 6.45416, 1094, 79, -4.77046, 0, 4.77046, 0, 1240, 84, -9.26031, 11.7859, 9.26031, -11.7859, 1275, 77, 10.7432, 6.63549, -10.7432, -6.63549, 1274, -56, 2.84378, -8.84732, -2.84378, 8.84732, 1173, -57, 8.9797, -1.68369, -8.9797, 1.68369, 1174, 70, 3.36739, -3.648, -3.36739, 3.648, 1093, 71, 0, 0, 0, 0, 1094, 79 )
+}
+
+[sub_resource type="Curve2D" id=19]
+_data = {
+"points": PoolVector2Array( 6.73477, 14.3114, -6.73477, -14.3114, 1100, -65, -7.42462, -12.0208, 7.42462, 12.0208, 1288, -63, 7.07107, -7.07107, -7.07107, 7.07107, 1291, 76, 7.77818, 9.19239, -7.77818, -9.19239, 1104, 73, -9.26031, 8.13785, 9.26031, -8.13785, 1100, -65 )
 }
 
 [sub_resource type="Shader" id=10]
@@ -150,6 +163,39 @@ rotate = false
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D6/PathFollow2D" instance=ExtResource( 7 )]
 pat_speed = 100
 
+[node name="Path2D7" type="Path2D" parent="Navigation2D/Enemies"]
+position = Vector2( 0, -8 )
+curve = SubResource( 18 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D7"]
+position = Vector2( 1094, 79 )
+rotation = 0.0285702
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D7/PathFollow2D" instance=ExtResource( 7 )]
+pat_speed = 75
+
+[node name="Path2D8" type="Path2D" parent="Navigation2D/Enemies"]
+position = Vector2( 0, 1 )
+curve = SubResource( 19 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D8"]
+position = Vector2( 1100, -65 )
+rotation = -0.000529191
+rotate = false
+
+[node name="Ghost" parent="Navigation2D/Enemies/Path2D8/PathFollow2D" instance=ExtResource( 9 )]
+pat_speed = 75
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D8"]
+position = Vector2( 1290.17, 76.215 )
+rotation = -0.0208686
+offset = 331.87
+rotate = false
+
+[node name="Ghost" parent="Navigation2D/Enemies/Path2D8/PathFollow2D2" instance=ExtResource( 9 )]
+pat_speed = 75
+
 [node name="PlayerStart" type="Position2D" parent="."]
 
 [node name="Player" parent="." instance=ExtResource( 1 )]
@@ -171,9 +217,10 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource( 8 )
 
-[node name="PizzaTimerLabel" type="Label" parent="CanvasLayer"]
+[node name="PizzaTimerLabel" type="Label" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -119.0
@@ -184,7 +231,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="SlicesCountLabel" type="Label" parent="CanvasLayer"]
+[node name="SlicesCountLabel" type="Label" parent="UI"]
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
@@ -196,7 +243,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="PizzaSlices" type="TextureRect" parent="CanvasLayer"]
+[node name="PizzaSlices" type="TextureRect" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -275.0
@@ -224,6 +271,7 @@ margin_left = 8.84
 margin_top = 0.0400009
 margin_right = 14.52
 margin_bottom = -4.0
+script = ExtResource( 6 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -232,22 +280,26 @@ __meta__ = {
 margin_left = 29.0
 margin_top = 3.0
 margin_right = 274.0
-margin_bottom = 25.0
+margin_bottom = 31.0
 theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Use WASD or Arrow keys to move[/center]"
 text = "Use WASD or Arrow keys to move"
 
-[node name="RichTextLabel" type="RichTextLabel" parent="Tutorial"]
+[node name="Shift Key" type="RichTextLabel" parent="Tutorial"]
 margin_left = 431.0
 margin_top = 4.0
 margin_right = 611.0
 margin_bottom = 44.0
 theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]Hold Shift to sneak past[/center]"
 text = "Hold Shift to sneak past"
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="RichTextLabel2" type="RichTextLabel" parent="Tutorial"]
+[node name="Space Key" type="RichTextLabel" parent="Tutorial"]
 margin_left = 688.0
 margin_top = -1.0
 margin_right = 965.0
@@ -256,6 +308,19 @@ theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Press Space to flip your hat and enter the ethereal realm[/center]"
 text = "Press Space to flip your hat and enter the ethereal realm"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Both Enemies" type="RichTextLabel" parent="Tutorial"]
+margin_left = 1158.0
+margin_top = 4.0
+margin_right = 1346.0
+margin_bottom = 44.0
+theme = ExtResource( 3 )
+bbcode_enabled = true
+bbcode_text = "[center]There are enemies in both realms[/center]"
+text = "There are enemies in both realms"
 __meta__ = {
 "_edit_use_anchors_": false
 }
