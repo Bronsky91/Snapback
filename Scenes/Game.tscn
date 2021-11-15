@@ -432,7 +432,7 @@ margin_bottom = 45.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Braizers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
-text = "Braizers are safe zones, enemies will not attack. They are also checkpoints."
+text = "Braziers are safe zones, enemies will not attack. They are also checkpoints."
 __meta__ = {
 "_edit_use_anchors_": false
 }
