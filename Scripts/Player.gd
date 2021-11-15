@@ -176,5 +176,5 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_PickupArea_body_entered(body):
-	if body.name in g.enemies:
+	if (not g.inverted and body.name in g.normal_enemies) or (g.inverted and body.name in g.inverted_enemies):
 		attacked()
