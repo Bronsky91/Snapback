@@ -150,7 +150,7 @@ func attacked():
 		global_position = player_start_node.global_position
 		last_checkpoint_pos = player_start_node.global_position
 		slices_count = 4
-		get_parent().reset_pizza_time()
+		get_node("/root/Game").reset_pizza_time()
 	else:
 		slices_count -= 1
 		global_position = last_checkpoint_pos
@@ -164,7 +164,7 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 	if area.name == 'SafeZoneArea':
 		g.safe = true
 		# TODO: Show floating text telling the player they've got to a checkpoint?
-		last_checkpoint_pos = area.global_position
+		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':
