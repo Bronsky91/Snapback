@@ -8,7 +8,7 @@ export (int) var alert_range = 120
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
 onready var sprite = $Sprite
-onready var blur = $Blur
+onready var shadow = $Shadow
 onready var anim_player = $AnimationPlayer
 onready var raycast = $RayCast2D
 onready var detection_shape = $DetectionArea/CollisionShape2D
@@ -144,13 +144,13 @@ func _on_Player_invert(inverted):
 
 
 func invert(inverted):
-	# If player is on opposite inversion of enemy, blur enemy sprite
+	# If player is on opposite inversion of enemy, replace enemy sprite with shadow
 	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
 		sprite.visible = false
-		blur.visible = true
+		shadow.visible = true
 	else:
 		sprite.visible = true
-		blur.visible = false
+		shadow.visible = false
 
 
 func round_pos(pos: Vector2) -> Vector2:
