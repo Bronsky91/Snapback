@@ -2,7 +2,8 @@ extends KinematicBody2D
 
 export (int) var pat_speed = 50
 export (int) var run_speed = 100
-export (int) var vision_range = 100
+export (int) var vision_range = 80
+export (int) var alert_range = 120
 
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
@@ -11,6 +12,9 @@ onready var blur = $Blur
 onready var anim_player = $AnimationPlayer
 onready var raycast = $RayCast2D
 onready var detection_shape = $DetectionArea/CollisionShape2D
+onready var alert_shape = $AlertArea/CollisionShape2D
+onready var eyes = $Eyes
+onready var exclamation = $Exclamation
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
@@ -26,6 +30,7 @@ func _ready():
 	g.connect("invert", self, "_on_Player_invert")
 	invert(g.inverted)
 	detection_shape.shape.radius = vision_range
+	alert_shape.shape.radius = alert_range
 
 
 func _process(delta):
@@ -34,6 +39,7 @@ func _process(delta):
 	if state == 'chase':
 		if player:
 			if g.safe:
+				exclamation.visible = false
 				state = 'return'
 			path = nav.get_simple_path(global_position, player.global_position)
 			var move_distance = run_speed * delta
@@ -105,6 +111,7 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_body_exited(body):
 	if body.name == 'Player':
 		player = null
+		exclamation.visible = false
 		state = 'return'
 
 
@@ -115,6 +122,8 @@ func chase_check():
 		raycast.force_raycast_update()
 		var collision_object = raycast.get_collider()
 		if collision_object == player:
+			eyes.visible = false
+			exclamation.visible = true
 			state = "chase"
 
 
@@ -145,3 +154,13 @@ func invert(inverted):
 
 func round_pos(pos: Vector2) -> Vector2:
 	return Vector2(stepify(pos.x, 10), stepify(pos.y, 10))
+
+
+func _on_AlertArea_body_entered(body):
+	if body.name == 'Player':
+		eyes.visible = true
+
+
+func _on_AlertArea_body_exited(body):
+	if body.name == 'Player':
+		eyes.visible = false
