@@ -1,4 +1,4 @@
-[gd_scene load_steps=32 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -18,6 +18,7 @@
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=16]
 [ext_resource path="res://Assets/Decorations/Banner_001.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Decorations/Banner_002.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Garbage_001.png" type="Texture" id=19]
 
 [sub_resource type="SpriteFrames" id=22]
 animations = [ {
@@ -49,6 +50,27 @@ animations = [ {
 0/shape_one_way_margin = 0.0
 0/shapes = [  ]
 0/z_index = 0
+1/name = "Decoration_001.png 1"
+1/texture = ExtResource( 12 )
+1/tex_offset = Vector2( 0, 0 )
+1/modulate = Color( 1, 1, 1, 1 )
+1/region = Rect2( 0, 32, 48, 16 )
+1/tile_mode = 2
+1/autotile/icon_coordinate = Vector2( 0, 0 )
+1/autotile/tile_size = Vector2( 16, 16 )
+1/autotile/spacing = 0
+1/autotile/occluder_map = [  ]
+1/autotile/navpoly_map = [  ]
+1/autotile/priority_map = [  ]
+1/autotile/z_index_map = [  ]
+1/occluder_offset = Vector2( 0, 0 )
+1/navigation_offset = Vector2( 0, 0 )
+1/shape_offset = Vector2( 0, 0 )
+1/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+1/shape_one_way = false
+1/shape_one_way_margin = 0.0
+1/shapes = [  ]
+1/z_index = 0
 
 [sub_resource type="Curve2D" id=12]
 _data = {
@@ -94,6 +116,29 @@ _data = {
 _data = {
 "points": PoolVector2Array( 20.1525, 24.7487, -20.1525, -24.7487, 1349, -68, -13.435, -20.1525, 13.435, 20.1525, 1699, -68, 9.54594, -15.2028, -9.54594, 15.2028, 1698, -19, 10.253, 16.617, -10.253, -16.617, 1350, -20, -6.36396, 5.3033, 6.36396, -5.3033, 1349, -68 )
 }
+
+[sub_resource type="TileSet" id=23]
+0/name = "Garbage_001.png 0"
+0/texture = ExtResource( 19 )
+0/tex_offset = Vector2( 0, 0 )
+0/modulate = Color( 1, 1, 1, 1 )
+0/region = Rect2( 0, 0, 80, 64 )
+0/tile_mode = 2
+0/autotile/icon_coordinate = Vector2( 0, 0 )
+0/autotile/tile_size = Vector2( 16, 16 )
+0/autotile/spacing = 0
+0/autotile/occluder_map = [  ]
+0/autotile/navpoly_map = [  ]
+0/autotile/priority_map = [  ]
+0/autotile/z_index_map = [  ]
+0/occluder_offset = Vector2( 0, 0 )
+0/navigation_offset = Vector2( 0, 0 )
+0/shape_offset = Vector2( 0, 0 )
+0/shape_transform = Transform2D( 1, 0, 0, 1, 0, 0 )
+0/shape_one_way = false
+0/shape_one_way_margin = 0.0
+0/shapes = [  ]
+0/z_index = 0
 
 [sub_resource type="Shader" id=10]
 code = "shader_type canvas_item;
@@ -149,7 +194,6 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-frame = 0
 
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
 
@@ -322,6 +366,12 @@ current = true
 
 [node name="SafeZone" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 1514, 61 )
+
+[node name="TrashTileMap" type="TileMap" parent="YSort"]
+tile_set = SubResource( 23 )
+cell_size = Vector2( 16, 16 )
+cell_y_sort = true
+format = 1
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
