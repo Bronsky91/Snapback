@@ -226,9 +226,8 @@ rotate = false
 pat_speed = 80
 
 [node name="PathFollow2D3" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D9"]
-position = Vector2( 1527.88, -84.6666 )
+position = Vector2( 1527.88, -84.6665 )
 rotation = 0.0282818
-scale = Vector2( 1, 1 )
 offset = 183.9
 rotate = false
 
@@ -267,7 +266,7 @@ __meta__ = {
 }
 
 [node name="SafeZone" parent="YSort" instance=ExtResource( 11 )]
-position = Vector2( 1511, 62 )
+position = Vector2( 1514, 61 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
