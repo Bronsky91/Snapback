@@ -37,6 +37,7 @@ func _process(delta):
 	if state == 'patrol':
 		patrol(delta)
 	if state == 'chase':
+		eyes.visible = false
 		if player:
 			if g.safe:
 				exclamation.visible = false
