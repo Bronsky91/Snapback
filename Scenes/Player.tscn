@@ -79,6 +79,22 @@ tracks/0/keys = {
 "values": [ 2 ]
 }
 
+[sub_resource type="Animation" id=27]
+resource_name = "InverseIdleBack"
+length = 0.375
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 76, 77, 78, 79 ]
+}
+
 [sub_resource type="Animation" id=20]
 resource_name = "Inverse"
 length = 0.375
@@ -108,7 +124,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 6, 5, 4, 7 ]
+"values": [ 72, 73, 74, 75 ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -128,7 +144,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=23]
-resource_name = "InverseSneakBack"
+resource_name = "InverseSneakIdleBack"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -144,7 +160,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=24]
-resource_name = "InverseSneakFront"
+resource_name = "InverseSneakIdleFront"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -160,7 +176,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=25]
-resource_name = "InverseSneakLeft"
+resource_name = "InverseSneakIdleLeft"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -176,7 +192,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=26]
-resource_name = "InverseSneakRight"
+resource_name = "InverseSneakIdleRight"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -410,22 +426,6 @@ tracks/0/keys = {
 "values": [ 24, 25, 26, 27, 28, 29 ]
 }
 
-[sub_resource type="Animation" id=27]
-resource_name = "inverseIdleBack"
-length = 0.375
-tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
-"transitions": PoolRealArray( 1, 1, 1, 1 ),
-"update": 1,
-"values": [ 76, 77, 78, 79 ]
-}
-
 [node name="Player" type="KinematicBody2D"]
 collision_layer = 8
 collision_mask = 355
@@ -465,13 +465,14 @@ anims/IdleBack = SubResource( 3 )
 anims/IdleFront = SubResource( 4 )
 anims/IdleLeft = SubResource( 5 )
 anims/IdleRight = SubResource( 6 )
+anims/InverseIdleBack = SubResource( 27 )
 anims/InverseIdleFront = SubResource( 20 )
 anims/InverseIdleLeft = SubResource( 21 )
 anims/InverseIdleRight = SubResource( 22 )
-anims/InverseSneakBack = SubResource( 23 )
-anims/InverseSneakFront = SubResource( 24 )
-anims/InverseSneakLeft = SubResource( 25 )
-anims/InverseSneakRight = SubResource( 26 )
+anims/InverseSneakIdleBack = SubResource( 23 )
+anims/InverseSneakIdleFront = SubResource( 24 )
+anims/InverseSneakIdleLeft = SubResource( 25 )
+anims/InverseSneakIdleRight = SubResource( 26 )
 anims/RESET = SubResource( 7 )
 anims/RunBack = SubResource( 8 )
 anims/RunFront = SubResource( 9 )
@@ -485,7 +486,6 @@ anims/SneakIdleLeft = SubResource( 16 )
 anims/SneakIdleRight = SubResource( 17 )
 anims/SneakLeft = SubResource( 18 )
 anims/SneakRight = SubResource( 19 )
-anims/inverseIdleBack = SubResource( 27 )
 
 [node name="InverseCooldown" type="Timer" parent="."]
 wait_time = 0.3

@@ -109,6 +109,8 @@ func _physics_process(delta):
 
 
 func toggle_inversion(velocity):
+	print("Inverse" + animation + facing)
+	g.inverted = !g.inverted
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
 	else:
@@ -116,7 +118,6 @@ func toggle_inversion(velocity):
 			$Sprite.texture = load('Assets/Player_002.png')
 		else:
 			$Sprite.texture = load('Assets/Player_001.png')
-	g.inverted = !g.inverted
 	if g.inverted:
 		$ColorRect.show()
 		# change layer
@@ -176,7 +177,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 			$Sprite.texture = load('Assets/Player_002.png')
 		else:
 			$Sprite.texture = load('Assets/Player_001.png')
-		
+		$Sprite.frame = g.inverse_frame_dict[anim_name]
 
 
 func _on_PickupArea_body_entered(body):
