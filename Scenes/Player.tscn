@@ -80,7 +80,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=27]
-resource_name = "InverseIdleBack"
+resource_name = "inverseIdleBack"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -124,7 +124,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2, 0.3 ),
 "transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 72, 73, 74, 75 ]
+"values": [ 6, 5, 4, 7 ]
 }
 
 [sub_resource type="Animation" id=22]
@@ -144,7 +144,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=23]
-resource_name = "InverseSneakIdleBack"
+resource_name = "InverseSneakBack"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -160,7 +160,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=24]
-resource_name = "InverseSneakIdleFront"
+resource_name = "InverseSneakFront"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -176,7 +176,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=25]
-resource_name = "InverseSneakIdleLeft"
+resource_name = "InverseSneakLeft"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
@@ -192,7 +192,7 @@ tracks/0/keys = {
 }
 
 [sub_resource type="Animation" id=26]
-resource_name = "InverseSneakIdleRight"
+resource_name = "InverseSneakRight"
 length = 0.375
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")

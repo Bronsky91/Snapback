@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=16 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
 [ext_resource path="res://Assets/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/DungeonTileset.tres" type="TileSet" id=4]
+[ext_resource path="res://Assets/Slices4.png" type="Texture" id=5]
 [ext_resource path="res://Scenes/Skeleton.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=10]
 
@@ -183,13 +184,25 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="LifeCountLabel" type="Label" parent="CanvasLayer"]
+[node name="SlicesCountLabel" type="Label" parent="CanvasLayer"]
+visible = false
 anchor_left = 0.5
 anchor_right = 0.5
 margin_left = -20.0
 margin_top = 6.0
 margin_right = 20.0
 margin_bottom = 20.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="PizzaSlices" type="TextureRect" parent="CanvasLayer"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -275.0
+margin_bottom = 29.0
+texture = ExtResource( 5 )
+stretch_mode = 4
 __meta__ = {
 "_edit_use_anchors_": false
 }

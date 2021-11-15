@@ -6,9 +6,10 @@ export (int) var sneak_speed: int = 100
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 onready var player_start_node: Position2D = get_parent().get_node("PlayerStart")
-onready var life_count_label: Label = get_parent().get_node("CanvasLayer/LifeCountLabel")
+onready var slices_count_label: Label = get_parent().get_node("CanvasLayer/SlicesCountLabel")
+onready var slices_icon: TextureRect = get_parent().get_node("CanvasLayer/PizzaSlices")
 
-var life_count: int = 3
+var slices_count: int = 4
 var speed: int = run_speed
 var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
@@ -28,7 +29,8 @@ var new_facing: String = facing
 func _ready():
 	speed = run_speed
 	last_checkpoint_pos = player_start_node.global_position
-	life_count_label.text = "Lives: " + str(life_count)
+	slices_count_label.text = "Slices: " + str(slices_count)
+	slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func get_input():
 	velocity = Vector2()
@@ -109,7 +111,6 @@ func _physics_process(delta):
 
 
 func toggle_inversion(velocity):
-	print("Inverse" + animation + facing)
 	g.inverted = !g.inverted
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
@@ -143,16 +144,17 @@ func toggle_inversion(velocity):
 	$InverseCooldown.start()
 	
 func attacked():
-	if life_count == 1:
+	if slices_count == 1:
 		# Game over
 		global_position = player_start_node.global_position
 		last_checkpoint_pos = player_start_node.global_position
-		life_count = 3
+		slices_count = 4
 		get_parent().reset_pizza_time()
 	else:
-		life_count -= 1
+		slices_count -= 1
 		global_position = last_checkpoint_pos
-	life_count_label.text = "Lives: " + str(life_count)
+	slices_count_label.text = "Slices: " + str(slices_count)
+	slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
