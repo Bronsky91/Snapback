@@ -14,9 +14,13 @@ func _ready():
 #	pass
 
 func format_time():
-	return str(ceil(pizza_time/60)) + ":" + str(ceil(pizza_time % 60))
+	return str(ceil(pizza_time/60)) + ":" + str(ceil(pizza_time % 60)).pad_zeros(1)
 	
 # .5 seconds is 1 second in game
 func _on_PizzaTimer_timeout():
 	pizza_time -= 1 
 	pizza_timer_label.text = format_time()
+
+func reset_pizza_time():
+	pizza_time = 1800
+	pizza_timer_label.text = "30:00"

@@ -142,6 +142,7 @@ func attacked():
 		global_position = player_start_node.global_position
 		# TODO: Reset any relevant state here
 		life_count = 3
+		get_parent().reset_pizza_time()
 	else:
 		life_count -= 1
 		global_position = last_checkpoint_pos
