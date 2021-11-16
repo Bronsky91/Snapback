@@ -32,7 +32,7 @@ tracks/0/keys = {
 [node name="Torch" type="AnimatedSprite"]
 position = Vector2( -12, -104 )
 frames = SubResource( 23 )
-frame = 1
+frame = 2
 playing = true
 script = ExtResource( 5 )
 
