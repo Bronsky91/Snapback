@@ -193,7 +193,6 @@ func play_minion_aware():
 
 # For when the enemy snatches a slice
 func pizza_thief():
-	print("PIZZA THIEF")
 	show_icon("hands")
 	$HandsTimer.start()
 

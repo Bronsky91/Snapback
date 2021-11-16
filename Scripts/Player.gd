@@ -27,6 +27,7 @@ var y_changed: bool = false
 var facing: String = "Right"
 var animation: String = "Idle"
 var new_facing: String = facing
+var movement_enabled = true
 
 
 func _ready():
@@ -45,7 +46,9 @@ func get_input():
 		velocity.y += 1
 	if Input.is_action_pressed("up"):
 		velocity.y -= 1
-	velocity = velocity.normalized() * speed
+	
+	if movement_enabled:
+		velocity = velocity.normalized() * speed
 	
 	if Input.is_action_just_pressed("invert"):
 		if inverse_ready:
@@ -102,6 +105,11 @@ func sprite_animation():
 	elif velocity != Vector2(0,0) and not sneaking:
 		new_animation = "Run"
 	
+	if not movement_enabled and new_animation == "Run":
+		new_animation = "Idle"
+	elif not movement_enabled and new_animation == "Sneak":
+		new_animation = "SneakIdle"
+	
 	if new_facing != facing or new_animation != animation:
 		facing = new_facing
 		animation = new_animation
@@ -152,15 +160,23 @@ func attacked(attacker):
 		g.emit_signal('go_home', attacker)
 		if slices_count == 1:
 			# Game over
-			global_position = player_start_node.global_position
-			last_checkpoint_pos = player_start_node.global_position
 			slices_count = 4
 			get_node("/root/Game").reset_pizza_time()
+			movement_enabled = false
+			print("movement_enabled: " + str(movement_enabled))
+			print("slice_count: " + str(slices_count))
 		else:
 			slices_count -= 1
 			is_invulnerable = true
-			$InvulnerabilityTimer.start()
-			$FlashTimer.start()
+			# unset layer
+			set_collision_layer_bit(3, false) # player_normal
+			set_collision_layer_bit(4, false)  # player_inverted
+			# unset masks
+			set_collision_mask_bit(6, false)  # enemy_normal
+			set_collision_mask_bit(7, false)   # enemy_inverted
+		
+		$FlashTimer.start()
+		$InvulnerabilityTimer.start()
 		slices_count_label.text = "Slices: " + str(slices_count)
 		slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
@@ -196,7 +212,23 @@ func _on_PickupArea_body_entered(body):
 
 
 func _on_InvulnerabilityTimer_timeout():
-	global_position = last_checkpoint_pos
+	if not movement_enabled:
+		global_position = last_checkpoint_pos
+		movement_enabled = true
+	if g.inverted:
+		# reset layer
+		set_collision_layer_bit(3, false) # player_normal
+		set_collision_layer_bit(4, true)  # player_inverted
+		# reset masks
+		set_collision_mask_bit(6, false)  # enemy_normal
+		set_collision_mask_bit(7, true)   # enemy_inverted
+	else:
+		# reset layer
+		set_collision_layer_bit(3, true)  # player_normal
+		set_collision_layer_bit(4, false) # player_inverted
+		# reset masks
+		set_collision_mask_bit(6, true)   # enemy_normal
+		set_collision_mask_bit(7, false)  # enemy_inverted
 	is_invulnerable = false
 
 
