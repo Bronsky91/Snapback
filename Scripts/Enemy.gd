@@ -187,8 +187,10 @@ func play_minion_chase():
 	sfx.play()
 
 func play_minion_aware():
-	sfx.stream = load("res://Assets/Audio/stomach_growl.mp3")
-	sfx.play()
+	# ~1 in 5 chance to play stomach growl
+	if randi() % 100 < 20:
+		sfx.stream = load("res://Assets/Audio/stomach_growl.mp3")
+		sfx.play()
 
 
 # For when the enemy snatches a slice
