@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/E_001.png-be92f1ff138d21ede5e63be1f84775be.stex"
+path="res://.import/Painting_006.png-78abc62c3a2e418673f329405c7cd68c.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/E_001.png"
-dest_files=[ "res://.import/E_001.png-be92f1ff138d21ede5e63be1f84775be.stex" ]
+source_file="res://Assets/Painting_006.png"
+dest_files=[ "res://.import/Painting_006.png-78abc62c3a2e418673f329405c7cd68c.stex" ]
 
 [params]
 
@@ -20,11 +20,7 @@ compress/hdr_mode=0
 compress/bptc_ldr=0
 compress/normal_map=0
 flags/repeat=0
-<<<<<<< Updated upstream
-flags/filter=true
-=======
 flags/filter=false
->>>>>>> Stashed changes
 flags/mipmaps=false
 flags/anisotropic=false
 flags/srgb=2
