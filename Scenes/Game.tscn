@@ -189,15 +189,14 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 0
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 0
+frame = 1
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -416,18 +415,6 @@ visible = false
 material = SubResource( 11 )
 margin_right = 640.0
 margin_bottom = 480.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="SlicesCountLabel" type="Label" parent="UI"]
-visible = false
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -20.0
-margin_top = 6.0
-margin_right = 20.0
-margin_bottom = 20.0
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -7,7 +7,6 @@ onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 onready var game_scene: Node = get_node('/root/Game')
 onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
-onready var slices_count_label: Label = get_node("/root/Game/UI/SlicesCountLabel")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
 onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
@@ -34,7 +33,6 @@ var movement_enabled = true
 func _ready():
 	speed = run_speed
 	last_checkpoint_pos = player_start_node.global_position
-	slices_count_label.text = "Slices: " + str(slices_count)
 	slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func get_input():
@@ -176,7 +174,6 @@ func attacked(attacker):
 		
 		$FlashTimer.start()
 		$InvulnerabilityTimer.start()
-		slices_count_label.text = "Slices: " + str(slices_count)
 		slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
