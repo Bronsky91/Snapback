@@ -14,7 +14,7 @@ func _ready():
 #	pass
 
 func format_time():
-	return str(ceil(pizza_time/60)).pad_zeros(1) + ":" + str(ceil(pizza_time % 60)).pad_zeros(1)
+	return str(ceil(pizza_time/60)).pad_zeros(2) + ":" + str("%01d" % ceil(pizza_time % 60)).pad_zeros(2)
 	
 # .5 seconds is 1 second in game
 func _on_PizzaTimer_timeout():
