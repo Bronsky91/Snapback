@@ -209,7 +209,6 @@ func show_icon(icon):
 func hide_icons():
 	eyes.visible = false
 	exclamation.visible = false
-	hands.visible = false
 
 
 func _on_HandsTimer_timeout():
