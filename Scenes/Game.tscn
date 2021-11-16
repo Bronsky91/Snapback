@@ -172,7 +172,7 @@ tile_data = PoolIntArray( -1310620, 4, 65537, -1310619, 4, 65537, -1310618, 4, 6
 position = Vector2( 2182, -111 )
 frames = SubResource( 22 )
 animation = "Writhe"
-frame = 2
+frame = 3
 playing = true
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
