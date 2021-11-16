@@ -169,7 +169,6 @@ tile_data = PoolIntArray( -1310620, 4, 65537, -1310619, 4, 65537, -1310618, 4, 6
 
 [node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
-frame = 1
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
 tile_set = SubResource( 21 )
@@ -190,14 +189,15 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
+frame = 0
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
+frame = 0
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -411,15 +411,14 @@ tile_data = PoolIntArray( -458614, 0, 131074, -393084, 0, 1, -262150, 0, 1 )
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
 
-[node name="PizzaTimerLabel" type="RichTextLabel" parent="UI"]
-anchor_left = 1.0
-anchor_right = 1.0
-margin_left = -119.0
-margin_top = 8.0
-margin_right = -39.0
-margin_bottom = 22.0
-theme = ExtResource( 3 )
-bbcode_enabled = true
+[node name="InvertScreen" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 11 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="SlicesCountLabel" type="Label" parent="UI"]
 visible = false
@@ -444,14 +443,15 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="InvertScreen" type="ColorRect" parent="UI"]
-visible = false
-material = SubResource( 11 )
-margin_right = 640.0
-margin_bottom = 480.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+[node name="PizzaTimerLabel" type="RichTextLabel" parent="UI"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -119.0
+margin_top = 8.0
+margin_right = -39.0
+margin_bottom = 29.0
+theme = ExtResource( 3 )
+bbcode_enabled = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 14 )]
 visible = false
