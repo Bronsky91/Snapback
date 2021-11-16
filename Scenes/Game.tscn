@@ -200,12 +200,15 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 2
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
+frame = 2
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
+frame = 2
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -232,7 +235,6 @@ position = Vector2( 2247, -98 )
 texture = ExtResource( 20 )
 
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
-visible = false
 
 [node name="Path2D" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 3, -9 )
@@ -395,7 +397,6 @@ pat_speed = 80
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
-visible = false
 run_speed = 150
 sneak_speed = 75
 
