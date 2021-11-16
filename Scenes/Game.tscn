@@ -12,6 +12,7 @@
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/SafeZone.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Decoration_001.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/Skeleboi.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/DialoguePlayer.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=16]
@@ -168,7 +169,7 @@ tile_data = PoolIntArray( -1310620, 4, 65537, -1310619, 4, 65537, -1310618, 4, 6
 
 [node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
-frame = 0
+frame = 1
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
 tile_set = SubResource( 21 )
@@ -189,15 +190,14 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 0
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 0
+frame = 1
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
