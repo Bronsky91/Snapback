@@ -103,8 +103,8 @@ func animate_sprite(from, to):
 	# Animate enemy in appropriate direction
 	if facing != new_facing:
 		facing = new_facing
-		if name == "Ghost":
-			anim_player.play("Ghost" + facing)
+		if "Ghost" in name:
+			anim_player.play(name + facing)
 		if name == "Skeleton":
 			anim_player.play("Walk" + facing)
 
