@@ -9,6 +9,7 @@ var player
 
 signal sneak(sneaking)
 signal invert(inverted)
+signal shake(duration, frequency, amplitude, priority)
 
 const inverse_frame_dict = {
 	'InverseIdleFront': 1,

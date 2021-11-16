@@ -145,6 +145,7 @@ func toggle_inversion(velocity):
 	$InverseCooldown.start()
 	
 func attacked():
+	g.emit_signal('shake', 0.2, 15, 16, 0)
 	if slices_count == 1:
 		# Game over
 		global_position = player_start_node.global_position
