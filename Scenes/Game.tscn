@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=40 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -19,6 +19,12 @@
 [ext_resource path="res://Assets/Decorations/Banner_001.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Decorations/Banner_002.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Garbage_001.png" type="Texture" id=19]
+[ext_resource path="res://Assets/Decorations/Pedestal_002.png" type="Texture" id=20]
+[ext_resource path="res://Assets/Decorations/Painting_004.png" type="Texture" id=21]
+[ext_resource path="res://Assets/Decorations/Painting_005.png" type="Texture" id=22]
+[ext_resource path="res://Assets/Decorations/Skull_002.png" type="Texture" id=23]
+[ext_resource path="res://Assets/Decorations/Painting_003.png" type="Texture" id=24]
+[ext_resource path="res://Assets/Decorations/Painting_001.png" type="Texture" id=25]
 
 [sub_resource type="SpriteFrames" id=22]
 animations = [ {
@@ -172,7 +178,7 @@ tile_data = PoolIntArray( -1310620, 4, 65537, -1310619, 4, 65537, -1310618, 4, 6
 position = Vector2( 2182, -111 )
 frames = SubResource( 22 )
 animation = "Writhe"
-frame = 3
+frame = 2
 playing = true
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
@@ -194,9 +200,39 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-frame = 2
+
+[node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+position = Vector2( 310, -101 )
+
+[node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+position = Vector2( 2155, -135 )
+
+[node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 199, -97 )
+texture = ExtResource( 25 )
+
+[node name="Painting004" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 69, -96 )
+texture = ExtResource( 21 )
+
+[node name="Painting003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 762, -98 )
+texture = ExtResource( 24 )
+
+[node name="Painting005" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 2208, -130 )
+texture = ExtResource( 22 )
+
+[node name="Skull002" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 2152, -105 )
+texture = ExtResource( 23 )
+
+[node name="Pedestal002" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 2247, -98 )
+texture = ExtResource( 20 )
 
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
+visible = false
 
 [node name="Path2D" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 3, -9 )
@@ -359,6 +395,7 @@ pat_speed = 80
 [node name="YSort" type="YSort" parent="."]
 
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
+visible = false
 run_speed = 150
 sneak_speed = 75
 
@@ -373,6 +410,7 @@ tile_set = SubResource( 23 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 format = 1
+tile_data = PoolIntArray( -458614, 0, 65536, -393084, 0, 1, -262150, 0, 1 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
@@ -499,7 +537,7 @@ margin_bottom = 45.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Braizers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
-text = "Braizers are safe zones, enemies will not attack. They are also checkpoints."
+text = "Braziers are safe zones, enemies will not attack. They are also checkpoints."
 __meta__ = {
 "_edit_use_anchors_": false
 }
