@@ -113,7 +113,7 @@ func _on_DetectionArea_body_entered(body):
 
 
 func _on_DetectionArea_body_exited(body):
-	if body.name == 'Player':
+	if body.name == 'Player' and not name == 'GrimReaper':
 		player = null
 		exclamation.visible = false
 		state = 'return'

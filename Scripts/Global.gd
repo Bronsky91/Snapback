@@ -1,8 +1,8 @@
 extends Node
 
 var inverted = false
-var normal_enemies = ['Skeleton']
-var inverted_enemies = ['Ghost']
+var normal_enemies = ['Skeleton', 'GrimReaper']
+var inverted_enemies = ['Ghost', 'GrimReaper']
 
 var player
 
