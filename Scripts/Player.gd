@@ -12,6 +12,7 @@ onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
 onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
 var slices_count: int = 4
+var slices_lost: int = 0
 var safe = false
 var is_invulnerable = false
 var is_flashing = false
@@ -156,15 +157,13 @@ func toggle_inversion(velocity):
 	
 func attacked(attacker):
 	if !is_invulnerable:
+		slices_lost += 1
 		g.emit_signal('shake', 0.2, 15, 16, 0)
 		g.emit_signal('go_home', attacker)
 		if slices_count == 1:
-			# Game over
+			# Respawn at checkpoint
 			slices_count = 4
-			get_node("/root/Game").reset_pizza_time()
 			movement_enabled = false
-			print("movement_enabled: " + str(movement_enabled))
-			print("slice_count: " + str(slices_count))
 		else:
 			slices_count -= 1
 			is_invulnerable = true
