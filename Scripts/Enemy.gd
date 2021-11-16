@@ -173,6 +173,7 @@ func round_pos(pos: Vector2) -> Vector2:
 func _on_AlertArea_body_entered(body):
 	if body.name == 'Player':
 		eyes.visible = true
+		play_minion_aware()
 
 
 func _on_AlertArea_body_exited(body):
@@ -183,3 +184,6 @@ func play_minion_chase():
 	sfx.stream = load("res://Assets/Audio/minion_pizza.mp3")
 	sfx.play()
 
+func play_minion_aware():
+	sfx.stream = load("res://Assets/Audio/stomach_growl.mp3")
+	sfx.play()

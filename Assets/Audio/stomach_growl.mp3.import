@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/stomach_growl.mp3-8cf438cfe02b84b8a92665bfde9707b4.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/stomach_growl.mp3"
+dest_files=[ "res://.import/stomach_growl.mp3-8cf438cfe02b84b8a92665bfde9707b4.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
