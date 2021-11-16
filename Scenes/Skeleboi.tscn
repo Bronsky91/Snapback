@@ -30,6 +30,7 @@ animations = [ {
 light_mask = 3
 frames = SubResource( 22 )
 animation = "Writhe"
+frame = 2
 playing = true
 script = ExtResource( 4 )
 
@@ -43,6 +44,7 @@ shape = SubResource( 23 )
 light_mask = 3
 position = Vector2( 0, -38 )
 frames = SubResource( 24 )
+frame = 1
 speed_scale = 0.5
 playing = true
 
