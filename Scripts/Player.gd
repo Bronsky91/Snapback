@@ -6,7 +6,6 @@ export (int) var sneak_speed: int = 100
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
 onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
-onready var life_count_label: Label = get_node("/root/Game/UI/LifeCountLabel")
 onready var slices_count_label: Label = get_node("/root/Game/UI/SlicesCountLabel")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
 onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')

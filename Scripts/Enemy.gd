@@ -101,7 +101,10 @@ func animate_sprite(from, to):
 	# Animate enemy in appropriate direction
 	if facing != new_facing:
 		facing = new_facing
-		anim_player.play("Walk" + facing)
+		if name == "Ghost":
+			anim_player.play("Ghost" + facing)
+		if name == "Skeleton":
+			anim_player.play("Walk" + facing)
 
 func _on_DetectionArea_body_entered(body):
 	if body.name == 'Player':

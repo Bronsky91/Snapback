@@ -20,6 +20,7 @@ radius = 29.0
 position = Vector2( 2182, -111 )
 frames = SubResource( 22 )
 animation = "Writhe"
+frame = 3
 playing = true
 script = ExtResource( 4 )
 
