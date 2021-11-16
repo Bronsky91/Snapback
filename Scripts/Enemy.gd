@@ -104,6 +104,7 @@ func animate_sprite(from, to):
 	if facing != new_facing:
 		facing = new_facing
 		if "Ghost" in name:
+			print(name + facing)
 			anim_player.play(name + facing)
 		if name == "Skeleton":
 			anim_player.play("Walk" + facing)
