@@ -15,6 +15,7 @@ onready var raycast = $RayCast2D
 onready var detection_shape = $DetectionArea/CollisionShape2D
 onready var alert_shape = $AlertArea/CollisionShape2D
 onready var eyes = $Eyes
+onready var hands = $Hands
 onready var exclamation = $Exclamation
 
 var path : = PoolVector2Array()
@@ -38,9 +39,10 @@ func _process(delta):
 		patrol(delta)
 	if state == 'chase':
 		eyes.visible = false
+		hands.visible = false
 		if player:
 			if player.safe:
-				exclamation.visible = false
+				hide_icons()
 				state = 'return'
 			path = nav.get_simple_path(global_position, player.global_position)
 			var move_distance = run_speed * delta
@@ -115,7 +117,7 @@ func _on_DetectionArea_body_entered(body):
 func _on_DetectionArea_body_exited(body):
 	if body.name == 'Player' and not name == 'GrimReaper':
 		player = null
-		exclamation.visible = false
+		hide_icons()
 		state = 'return'
 
 
@@ -126,8 +128,7 @@ func chase_check():
 		raycast.force_raycast_update()
 		var collision_object = raycast.get_collider()
 		if collision_object == player:
-			eyes.visible = false
-			exclamation.visible = true
+			show_icon("exclamation")
 			state = "chase"
 			play_minion_chase()
 
@@ -146,11 +147,13 @@ func _on_Player_invert(inverted):
 	invert(inverted)
 
 
-func _on_Player_damaged():
+func _on_Player_damaged(attacker):
 	if state == "chase":
 		player = null
-		exclamation.visible = false
-		eyes.visible = false
+		if attacker == self:
+			pizza_thief()
+		else:
+			hide_icons()
 		state = "return"
 
 
@@ -159,8 +162,7 @@ func invert(inverted):
 	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
 		sprite.visible = false
 		shadow.visible = true
-		eyes.visible = false
-		exclamation.visible = false
+		hide_icons()
 	else:
 		sprite.visible = true
 		shadow.visible = false
@@ -172,8 +174,8 @@ func round_pos(pos: Vector2) -> Vector2:
 
 func _on_AlertArea_body_entered(body):
 	if body.name == 'Player':
-		eyes.visible = true
 		play_minion_aware()
+		show_icon("eyes")
 
 
 func _on_AlertArea_body_exited(body):
@@ -187,3 +189,29 @@ func play_minion_chase():
 func play_minion_aware():
 	sfx.stream = load("res://Assets/Audio/stomach_growl.mp3")
 	sfx.play()
+
+
+# For when the enemy snatches a slice
+func pizza_thief():
+	print("PIZZA THIEF")
+	show_icon("hands")
+	$HandsTimer.start()
+
+
+func show_icon(icon):
+	hide_icons()
+	if icon == "eyes":
+		eyes.visible = true
+	elif icon == "hands":
+		hands.visible = true
+	elif icon == "exclamation":
+		exclamation.visible = true
+
+func hide_icons():
+	eyes.visible = false
+	exclamation.visible = false
+	hands.visible = false
+
+
+func _on_HandsTimer_timeout():
+	hands.visible = false

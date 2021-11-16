@@ -146,9 +146,10 @@ func toggle_inversion(velocity):
 	inverse_ready = false
 	$InverseCooldown.start()
 	
-func attacked():
+func attacked(attacker):
 	if !is_invulnerable:
 		g.emit_signal('shake', 0.2, 15, 16, 0)
+		g.emit_signal('go_home', attacker)
 		if slices_count == 1:
 			# Game over
 			global_position = player_start_node.global_position
@@ -158,7 +159,6 @@ func attacked():
 		else:
 			slices_count -= 1
 			is_invulnerable = true
-			g.emit_signal('go_home')
 			$InvulnerabilityTimer.start()
 			$FlashTimer.start()
 		slices_count_label.text = "Slices: " + str(slices_count)
@@ -192,7 +192,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_PickupArea_body_entered(body):
 	if (not g.inverted and body.name in g.normal_enemies) or (g.inverted and body.name in g.inverted_enemies):
-		attacked()
+		attacked(body)
 
 
 func _on_InvulnerabilityTimer_timeout():

@@ -8,7 +8,7 @@ var player
 
 signal sneak(sneaking)
 signal invert(inverted)
-signal go_home()
+signal go_home(attacker)
 signal shake(duration, frequency, amplitude, priority)
 
 const inverse_frame_dict = {
