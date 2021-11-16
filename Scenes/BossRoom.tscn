@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
+[ext_resource path="res://Scenes/Lich.tscn" type="PackedScene" id=2]
+
+[node name="BossRoom" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = ExtResource( 1 )
+cell_size = Vector2( 16, 16 )
+cell_y_sort = true
+format = 1
+tile_data = PoolIntArray( 524275, 1, 0, 524276, 1, 0 )
+
+[node name="Lich" parent="." instance=ExtResource( 2 )]
