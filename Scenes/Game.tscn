@@ -12,7 +12,6 @@
 [ext_resource path="res://Scripts/Game.gd" type="Script" id=10]
 [ext_resource path="res://Scenes/SafeZone.tscn" type="PackedScene" id=11]
 [ext_resource path="res://Assets/Decoration_001.png" type="Texture" id=12]
-[ext_resource path="res://Scenes/Skeleboi.tscn" type="PackedScene" id=13]
 [ext_resource path="res://Scenes/DialoguePlayer.tscn" type="PackedScene" id=14]
 [ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=15]
 [ext_resource path="res://Scenes/Torch.tscn" type="PackedScene" id=16]
@@ -190,14 +189,15 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
+frame = 0
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
+frame = 0
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -411,16 +411,15 @@ tile_data = PoolIntArray( -458614, 0, 131074, -393084, 0, 1, -262150, 0, 1 )
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
 
-[node name="PizzaTimerLabel" type="Label" parent="UI"]
+[node name="PizzaTimerLabel" type="RichTextLabel" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
 margin_left = -119.0
 margin_top = 8.0
 margin_right = -39.0
 margin_bottom = 22.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
+theme = ExtResource( 3 )
+bbcode_enabled = true
 
 [node name="SlicesCountLabel" type="Label" parent="UI"]
 visible = false
