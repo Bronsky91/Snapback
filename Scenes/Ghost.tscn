@@ -290,6 +290,8 @@ enabled = true
 cast_to = Vector2( 0, 92 )
 collision_mask = 23
 
+[node name="SFX" type="AudioStreamPlayer2D" parent="."]
+
 [connection signal="body_entered" from="DetectionArea" to="." method="_on_DetectionArea_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 [connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]

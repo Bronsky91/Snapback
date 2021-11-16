@@ -7,6 +7,7 @@ export (int) var alert_range = 120
 
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
+onready var sfx: AudioStreamPlayer2D = $SFX
 onready var sprite = $Sprite
 onready var shadow = $Shadow
 onready var anim_player = $AnimationPlayer
@@ -23,7 +24,6 @@ var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
 var facing = "Right"
-var chasing = false
 
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
@@ -32,7 +32,6 @@ func _ready():
 	invert(g.inverted)
 	detection_shape.shape.radius = vision_range
 	alert_shape.shape.radius = alert_range
-
 
 func _process(delta):
 	if state == 'patrol':
@@ -130,7 +129,7 @@ func chase_check():
 			eyes.visible = false
 			exclamation.visible = true
 			state = "chase"
-
+			play_minion_chase()
 
 func _on_Player_sneak(sneaking):
 	# TODO: May refactor how exactly the sneak affects the enemy range
@@ -179,3 +178,8 @@ func _on_AlertArea_body_entered(body):
 func _on_AlertArea_body_exited(body):
 	if body.name == 'Player':
 		eyes.visible = false
+
+func play_minion_chase():
+	sfx.stream = load("res://Assets/Audio/minion_pizza.mp3")
+	sfx.play()
+

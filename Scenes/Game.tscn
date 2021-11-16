@@ -228,6 +228,10 @@ texture = ExtResource( 20 )
 position = Vector2( -40, -104 )
 texture = ExtResource( 26 )
 
+[node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
+position = Vector2( 2179, -107 )
+frame = 1
+
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
 
 [node name="Path2D" type="Path2D" parent="Navigation2D/Enemies"]
@@ -468,7 +472,7 @@ dialogue_file = "res://Dialogues/skeleton.json"
 [node name="PizzaTimer" type="Timer" parent="."]
 wait_time = 0.5
 
-[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+[node name="BackgroundMusic" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 volume_db = -25.0
 script = ExtResource( 2 )
@@ -543,8 +547,8 @@ margin_right = 1757.0
 margin_bottom = 45.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Braizers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
-text = "Braizers are safe zones, enemies will not attack. They are also checkpoints."
+bbcode_text = "[center]Braziers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
+text = "Braziers are safe zones, enemies will not attack. They are also checkpoints."
 __meta__ = {
 "_edit_use_anchors_": false
 }

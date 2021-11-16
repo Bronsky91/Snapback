@@ -24,3 +24,7 @@ func _on_PizzaTimer_timeout():
 func reset_pizza_time():
 	pizza_time = 1800
 	pizza_timer_label.text = "30:00"
+
+func add_time():
+	pizza_time += 120
+	pizza_timer_label.text = format_time()

@@ -22,3 +22,4 @@ func invert(inverted):
 	else:
 		self.stream = load("res://Assets/Audio/theme.mp3")
 		self.play(reversed_pos)
+

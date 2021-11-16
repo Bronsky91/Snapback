@@ -27,9 +27,9 @@ animations = [ {
 } ]
 
 [node name="Skeleboi" type="AnimatedSprite"]
+light_mask = 3
 frames = SubResource( 22 )
 animation = "Writhe"
-frame = 2
 playing = true
 script = ExtResource( 4 )
 
@@ -40,9 +40,9 @@ light_mask = 3
 shape = SubResource( 23 )
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+light_mask = 3
 position = Vector2( 0, -38 )
 frames = SubResource( 24 )
-frame = 1
 speed_scale = 0.5
 playing = true
 

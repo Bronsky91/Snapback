@@ -5,6 +5,7 @@ export (int) var sneak_speed: int = 100
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
+onready var game_scene: Node = get_node('/root/Game')
 onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
 onready var slices_count_label: Label = get_node("/root/Game/UI/SlicesCountLabel")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
@@ -15,7 +16,6 @@ var safe = false
 var is_invulnerable = false
 var is_flashing = false
 var speed: int = run_speed
-var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
 var sneaking: bool = false
 var inverse_ready: bool = true
@@ -166,7 +166,7 @@ func attacked():
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
-		item_count = item_count + 1
+		game_scene.add_time()
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
 		safe = true
