@@ -11,13 +11,15 @@ onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
 onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
 var slices_count: int = 4
+var safe = false
+var is_invulnerable = false
+var is_flashing = false
 var speed: int = run_speed
 var item_count: int = 0 # TODO: Refactor this, item_count has no purpose
 var velocity: Vector2 = Vector2()
 var sneaking: bool = false
 var inverse_ready: bool = true
 var last_checkpoint_pos: Vector2 = Vector2()
-
 var x_facing: String = "Right"
 var x_changed: bool = false
 var y_facing: String = "Up"
@@ -145,31 +147,35 @@ func toggle_inversion(velocity):
 	$InverseCooldown.start()
 	
 func attacked():
-	g.emit_signal('shake', 0.2, 15, 16, 0)
-	if slices_count == 1:
-		# Game over
-		global_position = player_start_node.global_position
-		last_checkpoint_pos = player_start_node.global_position
-		slices_count = 4
-		get_node("/root/Game").reset_pizza_time()
-	else:
-		slices_count -= 1
-		global_position = last_checkpoint_pos
-	slices_count_label.text = "Slices: " + str(slices_count)
-	slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
+	if !is_invulnerable:
+		g.emit_signal('shake', 0.2, 15, 16, 0)
+		if slices_count == 1:
+			# Game over
+			global_position = player_start_node.global_position
+			last_checkpoint_pos = player_start_node.global_position
+			slices_count = 4
+			get_node("/root/Game").reset_pizza_time()
+		else:
+			slices_count -= 1
+			is_invulnerable = true
+			g.emit_signal('go_home')
+			$InvulnerabilityTimer.start()
+			$FlashTimer.start()
+		slices_count_label.text = "Slices: " + str(slices_count)
+		slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
 		item_count = item_count + 1
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
-		g.safe = true
+		safe = true
 		# TODO: Show floating text telling the player they've got to a checkpoint?
 		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
 	if area and area.name == 'SafeZoneArea':
-		g.safe = false
+		safe = false
 
 func _on_InverseCooldown_timeout():
 	inverse_ready = true
@@ -187,3 +193,20 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_PickupArea_body_entered(body):
 	if (not g.inverted and body.name in g.normal_enemies) or (g.inverted and body.name in g.inverted_enemies):
 		attacked()
+
+
+func _on_InvulnerabilityTimer_timeout():
+	global_position = last_checkpoint_pos
+	is_invulnerable = false
+
+
+func _on_FlashTimer_timeout():
+	if is_invulnerable:
+		if is_flashing:
+			modulate = Color(1,1,1,1) # normal
+		else:
+			modulate = Color(1,0,0,0.5) # red
+		is_flashing = !is_flashing
+		$FlashTimer.start()
+	else:
+		modulate = Color(1,1,1,1) # normal

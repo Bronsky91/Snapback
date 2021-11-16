@@ -28,6 +28,7 @@ var chasing = false
 func _ready():
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
+	g.connect("go_home", self, "_on_Player_damaged")
 	invert(g.inverted)
 	detection_shape.shape.radius = vision_range
 	alert_shape.shape.radius = alert_range
@@ -39,7 +40,7 @@ func _process(delta):
 	if state == 'chase':
 		eyes.visible = false
 		if player:
-			if g.safe:
+			if player.safe:
 				exclamation.visible = false
 				state = 'return'
 			path = nav.get_simple_path(global_position, player.global_position)
@@ -120,7 +121,7 @@ func _on_DetectionArea_body_exited(body):
 
 
 func chase_check():
-	if player and not g.safe:
+	if player and not player.safe and not player.is_invulnerable:
 		var direction_to_player = global_position.direction_to(player.global_position)
 		raycast.cast_to = direction_to_player * vision_range
 		raycast.force_raycast_update()
@@ -144,6 +145,14 @@ func _on_Player_sneak(sneaking):
 
 func _on_Player_invert(inverted):
 	invert(inverted)
+
+
+func _on_Player_damaged():
+	if state == "chase":
+		player = null
+		exclamation.visible = false
+		eyes.visible = false
+		state = "return"
 
 
 func invert(inverted):
