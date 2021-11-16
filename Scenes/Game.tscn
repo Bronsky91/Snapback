@@ -194,6 +194,7 @@ position = Vector2( 967, -96 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 2
 
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
 
