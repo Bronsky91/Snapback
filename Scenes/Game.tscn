@@ -1,4 +1,4 @@
-[gd_scene load_steps=67 format=2]
+[gd_scene load_steps=68 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -51,6 +51,7 @@
 [ext_resource path="res://Assets/Hanging_Skelly3.png" type="Texture" id=49]
 [ext_resource path="res://Assets/Hanging_Skelly2.png" type="Texture" id=50]
 [ext_resource path="res://Assets/Hanging_Skelly5.png" type="Texture" id=51]
+[ext_resource path="res://Assets/Decorations/Skull_003.png" type="Texture" id=52]
 
 [sub_resource type="TileSet" id=21]
 0/name = "Decoration_001.png 0"
@@ -210,7 +211,6 @@ tile_data = PoolIntArray( -6749831, 12, 65538, -6749830, 12, 65538, -6749829, 12
 
 [node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
-frame = 3
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
 tile_set = SubResource( 21 )
@@ -247,50 +247,45 @@ position = Vector2( 2766, -366 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 0
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 0
+frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 0
+frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
-frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 0
+frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
-frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 0
+frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 0
+frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
-frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -298,11 +293,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 0
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 0
+frame = 1
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -414,7 +409,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Shelf004" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -426,27 +421,27 @@ position = Vector2( -735, 545 )
 texture = ExtResource( 43 )
 
 [node name="Shelf005" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1531, 1090 )
+position = Vector2( -1398, 1089 )
 texture = ExtResource( 44 )
 
 [node name="Shelf006" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1498, 1089 )
+position = Vector2( -1365, 1088 )
 texture = ExtResource( 44 )
 
 [node name="Shelf007" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1465, 1089 )
+position = Vector2( -1332, 1088 )
 texture = ExtResource( 45 )
 
 [node name="Shelf008" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1342, 1089 )
+position = Vector2( -1209, 1088 )
 texture = ExtResource( 43 )
 
 [node name="Shelf009" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1375, 1089 )
+position = Vector2( -1242, 1088 )
 texture = ExtResource( 44 )
 
 [node name="Shelf001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -1408, 1089 )
+position = Vector2( -1275, 1088 )
 texture = ExtResource( 46 )
 
 [node name="Shelf002" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
@@ -457,7 +452,7 @@ texture = ExtResource( 45 )
 position = Vector2( 2161, 429 )
 frames = SubResource( 25 )
 animation = "hang"
-frame = 2
+frame = 3
 speed_scale = 0.5
 playing = true
 
@@ -862,5 +857,9 @@ text = "Find the end, time is ticking!"
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Skull003" type="Sprite" parent="."]
+position = Vector2( 3532, 422 )
+texture = ExtResource( 52 )
 
 [connection signal="timeout" from="PizzaTimer" to="." method="_on_PizzaTimer_timeout"]
