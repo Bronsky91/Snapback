@@ -17,9 +17,9 @@ func invert(inverted):
 	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
 	
 	if inverted:
-		self.stream = load("res://Assets/Audio/reverse_theme.mp3")
+		self.stream = load("res://Assets/Audio/dungeon_theme_reverse.mp3")
 		self.play(reversed_pos)
 	else:
-		self.stream = load("res://Assets/Audio/theme.mp3")
+		self.stream = load("res://Assets/Audio/dungeon_theme.mp3")
 		self.play(reversed_pos)
 
