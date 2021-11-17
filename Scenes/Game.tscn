@@ -427,6 +427,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
+frame = 1
 playing = true
 
 [node name="Shelf004" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]

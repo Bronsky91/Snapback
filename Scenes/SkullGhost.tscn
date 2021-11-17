@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://Assets/Enemy_002.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
@@ -14,21 +14,14 @@ particles_anim_h_frames = 8
 particles_anim_v_frames = 7
 particles_anim_loop = false
 
-[sub_resource type="Gradient" id=18]
-offsets = PoolRealArray( 0.00297619, 0.994048 )
-colors = PoolColorArray( 0.820782, 0.108765, 0.84375, 1, 0.671387, 0, 0.976562, 1 )
-
-[sub_resource type="GradientTexture" id=19]
-gradient = SubResource( 18 )
-
 [sub_resource type="ParticlesMaterial" id=20]
 lifetime_randomness = 1.0
 emission_shape = 1
-emission_sphere_radius = 8.0
+emission_sphere_radius = 1.0
 flag_disable_z = true
 spread = 180.0
 gravity = Vector3( 0, -100, 0 )
-initial_velocity = 50.0
+initial_velocity = 25.0
 angular_velocity = 100.0
 angular_velocity_random = 1.0
 orbit_velocity = 0.0
@@ -36,7 +29,7 @@ orbit_velocity_random = 0.0
 angle = 360.0
 angle_random = 1.0
 scale = 2.0
-color_ramp = SubResource( 19 )
+color = Color( 0.796078, 0.341176, 0.85098, 1 )
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -295,6 +288,7 @@ vframes = 2
 show_behind_parent = true
 light_mask = 3
 material = SubResource( 17 )
+position = Vector2( 0, -2 )
 scale = Vector2( 0.25, 0.25 )
 amount = 60
 process_material = SubResource( 20 )
