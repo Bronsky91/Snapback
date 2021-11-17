@@ -1,4 +1,4 @@
-[gd_scene load_steps=69 format=2]
+[gd_scene load_steps=70 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -116,14 +116,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
-[sub_resource type="Curve2D" id=12]
+[sub_resource type="Curve2D" id=27]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 837, -10, 0, 0, 0, 0, 295, -11, 0, 0, 0, 0, 293, 3, 0, 0, 0, 0, 837, 2, 0, 0, 0, 0, 837, -10 )
+"points": PoolVector2Array( 0, 0, 0, 0, 355, 90, 0, 0, 0, 0, 375.805, 91.7757, 0, 0, 0, 0, 398, 91, 0, 0, 0, 0, 400, 82, 0, 0, 0, 0, 355, 82, 0, 0, 0, 0, 355, 90 )
 }
 
 [sub_resource type="Curve2D" id=13]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 355, 90, 0, 0, 0, 0, 398, 91, 0, 0, 0, 0, 400, 82, 0, 0, 0, 0, 355, 82, 0, 0, 0, 0, 355, 90 )
+"points": PoolVector2Array( 0, 0, 0, 0, 355, 90, 0, 0, 0, 0, 375.805, 91.7757, 0, 0, 0, 0, 398, 91, 0, 0, 0, 0, 400, 82, 0, 0, 0, 0, 355, 82, 0, 0, 0, 0, 355, 90 )
 }
 
 [sub_resource type="Curve2D" id=14]
@@ -159,6 +159,11 @@ _data = {
 [sub_resource type="Curve2D" id=20]
 _data = {
 "points": PoolVector2Array( 20.1525, 24.7487, -20.1525, -24.7487, 1349, -68, -13.435, -20.1525, 13.435, 20.1525, 1699, -68, 9.54594, -15.2028, -9.54594, 15.2028, 1698, -19, 10.253, 16.617, -10.253, -16.617, 1350, -20, -6.36396, 5.3033, 6.36396, -5.3033, 1349, -68 )
+}
+
+[sub_resource type="Curve2D" id=12]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 837, -10, 0, 0, 0, 0, 295, -11, 0, 0, 0, 0, 293, 3, 0, 0, 0, 0, 837, 2, 0, 0, 0, 0, 837, -10 )
 }
 
 [sub_resource type="TileSet" id=23]
@@ -467,11 +472,11 @@ playing = true
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
 
 [node name="Path2D" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 3, -9 )
-curve = SubResource( 12 )
+position = Vector2( 4, -151 )
+curve = SubResource( 27 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D"]
-position = Vector2( 837, -10 )
+position = Vector2( 355, 90 )
 rotation = 0.0232526
 rotate = false
 
@@ -480,7 +485,7 @@ pat_speed = 30
 run_speed = 120
 
 [node name="Path2D02" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 4, -151 )
+position = Vector2( 6, -10 )
 curve = SubResource( 13 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D02"]
@@ -682,6 +687,7 @@ rotate = false
 pat_speed = 80
 
 [node name="PlayerStart" type="Position2D" parent="."]
+visible = false
 
 [node name="YSort" type="YSort" parent="."]
 
