@@ -197,6 +197,7 @@ tile_data = PoolIntArray( -2031625, 12, 65538, -2031624, 12, 65538, -2031623, 12
 
 [node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
+frame = 0
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
 tile_set = SubResource( 21 )
