@@ -256,50 +256,46 @@ position = Vector2( 2766, -366 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+frame = 1
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
+frame = 0
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 0
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 0
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
-frame = 1
+frame = 0
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 0
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
-frame = 1
+frame = 0
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 0
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 0
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
-frame = 1
+frame = 0
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
+frame = 0
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
+frame = 0
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -307,11 +303,9 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 0
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 0
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -470,6 +464,7 @@ texture = ExtResource( 45 )
 position = Vector2( 2161, 429 )
 frames = SubResource( 25 )
 animation = "hang"
+frame = 2
 speed_scale = 0.5
 playing = true
 
