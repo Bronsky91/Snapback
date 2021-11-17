@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://Assets/Enemy_002.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Enemy.gd" type="Script" id=2]
@@ -6,6 +6,37 @@
 [ext_resource path="res://Assets/hands.png" type="Texture" id=4]
 [ext_resource path="res://Assets/eyes.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Exclamation.png" type="Texture" id=6]
+[ext_resource path="res://Resources/Textures/floaty_64.png" type="Texture" id=7]
+
+[sub_resource type="CanvasItemMaterial" id=17]
+blend_mode = 1
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="Gradient" id=18]
+offsets = PoolRealArray( 0.00297619, 0.994048 )
+colors = PoolColorArray( 0.820782, 0.108765, 0.84375, 1, 0.671387, 0, 0.976562, 1 )
+
+[sub_resource type="GradientTexture" id=19]
+gradient = SubResource( 18 )
+
+[sub_resource type="ParticlesMaterial" id=20]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 8.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, -100, 0 )
+initial_velocity = 50.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+color_ramp = SubResource( 19 )
 
 [sub_resource type="CircleShape2D" id=3]
 
@@ -16,7 +47,7 @@ radius = 120.0
 resource_name = "GhostBack"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -32,7 +63,7 @@ tracks/0/keys = {
 resource_name = "GhostFront"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -48,7 +79,7 @@ tracks/0/keys = {
 resource_name = "GhostLeft"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -64,7 +95,7 @@ tracks/0/keys = {
 resource_name = "GhostRight"
 length = 0.6
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -81,7 +112,7 @@ resource_name = "IdleBack"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -98,7 +129,7 @@ resource_name = "IdleFront"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -115,7 +146,7 @@ resource_name = "IdleLeft"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -132,7 +163,7 @@ resource_name = "IdleRight"
 length = 0.1
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -147,7 +178,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=8]
 length = 0.001
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -164,7 +195,7 @@ resource_name = "WalkBack"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -181,7 +212,7 @@ resource_name = "WalkFront"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -198,7 +229,7 @@ resource_name = "WalkLeft"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -215,7 +246,7 @@ resource_name = "WalkRight"
 length = 0.6
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("Sprite:frame")
+tracks/0/path = NodePath("Sprite/ActualSprite:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -254,7 +285,17 @@ texture = ExtResource( 6 )
 light_mask = 3
 texture = ExtResource( 3 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Sprite" type="Node2D" parent="."]
+
+[node name="Particles2D" type="Particles2D" parent="Sprite"]
+light_mask = 3
+material = SubResource( 17 )
+scale = Vector2( 0.25, 0.25 )
+amount = 40
+process_material = SubResource( 20 )
+texture = ExtResource( 7 )
+
+[node name="ActualSprite" type="Sprite" parent="Sprite"]
 light_mask = 3
 texture = ExtResource( 1 )
 hframes = 6
