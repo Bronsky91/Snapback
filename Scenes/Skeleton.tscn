@@ -204,6 +204,7 @@ vframes = 5
 shape = SubResource( 1 )
 
 [node name="DetectionArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 11
 
@@ -211,6 +212,7 @@ collision_mask = 11
 shape = SubResource( 2 )
 
 [node name="AlertArea" type="Area2D" parent="."]
+visible = false
 collision_layer = 64
 collision_mask = 11
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=2]
+[gd_scene load_steps=69 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -104,6 +104,9 @@ animations = [ {
 "name": "default",
 "speed": 0.5
 } ]
+
+[sub_resource type="StreamTexture" id=26]
+load_path = "res://.import/Shelf_003.png-9485a0b63eb08d09b2eeb294b1feedb4.stex"
 
 [sub_resource type="SpriteFrames" id=25]
 animations = [ {
@@ -211,6 +214,7 @@ tile_data = PoolIntArray( -6749831, 12, 65538, -6749830, 12, 65538, -6749829, 12
 
 [node name="Skeleboi" parent="Navigation2D/TileMap" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
+frame = 0
 
 [node name="DecoTileMap" type="TileMap" parent="Navigation2D/TileMap"]
 tile_set = SubResource( 21 )
@@ -247,45 +251,50 @@ position = Vector2( 2766, -366 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-frame = 0
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
+frame = 0
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 1
+frame = 0
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
+frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 1
+frame = 0
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
+frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 1
+frame = 0
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 1
+frame = 0
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
+frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -293,11 +302,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 1
+frame = 0
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 1
+frame = 0
 
 [node name="Painting001" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 199, -97 )
@@ -417,8 +426,8 @@ position = Vector2( 2858, -454 )
 texture = ExtResource( 44 )
 
 [node name="Shelf003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
-position = Vector2( -735, 545 )
-texture = ExtResource( 43 )
+position = Vector2( -758, 545 )
+texture = SubResource( 26 )
 
 [node name="Shelf005" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Shelf004"]
 position = Vector2( -1398, 1089 )
@@ -452,7 +461,6 @@ texture = ExtResource( 45 )
 position = Vector2( 2161, 429 )
 frames = SubResource( 25 )
 animation = "hang"
-frame = 3
 speed_scale = 0.5
 playing = true
 
@@ -721,15 +729,6 @@ gate_code = 2
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
 
-[node name="InvertScreen" type="ColorRect" parent="UI"]
-visible = false
-material = SubResource( 11 )
-margin_right = 640.0
-margin_bottom = 480.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
 [node name="PizzaSlices" type="TextureRect" parent="UI"]
 anchor_left = 1.0
 anchor_right = 1.0
@@ -760,6 +759,15 @@ margin_top = -125.0
 margin_right = 508.0
 margin_bottom = -24.0
 dialogue_file = "res://Dialogues/skeleton.json"
+
+[node name="InvertScreen" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 11 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="PizzaTimer" type="Timer" parent="."]
 wait_time = 0.5

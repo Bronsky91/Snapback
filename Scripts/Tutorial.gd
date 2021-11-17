@@ -9,7 +9,9 @@ func _ready():
 func _on_Player_Invert(inverted):
 	if inverted:
 		for n in text_nodes:
-			n.add_color_override("default_color", Color(0,0,0))
+			pass
+			#n.add_color_override("default_color", Color(0,0,0))
 	else:
 		for n in text_nodes:
-			n.add_color_override("default_color", Color(1,1,1))
+			pass
+			#n.add_color_override("default_color", Color(1,1,1))
