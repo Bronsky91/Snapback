@@ -686,6 +686,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
+frame = 1
 playing = true
 
 [node name="Enemies" type="Node2D" parent="Navigation2D"]
@@ -1116,7 +1117,6 @@ rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D8/PathFollow2D" instance=ExtResource( 7 )]
 rotation = 0.0200597
-scale = Vector2( 1, 1 )
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D8"]
 position = Vector2( 2559.08, 543.236 )
@@ -1178,7 +1178,6 @@ rotate = false
 
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D8/PathFollow2D8" instance=ExtResource( 9 )]
 rotation = -0.0200597
-scale = Vector2( 1, 1 )
 
 [node name="PathFollow2D9" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D8"]
 position = Vector2( 2099.13, 703.043 )
@@ -1344,10 +1343,12 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
+frame = 1
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
+frame = 3
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
