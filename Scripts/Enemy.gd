@@ -105,7 +105,7 @@ func animate_sprite(from, to):
 		facing = new_facing
 		if "Ghost" in name:
 			anim_player.play(name + facing)
-		if name == "Skeleton":
+		if name == "Skeleton" or name == "GrimReaper":
 			anim_player.play("Walk" + facing)
 
 func _on_DetectionArea_body_entered(body):
