@@ -3,17 +3,20 @@ extends NinePatchRect
 export(String, FILE, "*.json") var dialogue_file
 
 var dialogues = []
+var dialogue_count
 
 func _ready():
-	pass
+	dialogues = load_skele_dialogue()
+	dialogue_count = dialogues.size()
 	
-func play():
+func skele_play(text):
+	randomize()
+	var random_dialogue = dialogues[randi() % dialogue_count]
+	$Name.bbcode_text = random_dialogue['name']
+	$Message.bbcode_text = text if text else random_dialogue['text']
 	show()
-	dialogues = load_dialogue()
-	$Name.bbcode_text = dialogues[0]['name']
-	$Message.bbcode_text = dialogues[0]['text']
 	
-func load_dialogue():
+func load_skele_dialogue():
 	var file = File.new()
 	if file.file_exists(dialogue_file):
 		file.open(dialogue_file, file.READ)

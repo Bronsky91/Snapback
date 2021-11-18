@@ -25,7 +25,7 @@ margin_bottom = 24.0
 theme = ExtResource( 2 )
 bbcode_enabled = true
 bbcode_text = "Name"
-text = "NEd"
+text = "Name"
 __meta__ = {
 "_edit_use_anchors_": false
 }

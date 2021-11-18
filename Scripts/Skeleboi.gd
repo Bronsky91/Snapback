@@ -2,11 +2,14 @@ extends AnimatedSprite
 
 onready var dialogue_player = get_node('/root/Game/UI/DialoguePlayer')
 
+#export(String, "chained", "hang", "easel") var skelly_type = "chained"
+
 var player_present = false
 var dialog_open = false
 
 func _ready():
-	pass 
+	pass
+	#frames = load('res://Resources/Animations/Skeleboi-'+skelly_type+'.tres')
 	
 	
 func _input(event):
@@ -19,7 +22,7 @@ func _input(event):
 		
 		
 func find_and_use_dialogue():
-	dialogue_player.play()
+	dialogue_player.skele_play()
 	dialog_open = true
 
 

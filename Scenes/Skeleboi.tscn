@@ -1,17 +1,14 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=7 format=2]
 
-[ext_resource path="res://Assets/Shackled_Skelly1.png" type="Texture" id=1]
-[ext_resource path="res://Assets/Shackled_Skelly2.png" type="Texture" id=2]
-[ext_resource path="res://Assets/Shackled_Skelly3.png" type="Texture" id=3]
 [ext_resource path="res://Scripts/Skeleboi.gd" type="Script" id=4]
 [ext_resource path="res://Assets/E_001.png" type="Texture" id=5]
 [ext_resource path="res://Assets/E_002.png" type="Texture" id=6]
 
-[sub_resource type="SpriteFrames" id=22]
+[sub_resource type="SpriteFrames" id=25]
 animations = [ {
-"frames": [ ExtResource( 2 ), ExtResource( 1 ), ExtResource( 2 ), ExtResource( 3 ) ],
+"frames": [  ],
 "loop": true,
-"name": "Writhe",
+"name": "default",
 "speed": 5.0
 } ]
 
@@ -28,9 +25,7 @@ animations = [ {
 
 [node name="Skeleboi" type="AnimatedSprite"]
 light_mask = 3
-frames = SubResource( 22 )
-animation = "Writhe"
-frame = 2
+frames = SubResource( 25 )
 playing = true
 script = ExtResource( 4 )
 

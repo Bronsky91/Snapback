@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
 export (int) var pat_speed = 50
-export (int) var run_speed = 100
+export (int) var run_speed = 120
 export (int) var vision_range = 80
 export (int) var alert_range = 120
 
