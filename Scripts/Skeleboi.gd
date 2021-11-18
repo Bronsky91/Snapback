@@ -3,6 +3,7 @@ extends AnimatedSprite
 onready var dialogue_player = get_node('/root/Game/UI/DialoguePlayer')
 
 #export(String, "chained", "hang", "easel") var skelly_type = "chained"
+export(String, "in danger", "free") var skelly_status = "in danger"
 
 var player_present = false
 var dialog_open = false
@@ -22,7 +23,7 @@ func _input(event):
 		
 		
 func find_and_use_dialogue():
-	dialogue_player.skele_play()
+	dialogue_player.skele_play(skelly_status)
 	dialog_open = true
 
 
