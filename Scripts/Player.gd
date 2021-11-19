@@ -180,6 +180,8 @@ func attacked(attacker):
 
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
+		$SFX.stream = load("res://Assets/Audio/pick_up.mp3")
+		$SFX.play()
 		game_scene.add_time()
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
