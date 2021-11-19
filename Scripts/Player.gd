@@ -194,6 +194,7 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 			# Only play the first time they enter the checkpoint
 			# TODO: Show floating text telling the player they've got to a checkpoint?
 			play_sfx('save')
+			area.get_parent().float_text('Checkpoint Reached!')
 		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):

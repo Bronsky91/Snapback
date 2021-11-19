@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/FloatLabel.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Theme.tres" type="Theme" id=2]
+
+[node name="FloatLabel" type="Label"]
+margin_left = -78.0
+margin_top = -43.0
+margin_right = 74.0
+margin_bottom = -28.0
+theme = ExtResource( 2 )
+text = "Checkpoint reached!"
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Tween" type="Tween" parent="."]
