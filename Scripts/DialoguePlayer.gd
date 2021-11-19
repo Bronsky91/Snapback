@@ -11,13 +11,13 @@ func _ready():
 	in_danger_dialogues = load_dialogue(in_danger_skele_dialogue_file)
 
 	
-func skele_play(status, skelly_name):
+func skele_play(status, skelly_name, skelly_text):
 	randomize()
 	var dialogues_array = concat_arrays(dialogues, in_danger_dialogues) if status == 'in danger' else dialogues
 	var dialogue_count = dialogues_array.size()
 	var random_dialogue = dialogues_array[randi() % dialogue_count]
 	$Name.bbcode_text = skelly_name
-	$Message.bbcode_text = random_dialogue['text']
+	$Message.bbcode_text = skelly_text if skelly_text else random_dialogue['text']
 	show()
 	
 func load_dialogue(dialogue_file):

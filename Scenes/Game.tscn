@@ -1,4 +1,4 @@
-[gd_scene load_steps=137 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -593,6 +593,11 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 5771, -291, 0, 0, 0, 0, 5749, -337, 0, 0, 0, 0, 5787, -390, 0, 0, 0, 0, 5779, -417, 0, 0, 0, 0, 5792, -417, 0, 0, 0, 0, 5798, -395, 0, 0, 0, 0, 5763, -337, 0, 0, 0, 0, 5785, -291, 0, 0, 0, 0, 5771, -291 )
 }
 
+[sub_resource type="Curve2D" id=82]
+_data = {
+"points": PoolVector2Array( 7.54015, 20.2394, -7.54015, -20.2394, 5777, -873, 5.5559, -18.2551, -5.5559, 18.2551, 5646, -861, -18.652, -12.6992, 18.652, 12.6992, 5644, -731, -16.2709, 11.1118, 16.2709, -11.1118, 5760, -757, 0, 0, 0, 0, 5777, -873 )
+}
+
 [sub_resource type="TileSet" id=23]
 0/name = "Garbage_001.png 0"
 0/texture = ExtResource( 19 )
@@ -796,50 +801,40 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
+frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
-frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
-frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
-frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -847,11 +842,9 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 1
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -859,11 +852,9 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
-frame = 1
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 3002, 554 )
-frame = 1
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -1225,6 +1216,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
+frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -1898,7 +1890,7 @@ position = Vector2( 441, 1041 )
 curve = SubResource( 52 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D30"]
-position = Vector2( 3328, -609 )
+position = Vector2( 3305, -609 )
 rotate = false
 
 [node name="GrimReaper" parent="Navigation2D/Enemies/Path2D30/PathFollow2D" instance=ExtResource( 56 )]
@@ -2220,10 +2212,11 @@ rotate = false
 
 [node name="Skeleton2" parent="Navigation2D/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 4025, -762 )
+default_facing = "Back"
 
 [node name="Skeleton" parent="Navigation2D/Enemies" instance=ExtResource( 7 )]
 position = Vector2( 4120, -761 )
-default_facing = "Right"
+default_facing = "Back"
 
 [node name="Path2D38" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 4, -1 )
@@ -2353,12 +2346,44 @@ rotate = false
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D3" instance=ExtResource( 54 )]
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D41"]
+position = Vector2( 5150.48, -966.263 )
+rotation = 0.00336602
+offset = 547.6
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D4" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D41"]
+position = Vector2( 5230.19, -959.64 )
+rotation = 0.00336602
+offset = 631.85
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D8" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D41"]
+position = Vector2( 5230.49, -885.953 )
+rotation = 0.00336602
+offset = 705.57
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D7" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D41"]
+position = Vector2( 5231.01, -801.71 )
+rotation = 0.00336602
+offset = 789.81
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D6" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D41"]
 position = Vector2( 4928.16, -914.87 )
 rotation = 0.00336602
 offset = 273.8
 rotate = false
 
-[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D4" instance=ExtResource( 54 )]
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D41/PathFollow2D5" instance=ExtResource( 54 )]
 
 [node name="Path2D42" type="Path2D" parent="Navigation2D/Enemies"]
 curve = SubResource( 70 )
@@ -2388,30 +2413,44 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D3" instance=ExtResource( 9 )]
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D42"]
+position = Vector2( 5437.75, -1211 )
+rotation = -0.00311926
+offset = 1027.51
+rotate = false
+
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D4" instance=ExtResource( 9 )]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D42"]
+position = Vector2( 5352.33, -1211 )
+rotation = -0.00311926
+offset = 1113.14
+rotate = false
+
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D5" instance=ExtResource( 9 )]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D42"]
+position = Vector2( 5277.44, -1211 )
+rotation = -0.00311926
+offset = 1188.06
+rotate = false
+
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D6" instance=ExtResource( 9 )]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D42"]
+position = Vector2( 5192, -1211 )
+rotation = -0.00311926
+offset = 0.00488281
+rotate = false
+
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D7" instance=ExtResource( 9 )]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D42"]
 position = Vector2( 5242.65, -895.151 )
 rotation = -0.00311926
 offset = 363.91
 rotate = false
 
-[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D4" instance=ExtResource( 9 )]
-
-[node name="Path2D43" type="Path2D" parent="Navigation2D/Enemies"]
-curve = null
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
-position = Vector2( 5768, -875 )
-rotation = 0.0438243
-rotate = false
-
-[node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D" instance=ExtResource( 7 )]
-
-[node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
-position = Vector2( 5731.34, -889.186 )
-rotation = 0.0438243
-offset = 40.16
-rotate = false
-
-[node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D2" instance=ExtResource( 7 )]
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D8" instance=ExtResource( 9 )]
 
 [node name="GrimReaper" parent="Navigation2D/Enemies" instance=ExtResource( 56 )]
 position = Vector2( 4764, -579 )
@@ -2491,6 +2530,32 @@ offset = 145.47
 rotate = false
 
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D47/PathFollow2D" instance=ExtResource( 9 )]
+
+[node name="Path2D43" type="Path2D" parent="Navigation2D/Enemies"]
+curve = SubResource( 82 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
+position = Vector2( 5777, -873 )
+rotation = 0.0261306
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D" instance=ExtResource( 7 )]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
+position = Vector2( 5741, -882.94 )
+rotation = 0.0261306
+offset = 38.69
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D2" instance=ExtResource( 7 )]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
+position = Vector2( 5636.02, -750.959 )
+rotation = 0.0261306
+offset = 249.34
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D3" instance=ExtResource( 7 )]
 
 [node name="PlayerStart" type="Position2D" parent="."]
 visible = false
@@ -2652,19 +2717,18 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
-frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 3
+frame = 6
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 2
+frame = 5
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
@@ -2712,6 +2776,9 @@ margin_right = -39.0
 margin_bottom = 29.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 14 )]
 visible = false
@@ -2781,12 +2848,12 @@ text = "Use WASD or Arrow keys to move"
 [node name="Shift Key" type="RichTextLabel" parent="Tutorial"]
 margin_left = 370.0
 margin_top = 2.0
-margin_right = 600.0
-margin_bottom = 42.0
+margin_right = 606.0
+margin_bottom = 77.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Hold Shift to sneak past[/center]"
-text = "Hold Shift to sneak past"
+bbcode_text = "[center]Hold Shift to sneak past, making it harder for the enemies to see you[/center]"
+text = "Hold Shift to sneak past, making it harder for the enemies to see you"
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2798,8 +2865,8 @@ margin_right = 952.0
 margin_bottom = 41.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Press Space to flip your hat and enter the ethereal realm[/center]"
-text = "Press Space to flip your hat and enter the ethereal realm"
+bbcode_text = "[center]Space bar to flip from the Corporeal Realm to the Ethereal Realm.[/center]"
+text = "Space bar to flip from the Corporeal Realm to the Ethereal Realm."
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -2824,8 +2891,8 @@ margin_right = 1757.0
 margin_bottom = 45.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Braizers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
-text = "Braizers are safe zones, enemies will not attack. They are also checkpoints."
+bbcode_text = "[center]Braziers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
+text = "Braziers are safe zones, enemies will not attack. They are also checkpoints."
 __meta__ = {
 "_edit_use_anchors_": false
 }
