@@ -1,4 +1,4 @@
-[gd_scene load_steps=136 format=2]
+[gd_scene load_steps=137 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -74,6 +74,7 @@
 [ext_resource path="res://Assets/Hanging_Skelly2.png" type="Texture" id=72]
 [ext_resource path="res://Assets/Hanging_Skelly3.png" type="Texture" id=73]
 [ext_resource path="res://Assets/Hanging_Skelly5.png" type="Texture" id=74]
+[ext_resource path="res://Assets/Door.png" type="Texture" id=75]
 
 [sub_resource type="TileSet" id=21]
 0/name = "Decoration_001.png 0"
@@ -1224,12 +1225,19 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 3031, 559 )
 texture = ExtResource( 38 )
+
+[node name="Banner002b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
+position = Vector2( 5704, -562 )
+texture = ExtResource( 36 )
+
+[node name="Banner002b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap/Banner002b"]
+position = Vector2( 62, 0 )
+texture = ExtResource( 36 )
 
 [node name="Banner003b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 3206, 561 )
@@ -2644,24 +2652,26 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
+frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 1
+frame = 3
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 1
+frame = 2
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
+frame = 1
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -2674,6 +2684,10 @@ skelly_name = "Lich Cosplayer"
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
+
+[node name="Door" type="Sprite" parent="YSort"]
+position = Vector2( 5737, -561 )
+texture = ExtResource( 75 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
