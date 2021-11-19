@@ -122,6 +122,7 @@ func _physics_process(delta):
 
 func toggle_inversion(velocity):
 	g.inverted = !g.inverted
+	game_scene.shockwave()
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
 	else:
@@ -129,6 +130,7 @@ func toggle_inversion(velocity):
 			$Sprite.texture = load('Assets/Player_002.png')
 		else:
 			$Sprite.texture = load('Assets/Player_001.png')
+	
 	if g.inverted:
 		invert_screen.show()
 		# change layer

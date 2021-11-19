@@ -2,6 +2,8 @@ extends Node
 
 onready var pizza_timer: Timer = get_node("PizzaTimer")
 onready var pizza_timer_label: RichTextLabel = get_node("UI/PizzaTimerLabel")
+onready var shockwave: ColorRect = get_node("UI/Shockwave")
+onready var shockwave_player: AnimationPlayer = get_node("UI/Shockwave/AnimationPlayer")
 
 var pizza_time = 1800 # 1800 seconds in 30 min
 
@@ -31,3 +33,12 @@ func reset_pizza_time():
 func add_time():
 	pizza_time += 120
 	pizza_timer_label.bbcode_text = format_time()
+
+
+func shockwave():
+	shockwave.visible = true
+	shockwave_player.play("Shockwave")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	shockwave.visible = false

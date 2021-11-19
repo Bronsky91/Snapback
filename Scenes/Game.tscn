@@ -1,4 +1,4 @@
-[gd_scene load_steps=122 format=2]
+[gd_scene load_steps=124 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -68,7 +68,8 @@
 [ext_resource path="res://Assets/Decorations/Painting_013.png" type="Texture" id=66]
 [ext_resource path="res://Assets/Decorations/Banner_001b.png" type="Texture" id=67]
 [ext_resource path="res://Assets/Decorations/Banner_003b.png" type="Texture" id=68]
-[ext_resource path="res://Assets/Gate_002.png" type="Texture" id=69]
+[ext_resource path="res://Resources/Shaders/Shockwave.gdshader" type="Shader" id=69]
+[ext_resource path="res://Resources/Shaders/Invert.gdshader" type="Shader" id=70]
 
 [sub_resource type="TileSet" id=21]
 0/name = "Decoration_001.png 0"
@@ -593,20 +594,42 @@ _data = {
 [sub_resource type="StreamTexture" id=26]
 load_path = "res://.import/Shelf_003.png-9485a0b63eb08d09b2eeb294b1feedb4.stex"
 
-[sub_resource type="Shader" id=10]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-void fragment() {
-	vec4 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgba;
-	c.r = 1.0 - c.r;
-	c.g = 1.0 - c.g;
-	c.b = 1.0 - c.b;
-	COLOR.rgba = c;
-}"
-
 [sub_resource type="ShaderMaterial" id=11]
-shader = SubResource( 10 )
+shader = ExtResource( 69 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/force = 0.01
+shader_param/size = 0.1
+shader_param/thickness = 0.047
+
+[sub_resource type="Animation" id=72]
+resource_name = "Shockwave"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.05, 0.01 ]
+}
+
+[sub_resource type="ShaderMaterial" id=71]
+shader = ExtResource( 70 )
 
 [node name="Game" type="Node"]
 script = ExtResource( 10 )
@@ -657,50 +680,40 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
+frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
-frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
-frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
-frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -708,11 +721,9 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 1
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -720,11 +731,9 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
-frame = 1
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 3002, 554 )
-frame = 1
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -1086,7 +1095,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -1905,7 +1914,7 @@ rotate = false
 curve = SubResource( 57 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D25"]
-position = Vector2( 3872.93, 164.042 )
+position = Vector2( 3872.9, 164.015 )
 rotation = -0.0176798
 offset = 383.29
 rotate = false
@@ -1913,7 +1922,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D25/PathFollow2D" instance=ExtResource( 9 )]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D25"]
-position = Vector2( 4019.25, 150.862 )
+position = Vector2( 4019.25, 150.96 )
 rotation = -0.0176798
 offset = 697.46
 rotate = false
@@ -1942,7 +1951,7 @@ rotate = false
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D29/PathFollow2D" instance=ExtResource( 7 )]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D29"]
-position = Vector2( 3991.97, -493.662 )
+position = Vector2( 3991.98, -493.662 )
 offset = 1250.55
 rotate = false
 
@@ -2418,7 +2427,7 @@ frame = 5
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 2
+frame = 4
 skelly_status = "free"
 
 [node name="Skeleboi4" parent="YSort" instance=ExtResource( 13 )]
@@ -2429,7 +2438,6 @@ skelly_status = "free"
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
-texture = ExtResource( 69 )
 
 [node name="UI" type="CanvasLayer" parent="."]
 script = ExtResource( 8 )
@@ -2466,9 +2474,21 @@ margin_bottom = -24.0
 skele_dialogue_file = "res://Dialogues/skeleton.json"
 in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
 
-[node name="InvertScreen" type="ColorRect" parent="UI"]
+[node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
 material = SubResource( 11 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Shockwave"]
+anims/Shockwave = SubResource( 72 )
+
+[node name="InvertScreen" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 71 )
 margin_right = 640.0
 margin_bottom = 480.0
 __meta__ = {
@@ -2572,4 +2592,5 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="PizzaTimer" to="." method="_on_PizzaTimer_timeout"]
