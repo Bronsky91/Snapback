@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
+[ext_resource path="res://Resources/Shaders/Invert.gdshader" type="Shader" id=2]
 [ext_resource path="res://Assets/Theme.tres" type="Theme" id=3]
 [ext_resource path="res://Assets/Lich/pizzaboy_Idle_Head.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Lich/pizzaboy_Idle_Shoulder.png" type="Texture" id=6]
@@ -286,6 +287,9 @@ font_path = "res://Assets/Fonts/alagard.ttf"
 size = 80
 font_data = SubResource( 10 )
 
+[sub_resource type="ShaderMaterial" id=12]
+shader = ExtResource( 2 )
+
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
 
@@ -369,4 +373,14 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="InvertScreen" type="ColorRect" parent="."]
+visible = false
+material = SubResource( 12 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="animation_finished" from="Pizzaboy/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="button_up" from="Control/StartGame" to="." method="_on_StartGame_button_up"]

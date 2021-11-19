@@ -18,3 +18,8 @@ func _ready():
 
 func _on_StartGame_button_up():
 	get_tree().change_scene("res://Scenes/Game.tscn")
+
+
+func _on_AnimationPlayer_animation_finished(anim_name):
+	if anim_name == "Invert":
+		$InvertScreen.visible = true
