@@ -143,14 +143,16 @@ func chase_check():
 			play_minion_chase()
 
 func _on_Player_sneak(sneaking):
-	# TODO: May refactor how exactly the sneak affects the enemy range
-	# for now it will be halved
 	if sneaking:
 		$DetectionArea/CollisionShape2D.scale.x = 0.5
 		$DetectionArea/CollisionShape2D.scale.y = 0.5
+		# Update to squinty eyes
+		$Eyes.texture = load('res://Assets/eyes2.png')
 	else:
 		$DetectionArea/CollisionShape2D.scale.x = 1
 		$DetectionArea/CollisionShape2D.scale.y = 1
+		# Update to open eyes
+		$Eyes.texture = load('res://Assets/eyes.png')
 
 
 func _on_Player_invert(inverted):
