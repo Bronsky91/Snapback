@@ -1,4 +1,4 @@
-[gd_scene load_steps=139 format=2]
+[gd_scene load_steps=138 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -314,231 +314,6 @@ _data = {
 "points": PoolVector2Array( 11, 5.25, -11, -5.25, 3907, -220, -27, 14.5, 27, -14.5, 3932, -293, -14.75, -22, 14.75, 22, 4008, -300, 15.5, -13.5, -15.5, 13.5, 3978, -235, 0, 0, 0, 0, 3907, -220 )
 }
 
-[sub_resource type="Curve2D" id=62]
-_data = {
-"points": PoolVector2Array( -4.125, 11.375, 4.125, -11.375, 4121, -283, -20.3668, -21.7645, 20.3668, 21.7645, 4204, -268, 11.7808, -14.3765, -11.7808, 14.3765, 4227, -187, 20.5664, 21.3651, -20.5664, -21.3651, 4152, -211, -12.125, 4.125, 12.125, -4.125, 4121, -283 )
-}
-
-[sub_resource type="GDScript" id=63]
-script/source = "extends KinematicBody2D
-
-export (int) var pat_speed = 50
-export (int) var run_speed = 120
-export (int) var vision_range = 80
-export (int) var alert_range = 120
-
-onready var pathfollow = get_parent()
-onready var nav = get_node(\"/root/Game/Navigation2D\")
-onready var sfx: AudioStreamPlayer2D = $SFX
-onready var sprite = $Sprite
-onready var shadow = $Shadow
-onready var anim_player = $AnimationPlayer
-onready var raycast = $RayCast2D
-onready var detection_shape = $DetectionArea/CollisionShape2D
-onready var alert_shape = $AlertArea/CollisionShape2D
-onready var eyes = $Eyes
-onready var hands = $Hands
-onready var exclamation = $Exclamation
-
-var path : = PoolVector2Array()
-var state: String = 'patrol'
-var last_patrol_pos: Vector2 = position
-var velocity = Vector2.ZERO
-var player: KinematicBody2D = null
-var player_sneaking = false
-var facing = \"Right\"
-
-func _ready():
-	g.connect(\"sneak\", self, \"_on_Player_sneak\")
-	g.connect(\"invert\", self, \"_on_Player_invert\")
-	g.connect(\"go_home\", self, \"_on_Player_damaged\")
-	invert(g.inverted)
-	detection_shape.shape.radius = vision_range
-	alert_shape.shape.radius = alert_range
-
-func _process(delta):
-	if state == 'patrol':
-		patrol(delta)
-	if state == 'chase':
-		eyes.visible = false
-		hands.visible = false
-		if player:
-			if player.safe:
-				hide_icons()
-				state = 'return'
-			path = nav.get_simple_path(global_position, player.global_position)
-			var move_distance = run_speed * delta
-			move_along_path(move_distance)
-			if path.size() == 0:
-				# Shouldn't get to path 0, but as a safeguard end chase if it does happen
-				state = 'return'
-	if state == 'return':
-		path = nav.get_simple_path(global_position, last_patrol_pos)
-		var move_distance = run_speed * delta
-		move_along_path(move_distance)
-		if path.size() == 0:
-			state = 'patrol'
-
-
-func _physics_process(delta):
-	if player and state != \"chase\":
-		chase_check()
-
-
-func move_along_path(move_distance):
-	while move_distance > 0 and path.size() > 0:
-		for p in range(5, -1, -1):
-			if path.size() > p:
-				animate_sprite(global_position, path[p])
-				break
-		var distance_to_next_point = global_position.distance_to(path[0])
-		if move_distance <= distance_to_next_point:
-			# The enemy does not have enough movement left to get to the next point.
-			global_position += global_position.direction_to(path[0]) * move_distance
-		else:
-			# The enemy get to the next point
-			global_position = path[0]
-			path.remove(0)
-		# Update the distance to walk
-		move_distance -= distance_to_next_point
-
-
-func patrol(delta):
-	# Move enemy along patrol path
-	pathfollow.offset += pat_speed * delta
-	animate_sprite(last_patrol_pos, global_position)
-	
-	# Prepare last patrol pos for next cycle
-	last_patrol_pos = global_position
-
-
-func animate_sprite(from, to):
-	# Determine which way to face enemy based on prior position
-	var dir = from.direction_to(to)
-	var dominant_axis = \"x\" if abs(dir.x) > abs(dir.y) else \"y\"
-	var new_facing = facing
-	if dominant_axis == \"x\":
-		new_facing = \"Right\" if dir.x > 0 else \"Left\"
-	else:
-		new_facing = \"Front\" if dir.y > 0 else \"Back\"
-	
-	# Animate enemy in appropriate direction
-	if facing != new_facing:
-		facing = new_facing
-		if \"Ghost\" in name:
-			anim_player.play(name + facing)
-		if name == \"Skeleton\" or name == \"GrimReaper\":
-			anim_player.play(\"Walk\" + facing)
-
-func _on_DetectionArea_body_entered(body):
-	if body.name == 'Player':
-		player = body
-		chase_check()
-
-
-func _on_DetectionArea_body_exited(body):
-	if body.name == 'Player' and not name == 'GrimReaper':
-		player = null
-		hide_icons()
-		state = 'return'
-
-
-func chase_check():
-	if player and not player.safe and not player.is_invulnerable:
-		var direction_to_player = global_position.direction_to(player.global_position)
-		raycast.cast_to = direction_to_player * vision_range
-		raycast.force_raycast_update()
-		var collision_object = raycast.get_collider()
-		if collision_object == player:
-			show_icon(\"exclamation\")
-			state = \"chase\"
-			play_minion_chase()
-
-func _on_Player_sneak(sneaking):
-	# TODO: May refactor how exactly the sneak affects the enemy range
-	# for now it will be halved
-	if sneaking:
-		$DetectionArea/CollisionShape2D.scale.x = 0.5
-		$DetectionArea/CollisionShape2D.scale.y = 0.5
-	else:
-		$DetectionArea/CollisionShape2D.scale.x = 1
-		$DetectionArea/CollisionShape2D.scale.y = 1
-
-
-func _on_Player_invert(inverted):
-	invert(inverted)
-
-
-func _on_Player_damaged(attacker):
-	if state == \"chase\":
-		player = null
-		if attacker == self:
-			pizza_thief()
-		else:
-			hide_icons()
-		state = \"return\"
-
-
-func invert(inverted):
-	# If player is on opposite inversion of enemy, replace enemy sprite with shadow
-	if (inverted and get_collision_layer_bit(6)) or (!inverted and get_collision_layer_bit(7)):
-		sprite.visible = false
-		shadow.visible = true
-		hide_icons()
-	else:
-		sprite.visible = true
-		shadow.visible = false
-
-
-func round_pos(pos: Vector2) -> Vector2:
-	return Vector2(stepify(pos.x, 10), stepify(pos.y, 10))
-
-
-func _on_AlertArea_body_entered(body):
-	if body.name == 'Player':
-		play_minion_aware()
-		show_icon(\"eyes\")
-
-
-func _on_AlertArea_body_exited(body):
-	if body.name == 'Player':
-		eyes.visible = false
-
-func play_minion_chase():
-	sfx.stream = load(\"res://Assets/Audio/minion_pizza.mp3\")
-	sfx.play()
-
-func play_minion_aware():
-	# ~1 in 5 chance to play stomach growl
-	if randi() % 100 < 20:
-		sfx.stream = load(\"res://Assets/Audio/stomach_growl.mp3\")
-		sfx.play()
-
-
-# For when the enemy snatches a slice
-func pizza_thief():
-	show_icon(\"hands\")
-	$HandsTimer.start()
-
-
-func show_icon(icon):
-	hide_icons()
-	if icon == \"eyes\":
-		eyes.visible = true
-	elif icon == \"hands\":
-		hands.visible = true
-	elif icon == \"exclamation\":
-		exclamation.visible = true
-
-func hide_icons():
-	eyes.visible = false
-	exclamation.visible = false
-
-
-func _on_HandsTimer_timeout():
-	hands.visible = false
-"
-
 [sub_resource type="Curve2D" id=64]
 _data = {
 "points": PoolVector2Array( 10.7212, 9.05345, -10.7212, -9.05345, 4124, -380, -14.5332, 16.6774, 14.5332, -16.6774, 4141, -439, -10.0064, -6.67096, 10.0064, 6.67096, 4206, -463, 11.1977, -22.6336, -11.1977, 22.6336, 4202, -399, 9.52995, 15.4862, -9.52995, -15.4862, 4124, -380 )
@@ -597,6 +372,11 @@ _data = {
 [sub_resource type="Curve2D" id=82]
 _data = {
 "points": PoolVector2Array( 7.54015, 20.2394, -7.54015, -20.2394, 5777, -873, 5.5559, -18.2551, -5.5559, 18.2551, 5646, -861, -18.652, -12.6992, 18.652, 12.6992, 5644, -731, -16.2709, 11.1118, 16.2709, -11.1118, 5760, -757, 0, 0, 0, 0, 5777, -873 )
+}
+
+[sub_resource type="Curve2D" id=83]
+_data = {
+"points": PoolVector2Array( -17.8583, 19.4457, 17.8583, -19.4457, 4112, -296, -23.0173, -14.2866, 23.0173, 14.2866, 4185, -290, 7.54015, -15.4772, -7.54015, 15.4772, 4222, -208, 10.715, 24.6047, -10.715, -24.6047, 4128, -232, -11.1118, 17.4614, 11.1118, -17.4614, 4112, -296 )
 }
 
 [sub_resource type="TileSet" id=23]
@@ -802,40 +582,50 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
-frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
+frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
+frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
+frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
+frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
+frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
+frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
+frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -843,9 +633,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
+frame = 1
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -853,9 +645,11 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
+frame = 1
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 3002, 554 )
+frame = 1
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -1217,6 +1011,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
+frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2174,20 +1969,6 @@ rotate = false
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D34/PathFollow2D2" instance=ExtResource( 54 )]
 position = Vector2( -0.000244141, 3.05176e-05 )
 
-[node name="Path2D35" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( -1, 3 )
-curve = SubResource( 62 )
-
-[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D35"]
-position = Vector2( 4121, -283 )
-rotation = -0.781641
-rotate = false
-
-[node name="Skeleton2" parent="Navigation2D/Enemies/Path2D35/PathFollow2D" instance=ExtResource( 54 )]
-position = Vector2( 0.70459, -0.709961 )
-rotation = 0.77324
-script = SubResource( 63 )
-
 [node name="Path2D36" type="Path2D" parent="Navigation2D/Enemies"]
 curve = SubResource( 64 )
 
@@ -2557,6 +2338,17 @@ rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D43/PathFollow2D3" instance=ExtResource( 7 )]
 
+[node name="Path2D35" type="Path2D" parent="Navigation2D/Enemies"]
+curve = SubResource( 83 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D35"]
+position = Vector2( 4135.35, -306.369 )
+rotation = -0.0042007
+offset = 26.22
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D35/PathFollow2D" instance=ExtResource( 54 )]
+
 [node name="PlayerStart" type="Position2D" parent="."]
 visible = false
 
@@ -2578,12 +2370,15 @@ position = Vector2( 3354, 187 )
 [node name="SafeZone3" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 4071, -329 )
 
+[node name="SafeZone4" parent="YSort" instance=ExtResource( 11 )]
+position = Vector2( 5104, 83 )
+
 [node name="TrashTileMap" type="TileMap" parent="YSort"]
 tile_set = SubResource( 23 )
 cell_size = Vector2( 16, 16 )
 cell_y_sort = true
 format = 1
-tile_data = PoolIntArray( -4521656, 0, 65540, -4521653, 0, 65540, -3538606, 0, 65540, -3538604, 0, 131073, -3473072, 0, 65540, -3407537, 0, 1, -3407533, 0, 65540, -3341999, 0, 65540, -3341997, 0, 131074, -2358997, 0, 1, -2358996, 0, 65540, -2293461, 0, 65540, -458614, 0, 131074, -393084, 0, 1, -262150, 0, 1, 1507563, 0, 131074, 1507565, 0, 3, 1507567, 0, 131073, 1507572, 0, 131073, 1507573, 0, 131074, 1507574, 0, 65540, 1507575, 0, 65540, 1573100, 0, 65540, 1573105, 0, 65536, 1573106, 0, 2, 1573112, 0, 131073, 1638634, 0, 131075, 1638636, 0, 65536, 1638639, 0, 65540, 1638640, 0, 65540, 1638641, 0, 65536, 1638644, 0, 65537, 1638645, 0, 65540, 1638646, 0, 65538, 1638647, 0, 65537, 1638648, 0, 65537, 1704185, 0, 2, 1769705, 0, 65540, 1769721, 0, 65540, 1835243, 0, 131072, 1835244, 0, 131073, 1835246, 0, 65537, 1835250, 0, 65540, 1835251, 0, 131073, 1835252, 0, 3, 1835254, 0, 196609, 1835256, 0, 2, 1900778, 0, 196609, 1900781, 0, 131075, 1900782, 0, 65536, 1900783, 0, 131075, 1900784, 0, 65540, 1900785, 0, 131075, 1900792, 0, 65540, 1900793, 0, 65537, 1966314, 0, 131075, 1966315, 0, 131075, 1966317, 0, 65540, 1966318, 0, 131072, 1966321, 0, 65536, 1966323, 0, 131073, 1966325, 0, 65540, 1966326, 0, 65540, 2031850, 0, 131073, 2031852, 0, 2, 2031854, 0, 65537, 2031855, 0, 65537, 2031860, 0, 65536, 2031862, 0, 65536, 2031864, 0, 65540, 2097386, 0, 65540, 2097390, 0, 65540, 2097396, 0, 3, 2162924, 0, 65540, 2162926, 0, 131073, 2162931, 0, 65540, 2162933, 0, 65540, 2162934, 0, 65536, 2228460, 0, 131073, 2228463, 0, 2, 2228465, 0, 2, 2228468, 0, 196609, 2228470, 0, 131075 )
+tile_data = PoolIntArray( -4521656, 0, 65540, -4521653, 0, 65540, -3538606, 0, 65540, -3538604, 0, 131073, -3473072, 0, 65540, -3407537, 0, 1, -3407533, 0, 65540, -3341999, 0, 65540, -3341997, 0, 131074, -2358997, 0, 1, -2358996, 0, 65540, -2293461, 0, 65540, -458614, 0, 131074, -393084, 0, 1, -262150, 0, 1, 153, 0, 65540, 156, 0, 65540, 172, 0, 1, 65691, 0, 65537, 262315, 0, 3, 262316, 0, 65540, 1507563, 0, 131074, 1507565, 0, 3, 1507567, 0, 131073, 1507572, 0, 131073, 1507573, 0, 131074, 1507574, 0, 65540, 1507575, 0, 65540, 1573100, 0, 65540, 1573105, 0, 65536, 1573106, 0, 2, 1573112, 0, 131073, 1638634, 0, 131075, 1638636, 0, 65536, 1638639, 0, 65540, 1638640, 0, 65540, 1638641, 0, 65536, 1638644, 0, 65537, 1638645, 0, 65540, 1638646, 0, 65538, 1638647, 0, 65537, 1638648, 0, 65537, 1704185, 0, 2, 1769705, 0, 65540, 1769721, 0, 65540, 1835243, 0, 131072, 1835244, 0, 131073, 1835246, 0, 65537, 1835250, 0, 65540, 1835251, 0, 131073, 1835252, 0, 3, 1835254, 0, 196609, 1835256, 0, 2, 1900778, 0, 196609, 1900781, 0, 131075, 1900782, 0, 65536, 1900783, 0, 131075, 1900784, 0, 65540, 1900785, 0, 131075, 1900792, 0, 65540, 1900793, 0, 65537, 1966314, 0, 131075, 1966315, 0, 131075, 1966317, 0, 65540, 1966318, 0, 131072, 1966321, 0, 65536, 1966323, 0, 131073, 1966325, 0, 65540, 1966326, 0, 65540, 2031850, 0, 131073, 2031852, 0, 2, 2031854, 0, 65537, 2031855, 0, 65537, 2031860, 0, 65536, 2031862, 0, 65536, 2031864, 0, 65540, 2097386, 0, 65540, 2097390, 0, 65540, 2097396, 0, 3, 2162924, 0, 65540, 2162926, 0, 131073, 2162931, 0, 65540, 2162933, 0, 65540, 2162934, 0, 65536, 2228460, 0, 131073, 2228463, 0, 2, 2228465, 0, 2, 2228468, 0, 196609, 2228470, 0, 131075 )
 
 [node name="Lever" parent="YSort" instance=ExtResource( 33 )]
 position = Vector2( 2653, 9 )
@@ -2727,19 +2522,20 @@ skelly_name = "Aragone"
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 1
+frame = 5
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
+frame = 4
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 1
+frame = 3
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -2748,6 +2544,31 @@ position = Vector2( 3396, -620 )
 rotation = -0.00742967
 skelly_status = "free"
 skelly_name = "Lich Cosplayer"
+
+[node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 2928, 575 )
+frames = ExtResource( 49 )
+frame = 1
+
+[node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 3555, 167 )
+
+[node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 5580, 40 )
+frames = ExtResource( 47 )
+frame = 1
+skelly_status = "free"
+skelly_name = "Leonardo da Skelly"
+
+[node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 5174, -1104 )
+frames = ExtResource( 49 )
+frame = 2
+
+[node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 4499, 168 )
+frames = ExtResource( 48 )
+frame = 6
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
