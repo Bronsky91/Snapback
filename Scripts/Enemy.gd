@@ -4,6 +4,7 @@ export (int) var pat_speed = 50
 export (int) var run_speed = 120
 export (int) var vision_range = 80
 export (int) var alert_range = 120
+export (String, 'Left', 'Right', 'Front', 'Back') var default_facing = 'Front'
 
 onready var pathfollow = get_parent()
 onready var nav = get_node("/root/Game/Navigation2D")
@@ -20,13 +21,16 @@ onready var exclamation = $Exclamation
 
 var path : = PoolVector2Array()
 var state: String = 'patrol'
-var last_patrol_pos: Vector2 = position
+var last_patrol_pos: Vector2
 var velocity = Vector2.ZERO
 var player: KinematicBody2D = null
 var player_sneaking = false
 var facing = "Right"
+var not_patroling = false
 
 func _ready():
+	last_patrol_pos = position
+	not_patroling = pathfollow != PathFollow2D
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
 	g.connect("go_home", self, "_on_Player_damaged")
@@ -36,7 +40,10 @@ func _ready():
 
 func _process(delta):
 	if state == 'patrol':
-		patrol(delta)
+		if not_patroling:
+			anim_player.play('Idle' + default_facing)
+		else:
+			patrol(delta)
 	if state == 'chase':
 		eyes.visible = false
 		hands.visible = false
