@@ -4,6 +4,7 @@ onready var dialogue_player = get_node('/root/Game/UI/DialoguePlayer')
 
 #export(String, "chained", "hang", "easel") var skelly_type = "chained"
 export(String, "in danger", "free") var skelly_status = "in danger"
+export(String) var skelly_name
 
 var player_present = false
 var dialog_open = false
@@ -23,7 +24,7 @@ func _input(event):
 		
 		
 func find_and_use_dialogue():
-	dialogue_player.skele_play(skelly_status)
+	dialogue_player.skele_play(skelly_status, skelly_name)
 	dialog_open = true
 	$AudioStreamPlayer2D.play()
 
