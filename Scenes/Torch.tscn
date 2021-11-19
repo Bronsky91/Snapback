@@ -31,7 +31,6 @@ tracks/0/keys = {
 
 [node name="Torch" type="AnimatedSprite"]
 frames = SubResource( 23 )
-frame = 1
 playing = true
 script = ExtResource( 5 )
 

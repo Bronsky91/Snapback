@@ -1,4 +1,4 @@
-[gd_scene load_steps=107 format=2]
+[gd_scene load_steps=109 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -281,6 +281,16 @@ _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 3328, -609, 0, 0, 0, 0, 3328, -594, 0, 0, 0, 0, 3471, -594, 0, 0, 0, 0, 3471, -609, 0, 0, 0, 0, 3328, -609 )
 }
 
+[sub_resource type="Curve2D" id=53]
+_data = {
+"points": PoolVector2Array( -23.5983, 10.1136, 23.5983, -10.1136, 3230, -453, -33.3354, -1.98425, 33.3354, 1.98425, 3396, -504, -21.0331, -29.7638, 21.0331, 29.7638, 3576, -455, -1.5874, -40.0819, 1.5874, 40.0819, 3629, -314, 47.1434, -37.6025, -47.1434, 37.6025, 3573, -161, 43.9677, -3.17839, -43.9677, 3.17839, 3400, -113, 31.1483, 33.1126, -31.1483, -33.1126, 3240, -162, -0.891905, 51.1359, 0.891905, -51.1359, 3169, -304, -16.4814, 20.2271, 16.4814, -20.2271, 3230, -453 )
+}
+
+[sub_resource type="Curve2D" id=54]
+_data = {
+"points": PoolVector2Array( 7.07906, 2.83162, -7.07906, -2.83162, 3354, -348, -18.4055, 6.60712, 18.4055, -6.60712, 3379, -391, 4.24743, -19.8214, -4.24743, 19.8214, 3431, -338, 16.5178, -7.55099, -16.5178, 7.55099, 3404, -300, 8.96681, 6.60712, -8.96681, -6.60712, 3342, -311, -0.471937, 30.204, 0.471937, -30.204, 3308, -350, -29.732, -0.471937, 29.732, 0.471937, 3363, -433, -6.60712, -9.43874, 6.60712, 9.43874, 3450, -375, 9.91068, 9.91068, -9.91068, -9.91068, 3439, -372, 12.7423, -5.19131, -12.7423, 5.19131, 3364, -424, 1.41581, -13.2142, -1.41581, 13.2142, 3317, -350, -6.13518, -2.83162, 6.13518, 2.83162, 3346, -320, -2.83162, 3.7755, 2.83162, -3.7755, 3400, -305, -2.35969, 11.7984, 2.35969, -11.7984, 3422, -337, 14.6301, -1.88775, -14.6301, 1.88775, 3380, -379, 6.60712, -0.943874, -6.60712, 0.943874, 3358, -343, 0, 0, 0, 0, 3354, -348 )
+}
+
 [sub_resource type="TileSet" id=23]
 0/name = "Garbage_001.png 0"
 0/texture = ExtResource( 19 )
@@ -370,50 +380,52 @@ position = Vector2( 2761, -267 )
 texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
+position = Vector2( -4, -100 )
+frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 2
+frame = 0
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
-frame = 2
+frame = 0
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
-frame = 2
+frame = 0
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
-frame = 2
+frame = 0
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
-frame = 2
+frame = 0
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
-frame = 2
+frame = 0
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
-frame = 2
+frame = 0
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
-frame = 2
+frame = 0
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
-frame = 2
+frame = 0
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
-frame = 2
+frame = 0
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
-frame = 2
+frame = 0
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -421,11 +433,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
-frame = 2
+frame = 0
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
-frame = 2
+frame = 0
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -433,11 +445,11 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
-frame = 2
+frame = 0
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
-position = Vector2( 3005, 555 )
-frame = 2
+position = Vector2( 3002, 554 )
+frame = 0
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -833,7 +845,6 @@ rotation = 0.0232526
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D02/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 30
 
 [node name="Path2D03" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( -5, 3.18519 )
@@ -847,7 +858,6 @@ offset = 227.83
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D03/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 100
 
 [node name="Path2D04" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 77, 3 )
@@ -861,7 +871,6 @@ offset = 315.93
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D04/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 100
 
 [node name="Path2D05" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 164, 3 )
@@ -875,7 +884,6 @@ offset = 139.73
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D05/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 100
 
 [node name="Path2D06" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 69, 7 )
@@ -889,7 +897,6 @@ offset = 139.73
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D06/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 100
 
 [node name="Path2D07" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 0, -8 )
@@ -901,7 +908,6 @@ rotation = 0.0285702
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D07/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 75
 
 [node name="Path2D08" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 0, 1 )
@@ -934,7 +940,6 @@ offset = 381.41
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D09/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 80
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D09"]
 position = Vector2( 1344.32, -35.2263 )
@@ -951,7 +956,6 @@ offset = 183.9
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D09/PathFollow2D3" instance=ExtResource( 7 )]
-pat_speed = 80
 
 [node name="PathFollow2D4" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D09"]
 position = Vector2( 1536.71, -7.58554 )
@@ -1410,7 +1414,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D21/PathFollow2D" instance=ExtResource( 9 )]
 
 [node name="Path2D22" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 1, -5 )
+position = Vector2( -2, -6 )
 curve = SubResource( 45 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D22"]
@@ -1429,7 +1433,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D22/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D23" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 48, -5 )
+position = Vector2( 14, -282 )
 curve = SubResource( 46 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D23"]
@@ -1449,27 +1453,27 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D23/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D24" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 96, -5 )
+position = Vector2( 95, -6 )
 curve = SubResource( 47 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D24"]
-position = Vector2( 2736, -314.648 )
+position = Vector2( 2736, -301.692 )
 rotation = 0.0267729
-offset = 32.37
+offset = 45.32
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D24/PathFollow2D" instance=ExtResource( 7 )]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D24"]
-position = Vector2( 2751, -282.492 )
+position = Vector2( 2751, -301.923 )
 rotation = 0.0267729
-offset = 114.92
+offset = 134.34
 rotate = false
 
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D24/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D25" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 144, -6 )
+position = Vector2( 142, -251 )
 curve = SubResource( 47 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D25"]
@@ -1489,7 +1493,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D25/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D26" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 191, -6 )
+position = Vector2( 246, -6 )
 curve = SubResource( 48 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D26"]
@@ -1509,7 +1513,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D26/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D27" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 240, -8 )
+position = Vector2( 269, -265 )
 curve = SubResource( 49 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D27"]
@@ -1529,7 +1533,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D27/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D28" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 287, -7 )
+position = Vector2( 352, -9 )
 curve = SubResource( 50 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D28"]
@@ -1541,15 +1545,15 @@ rotate = false
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D28/PathFollow2D" instance=ExtResource( 7 )]
 
 [node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D28"]
-position = Vector2( 2751, -329.463 )
+position = Vector2( 2751.04, -342.426 )
 rotation = 0.0267729
-offset = 161.86
+offset = 174.81
 rotate = false
 
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D28/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D29" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 336, -7 )
+position = Vector2( 332, -220 )
 curve = SubResource( 51 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D29"]
@@ -1577,7 +1581,112 @@ rotate = false
 [node name="GrimReaper" parent="Navigation2D/Enemies/Path2D30/PathFollow2D" instance=ExtResource( 56 )]
 position = Vector2( 0, 4 )
 
+[node name="Path2D31" type="Path2D" parent="Navigation2D/Enemies"]
+position = Vector2( -6, -3 )
+curve = SubResource( 53 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D31"]
+position = Vector2( 3629.13, -303.086 )
+rotation = 0.0318281
+offset = 526.63
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D31/PathFollow2D" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D31"]
+position = Vector2( 3396.06, -112.779 )
+rotation = 0.0318281
+offset = 870.1
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D31/PathFollow2D2" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D31"]
+position = Vector2( 3393.4, -504.049 )
+rotation = 0.0318281
+offset = 171.73
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D31/PathFollow2D3" instance=ExtResource( 54 )]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D31"]
+position = Vector2( 3169.08, -306.596 )
+rotation = 0.0318281
+offset = 1202.1
+rotate = false
+
+[node name="Skeleton" parent="Navigation2D/Enemies/Path2D31/PathFollow2D4" instance=ExtResource( 54 )]
+
+[node name="Path2D32" type="Path2D" parent="Navigation2D/Enemies"]
+position = Vector2( 20, 41 )
+curve = SubResource( 54 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3400.13, -369.823 )
+rotation = 0.0539476
+offset = 902.18
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D2" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3426.83, -383.314 )
+rotation = 0.0539476
+offset = 557.72
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D2" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D3" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3443.44, -382.426 )
+rotation = 0.0539476
+offset = 508.5
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D3" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D4" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3308.85, -340.431 )
+rotation = 0.0539476
+offset = 295.26
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D4" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D5" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3323.19, -336.235 )
+rotation = 0.0539476
+offset = 738.15
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D5" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D6" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3390.64, -390.392 )
+rotation = 0.0539476
+offset = 65.61
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D6" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D7" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3339.53, -422.368 )
+rotation = 0.0539476
+offset = 385.48
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D7" instance=ExtResource( 32 )]
+
+[node name="PathFollow2D8" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D32"]
+position = Vector2( 3343.73, -401.54 )
+rotation = 0.0539476
+offset = 664.33
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D32/PathFollow2D8" instance=ExtResource( 32 )]
+
 [node name="PlayerStart" type="Position2D" parent="."]
+visible = false
 
 [node name="YSort" type="YSort" parent="."]
 
@@ -1721,7 +1830,6 @@ frames = ExtResource( 48 )
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 1
 skelly_status = "free"
 
 [node name="Skeleboi4" parent="YSort" instance=ExtResource( 13 )]
