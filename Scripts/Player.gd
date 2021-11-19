@@ -122,7 +122,7 @@ func _physics_process(delta):
 
 func toggle_inversion(velocity):
 	g.inverted = !g.inverted
-	game_scene.shockwave()
+	game_scene.shockwave(g.inverted)
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
 	else:

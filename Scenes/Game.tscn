@@ -1,4 +1,4 @@
-[gd_scene load_steps=124 format=2]
+[gd_scene load_steps=125 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -598,11 +598,11 @@ load_path = "res://.import/Shelf_003.png-9485a0b63eb08d09b2eeb294b1feedb4.stex"
 shader = ExtResource( 69 )
 shader_param/center = Vector2( 0.5, 0.5 )
 shader_param/force = 0.01
-shader_param/size = 0.1
+shader_param/size = 0.5
 shader_param/thickness = 0.047
 
-[sub_resource type="Animation" id=72]
-resource_name = "Shockwave"
+[sub_resource type="Animation" id=73]
+resource_name = "invert"
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/size")
 tracks/0/interp = 1
@@ -613,7 +613,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0.1, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.1, 0.5 ]
+"values": [ 0.25, 0.75 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material:shader_param/force")
@@ -625,7 +625,34 @@ tracks/1/keys = {
 "times": PoolRealArray( 0.1, 1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.05, 0.01 ]
+"values": [ 0.1, 0.01 ]
+}
+
+[sub_resource type="Animation" id=72]
+resource_name = "normal"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.05, 0.5 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.002, 0.01 ]
 }
 
 [sub_resource type="ShaderMaterial" id=71]
@@ -1095,7 +1122,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2417,17 +2444,16 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
-frame = 2
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 5
+frame = 2
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 4
+frame = 2
 skelly_status = "free"
 
 [node name="Skeleboi4" parent="YSort" instance=ExtResource( 13 )]
@@ -2484,7 +2510,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Shockwave"]
-anims/Shockwave = SubResource( 72 )
+anims/invert = SubResource( 73 )
+anims/normal = SubResource( 72 )
 
 [node name="InvertScreen" type="ColorRect" parent="UI"]
 visible = false

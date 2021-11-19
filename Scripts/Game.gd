@@ -35,9 +35,12 @@ func add_time():
 	pizza_timer_label.bbcode_text = format_time()
 
 
-func shockwave():
+func shockwave(inverted):
 	shockwave.visible = true
-	shockwave_player.play("Shockwave")
+	if inverted:
+		shockwave_player.play("invert")
+	else:
+		shockwave_player.play("normal")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
