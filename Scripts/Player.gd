@@ -157,6 +157,7 @@ func toggle_inversion(velocity):
 	
 func attacked(attacker):
 	if !is_invulnerable:
+		play_sfx('getting_hit')
 		slices_lost += 1
 		g.emit_signal('shake', 0.2, 15, 16, 0)
 		g.emit_signal('go_home', attacker)
@@ -178,15 +179,21 @@ func attacked(attacker):
 		$InvulnerabilityTimer.start()
 		slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
+func play_sfx(name):
+	$SFX.stream = load("res://Assets/Audio/"+name+".mp3")
+	$SFX.play()
+
 func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
 	if area.name == 'ItemArea':
-		$SFX.stream = load("res://Assets/Audio/pick_up.mp3")
-		$SFX.play()
+		play_sfx('pick_up')
 		game_scene.add_time()
 		area.get_parent().queue_free()
 	if area.name == 'SafeZoneArea':
 		safe = true
-		# TODO: Show floating text telling the player they've got to a checkpoint?
+		if last_checkpoint_pos != area.get_parent().get_node('Checkpoint').global_position:
+			# Only play the first time they enter the checkpoint
+			# TODO: Show floating text telling the player they've got to a checkpoint?
+			play_sfx('save')
 		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
 
 func _on_PickupArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):

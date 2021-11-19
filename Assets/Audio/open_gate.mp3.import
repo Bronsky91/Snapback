@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/open_gate.mp3-a34502f2e0ae3468468b6a73429c2b24.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/open_gate.mp3"
+dest_files=[ "res://.import/open_gate.mp3-a34502f2e0ae3468468b6a73429c2b24.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
