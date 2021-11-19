@@ -29,8 +29,8 @@ var facing = "Right"
 var not_patroling = false
 
 func _ready():
-	last_patrol_pos = position
-	not_patroling = pathfollow != PathFollow2D
+	last_patrol_pos = global_position
+	not_patroling = not pathfollow is PathFollow2D
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
 	g.connect("go_home", self, "_on_Player_damaged")
@@ -107,6 +107,9 @@ func animate_sprite(from, to):
 	else:
 		new_facing = "Front" if dir.y > 0 else "Back"
 	
+	if not_patroling:
+		anim_player.play("Walk" + new_facing)
+		
 	# Animate enemy in appropriate direction
 	if facing != new_facing:
 		facing = new_facing

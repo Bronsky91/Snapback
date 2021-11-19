@@ -1,7 +1,7 @@
 extends KinematicBody2D
 
-export (int) var run_speed: int = 200
-export (int) var sneak_speed: int = 100
+export (int) var run_speed: int = 150
+export (int) var sneak_speed: int = 75
 
 onready var anim_player: AnimationPlayer = $AnimationPlayer
 
