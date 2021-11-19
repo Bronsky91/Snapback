@@ -811,7 +811,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -1553,7 +1553,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D28/PathFollow2D2" instance=ExtResource( 9 )]
 
 [node name="Path2D29" type="Path2D" parent="Navigation2D/Enemies"]
-position = Vector2( 332, -220 )
+position = Vector2( 195, -363 )
 curve = SubResource( 51 )
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D29"]
@@ -1724,14 +1724,15 @@ wall_top = 2
 
 [node name="GhostWall2" parent="YSort" instance=ExtResource( 27 )]
 position = Vector2( 4784, -184 )
-wall_top = 3
+wall_top = 4
 
 [node name="GhostWall3" parent="YSort" instance=ExtResource( 27 )]
 position = Vector2( 5248, -360 )
-wall_top = 2
+wall_top = 5
 
 [node name="GhostWall4" parent="YSort" instance=ExtResource( 27 )]
 position = Vector2( 3392, -56 )
+wall_top = 2
 
 [node name="SafeZone" parent="YSort/GhostWall4" instance=ExtResource( 11 )]
 position = Vector2( -37.9998, 243 )
@@ -1826,10 +1827,12 @@ frame = 3
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
+frame = 1
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
+frame = 4
 skelly_status = "free"
 
 [node name="Skeleboi4" parent="YSort" instance=ExtResource( 13 )]
