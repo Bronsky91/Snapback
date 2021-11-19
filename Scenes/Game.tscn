@@ -1,4 +1,4 @@
-[gd_scene load_steps=130 format=2]
+[gd_scene load_steps=129 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -565,11 +565,6 @@ _data = {
 [sub_resource type="Curve2D" id=70]
 _data = {
 "points": PoolVector2Array( 0, 0, 0, 0, 5192, -1211, 0, 0, 0, 0, 5194, -895, 0, 0, 0, 0, 5517, -896, 0, 0, 0, 0, 5515, -1211, 0, 0, 0, 0, 5192, -1211 )
-}
-
-[sub_resource type="Curve2D" id=71]
-_data = {
-"points": PoolVector2Array( 14, 21, -14, -21, 5768, -875, 6.5, -22.5, -6.5, 22.5, 5641, -875, -28, -10, 28, 10, 5644, -730, -9.5, 11, 9.5, -11, 5761, -753, 5.5, 5.5, -5.5, -5.5, 5768, -875 )
 }
 
 [sub_resource type="Curve2D" id=76]
@@ -2334,7 +2329,7 @@ rotate = false
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D42/PathFollow2D4" instance=ExtResource( 9 )]
 
 [node name="Path2D43" type="Path2D" parent="Navigation2D/Enemies"]
-curve = SubResource( 71 )
+curve = null
 
 [node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D43"]
 position = Vector2( 5768, -875 )
