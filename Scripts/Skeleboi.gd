@@ -25,6 +25,7 @@ func _input(event):
 func find_and_use_dialogue():
 	dialogue_player.skele_play(skelly_status)
 	dialog_open = true
+	$AudioStreamPlayer2D.play()
 
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
