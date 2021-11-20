@@ -178,7 +178,7 @@ tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "clips": PoolStringArray( "SneakIdleBack", "SneakBack", "SneakIdleBack", "IdleBack" ),
-"times": PoolRealArray( 0, 2, 10, 14 )
+"times": PoolRealArray( 0, 2, 10, 13.1 )
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("YSort:position")
@@ -1542,6 +1542,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 320, 250 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
@@ -1673,7 +1674,7 @@ __meta__ = {
 volume_db = -25.0
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
+volume_db = -15.0
 
 [connection signal="pressed" from="UI/DialoguePlayer/Debug/bTime_gHits" to="UI/DialoguePlayer" method="_on_debug_pressed"]
 [connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]

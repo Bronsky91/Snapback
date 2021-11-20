@@ -3,7 +3,7 @@ extends Node2D
 onready var lich_player = $InvertedLich/AnimationPlayer
 onready var voice_gen = $UI/DialoguePlayer/VoiceGeneratorAudioStreamPlayer
 
-var track_length = 38
+var track_length = 105
 var can_invert = false
 
 
