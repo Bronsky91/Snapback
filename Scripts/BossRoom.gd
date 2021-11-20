@@ -51,6 +51,8 @@ func invert():
 	$InvertedLich.visible = true
 	$TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	$SceneAnimator.play("inverted")
+	$SFX.stream = load("res://Assets/Audio/flip_reverse.mp3")
+	$SFX.play()
 	# reverse background music
 	var playback_pos = $BGM.get_playback_position()
 	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
@@ -73,8 +75,6 @@ func uninvert():
 	$Lich.visible = true
 	$InvertedLich.visible = false
 	$UI/White.visible = false
-	$SFX.stream = load("res://Assets/Audio/lich_switch.mp3")
-	$SFX.play()
 	# $SceneAnimator.play("inverted")
 	# reverse background music
 	var playback_pos = $BGM.get_playback_position()
@@ -84,7 +84,7 @@ func uninvert():
 
 
 func _lightswitch():
-	$SFX.stream = load("res://Assets/Audio/switch.mp3")
+	$SFX.stream = load("res://Assets/Audio/lich_switch.mp3")
 	$SFX.play()
 	$UI/White.modulate = Color(1.0, 1.0, 1.0, 0.75)
 
