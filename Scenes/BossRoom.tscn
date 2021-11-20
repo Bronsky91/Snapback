@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=2]
+[gd_scene load_steps=73 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -19,8 +19,79 @@
 [ext_resource path="res://Resources/Shaders/Shockwave.gdshader" type="Shader" id=17]
 [ext_resource path="res://Assets/Lich/Inverted/LichHead.png" type="Texture" id=18]
 [ext_resource path="res://Assets/Lich/Inverted/LichShoulder.png" type="Texture" id=19]
+[ext_resource path="res://Scripts/LichDialogue.gd" type="Script" id=20]
 [ext_resource path="res://Assets/Lich/Inverted/LichArms.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Lich/Inverted/LichBody.png" type="Texture" id=22]
+[ext_resource path="res://addons/VoiceGeneratorAudioStreamPlayer.tscn" type="PackedScene" id=23]
+
+[sub_resource type="Animation" id=2]
+resource_name = "start"
+length = 30.0
+tracks/0/type = "animation"
+tracks/0/path = NodePath("YSort/PlayerOnRails/PlayerAnimator")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"clips": PoolStringArray( "SneakIdleBack", "SneakBack", "SneakIdleBack", "IdleBack" ),
+"times": PoolRealArray( 0, 2, 10, 14 )
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("YSort:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 2.1, 10 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, -100 ), Vector2( 0, -260 ) ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 10, 23.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "_grumble"
+}, {
+"args": [  ],
+"method": "_space"
+} ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("YSort/PlayerOnRails/Camera2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 15.1, 20 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 500 ), Vector2( 0, 300 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("UI/DialoguePlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 21 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "start"
+} ]
+}
 
 [sub_resource type="GDScript" id=28]
 script/source = "extends KinematicBody2D
@@ -889,75 +960,6 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="Animation" id=2]
-resource_name = "start"
-length = 30.0
-tracks/0/type = "animation"
-tracks/0/path = NodePath("YSort/PlayerOnRails/PlayerAnimator")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/keys = {
-"clips": PoolStringArray( "SneakIdleBack", "SneakBack", "SneakIdleBack", "IdleBack" ),
-"times": PoolRealArray( 0, 2, 10, 14 )
-}
-tracks/1/type = "value"
-tracks/1/path = NodePath("YSort:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/keys = {
-"times": PoolRealArray( 2.1, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, -100 ), Vector2( 0, -260 ) ]
-}
-tracks/2/type = "method"
-tracks/2/path = NodePath(".")
-tracks/2/interp = 1
-tracks/2/loop_wrap = true
-tracks/2/imported = false
-tracks/2/enabled = true
-tracks/2/keys = {
-"times": PoolRealArray( 10, 23.1 ),
-"transitions": PoolRealArray( 1, 1 ),
-"values": [ {
-"args": [  ],
-"method": "_grumble"
-}, {
-"args": [  ],
-"method": "_space"
-} ]
-}
-tracks/3/type = "value"
-tracks/3/path = NodePath("YSort/PlayerOnRails/Camera2D:position")
-tracks/3/interp = 1
-tracks/3/loop_wrap = true
-tracks/3/imported = false
-tracks/3/enabled = true
-tracks/3/keys = {
-"times": PoolRealArray( 15.1, 20 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Vector2( 0, 500 ), Vector2( 0, 300 ) ]
-}
-tracks/4/type = "method"
-tracks/4/path = NodePath("UI/DialoguePlayer")
-tracks/4/interp = 1
-tracks/4/loop_wrap = true
-tracks/4/imported = false
-tracks/4/enabled = true
-tracks/4/keys = {
-"times": PoolRealArray( 21 ),
-"transitions": PoolRealArray( 1 ),
-"values": [ {
-"args": [  ],
-"method": "lich"
-} ]
-}
-
 [sub_resource type="GDScript" id=75]
 script/source = "extends CanvasLayer
 
@@ -1155,6 +1157,9 @@ tracks/0/keys = {
 [node name="BossRoom" type="Node2D"]
 script = ExtResource( 5 )
 
+[node name="SceneAnimator" type="AnimationPlayer" parent="."]
+anims/start = SubResource( 2 )
+
 [node name="TileMap" type="TileMap" parent="."]
 modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
 tile_set = ExtResource( 1 )
@@ -1341,9 +1346,6 @@ anims/Idle = SubResource( 87 )
 anims/RESET = SubResource( 88 )
 anims/Talking = SubResource( 89 )
 
-[node name="SceneAnimator" type="AnimationPlayer" parent="."]
-anims/start = SubResource( 2 )
-
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [node name="UI" type="CanvasLayer" parent="."]
@@ -1363,8 +1365,9 @@ margin_left = 137.0
 margin_top = -160.0
 margin_right = 508.0
 margin_bottom = -59.0
-skele_dialogue_file = "res://Dialogues/skeleton.json"
-in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
+script = ExtResource( 20 )
+
+[node name="VoiceGeneratorAudioStreamPlayer" parent="UI/DialoguePlayer" instance=ExtResource( 23 )]
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
