@@ -18,6 +18,7 @@ config/icon="res://icon.png"
 
 c="*res://Scripts/Constants.gd"
 g="*res://Scripts/Global.gd"
+SceneChanger="*res://Scenes/SceneChanger.tscn"
 
 [display]
 

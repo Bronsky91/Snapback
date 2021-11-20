@@ -1,0 +1,21 @@
+extends Node2D
+
+var player = null
+
+func _ready():
+	pass
+
+func _input(event):
+	if event.is_action_pressed("interact") and player:
+		player.play_sfx('open_gate')
+		SceneChanger.change_scene("res://Scenes/BossRoom.tscn", 0.5)
+
+
+func _on_InteractionArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if area.get_parent().name == "Player":
+		player = area.get_parent()
+
+
+func _on_InteractionArea_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
+	if area.get_parent().name == "Player":
+		player = null

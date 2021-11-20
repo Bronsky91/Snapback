@@ -1,0 +1,75 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://Assets/E_002.png" type="Texture" id=1]
+[ext_resource path="res://Assets/E_001.png" type="Texture" id=2]
+[ext_resource path="res://Assets/Door.png" type="Texture" id=3]
+[ext_resource path="res://Scripts/BossDoor.gd" type="Script" id=4]
+
+[sub_resource type="CanvasItemMaterial" id=85]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=86]
+lifetime_randomness = 1.0
+trail_divisor = 2
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 25.0
+angular_velocity = 100.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+angle = 360.0
+angle_random = 1.0
+scale = 5.0
+color = Color( 0.392157, 0.470588, 0.419608, 1 )
+
+[sub_resource type="StreamTexture" id=87]
+flags = 4
+load_path = "res://.import/floaty_64.png-03b9825d4a3700830e4da446a4e0098a.stex"
+
+[sub_resource type="SpriteFrames" id=88]
+animations = [ {
+"frames": [ ExtResource( 2 ), ExtResource( 1 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
+[sub_resource type="CircleShape2D" id=89]
+radius = 24.0208
+
+[node name="BossDoor" type="Node2D"]
+position = Vector2( 5737, -561 )
+script = ExtResource( 4 )
+
+[node name="Door" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+
+[node name="Particles2D" type="Particles2D" parent="."]
+show_behind_parent = true
+material = SubResource( 85 )
+position = Vector2( 0, -2 )
+scale = Vector2( 0.25, 0.25 )
+amount = 60
+process_material = SubResource( 86 )
+texture = SubResource( 87 )
+
+[node name="E" type="AnimatedSprite" parent="."]
+position = Vector2( 0, -22 )
+frames = SubResource( 88 )
+playing = true
+
+[node name="InteractionArea" type="Area2D" parent="."]
+position = Vector2( 0, 10 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="InteractionArea"]
+shape = SubResource( 89 )
+
+[connection signal="area_shape_entered" from="InteractionArea" to="." method="_on_InteractionArea_area_shape_entered"]
+[connection signal="area_shape_exited" from="InteractionArea" to="." method="_on_InteractionArea_area_shape_exited"]
