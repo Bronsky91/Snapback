@@ -1,4 +1,4 @@
-[gd_scene load_steps=73 format=2]
+[gd_scene load_steps=78 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -23,6 +23,133 @@
 [ext_resource path="res://Assets/Lich/Inverted/LichArms.png" type="Texture" id=21]
 [ext_resource path="res://Assets/Lich/Inverted/LichBody.png" type="Texture" id=22]
 [ext_resource path="res://addons/VoiceGeneratorAudioStreamPlayer.tscn" type="PackedScene" id=23]
+
+[sub_resource type="Animation" id=96]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("InvertedLich/LichEyes/RightEyeGlow:process_material:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InvertedLich/LichEyes/LeftEyeGlow:process_material:scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 5.0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/White:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=91]
+resource_name = "inverted"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath("InvertedLich/LichEyes/RightEyeGlow:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 3.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("InvertedLich/LichEyes/LeftEyeGlow:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 3.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("UI/DialoguePlayer:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("YSort/PlayerOnRails/Camera2D:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
+"times": PoolRealArray( 0, 3.1, 4.1 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 300 ), Vector2( 0, 300 ), Vector2( -100, 200 ) ]
+}
+tracks/4/type = "value"
+tracks/4/path = NodePath("InvertedLich/LichEyes/RightEyeGlow:process_material:scale")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 3, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0 ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("InvertedLich/LichEyes/LeftEyeGlow:process_material:scale")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 3, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 5.0 ]
+}
+tracks/6/type = "value"
+tracks/6/path = NodePath("UI/White:modulate")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 5.5, 7.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "start"
@@ -73,7 +200,7 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 15.1, 20 ),
+"times": PoolRealArray( 15, 20 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 500 ), Vector2( 0, 300 ) ]
@@ -746,9 +873,37 @@ tracks/3/keys = {
 "values": [ Vector2( 0, 0 ), Vector2( 0, 1 ) ]
 }
 
-[sub_resource type="StreamTexture" id=90]
+[sub_resource type="StreamTexture" id=92]
 flags = 4
 load_path = "res://.import/LichEyes.png-d3e7173460d6bdbbd2313e3e68cf12b4.stex"
+
+[sub_resource type="CanvasItemMaterial" id=93]
+particles_animation = true
+particles_anim_h_frames = 8
+particles_anim_v_frames = 7
+particles_anim_loop = false
+
+[sub_resource type="ParticlesMaterial" id=94]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 25.0
+angular_velocity = 50.0
+angular_velocity_random = 1.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+linear_accel = 100.0
+angle = 360.0
+angle_random = 1.0
+scale = 5.0
+color = Color( 1, 0, 0.0470588, 1 )
+
+[sub_resource type="StreamTexture" id=95]
+flags = 4
+load_path = "res://.import/floaty_64.png-03b9825d4a3700830e4da446a4e0098a.stex"
 
 [sub_resource type="Animation" id=86]
 resource_name = "Eyeroll"
@@ -1158,6 +1313,8 @@ tracks/0/keys = {
 script = ExtResource( 5 )
 
 [node name="SceneAnimator" type="AnimationPlayer" parent="."]
+anims/RESET = SubResource( 96 )
+anims/inverted = SubResource( 91 )
 anims/start = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1242,7 +1399,7 @@ one_shot = true
 volume_db = -10.0
 
 [node name="Camera2D" type="Camera2D" parent="YSort/PlayerOnRails"]
-position = Vector2( 0, 500 )
+position = Vector2( 0, 300 )
 current = true
 
 [node name="ColorRect" type="ColorRect" parent="YSort/PlayerOnRails/Camera2D"]
@@ -1337,7 +1494,23 @@ texture = ExtResource( 21 )
 
 [node name="LichEyes" type="Sprite" parent="InvertedLich"]
 position = Vector2( 1, 0 )
-texture = SubResource( 90 )
+texture = SubResource( 92 )
+
+[node name="RightEyeGlow" type="Particles2D" parent="InvertedLich/LichEyes"]
+material = SubResource( 93 )
+position = Vector2( -126, -29 )
+scale = Vector2( 0.25, 0.25 )
+amount = 60
+process_material = SubResource( 94 )
+texture = SubResource( 95 )
+
+[node name="LeftEyeGlow" type="Particles2D" parent="InvertedLich/LichEyes"]
+material = SubResource( 93 )
+position = Vector2( -81, -42 )
+scale = Vector2( 0.25, 0.25 )
+amount = 60
+process_material = SubResource( 94 )
+texture = SubResource( 95 )
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="InvertedLich"]
 autoplay = "Talking"
@@ -1368,6 +1541,72 @@ margin_bottom = -59.0
 script = ExtResource( 20 )
 
 [node name="VoiceGeneratorAudioStreamPlayer" parent="UI/DialoguePlayer" instance=ExtResource( 23 )]
+
+[node name="Debug" type="Control" parent="UI/DialoguePlayer"]
+visible = false
+margin_right = 40.0
+margin_bottom = 40.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="bTime_gHits" type="Button" parent="UI/DialoguePlayer/Debug"]
+margin_left = 247.0
+margin_top = 71.0
+margin_right = 377.0
+margin_bottom = 91.0
+rect_scale = Vector2( 0.759999, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="UI/DialoguePlayer/Debug/bTime_gHits"]
+margin_top = 3.0
+margin_right = 175.0
+margin_bottom = 17.0
+rect_scale = Vector2( 0.732918, 1 )
+text = "debug"
+align = 1
+valign = 1
+uppercase = true
+
+[node name="CoinsLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
+margin_right = 40.0
+margin_bottom = 14.0
+text = "Coins"
+
+[node name="SlicesLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
+margin_top = 18.0
+margin_right = 68.0
+margin_bottom = 32.0
+text = "Slices Lost"
+
+[node name="TimeLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
+margin_top = 34.0
+margin_right = 40.0
+margin_bottom = 48.0
+text = "Time"
+
+[node name="Coins" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
+margin_left = 79.0
+margin_top = 3.0
+margin_right = 119.0
+margin_bottom = 43.0
+rect_scale = Vector2( 2.28055, 0.360259 )
+
+[node name="Slices" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
+margin_left = 79.0
+margin_top = 19.0
+margin_right = 119.0
+margin_bottom = 59.0
+rect_scale = Vector2( 2.28, 0.36 )
+
+[node name="Time" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
+margin_left = 80.0
+margin_top = 34.0
+margin_right = 120.0
+margin_bottom = 74.0
+rect_scale = Vector2( 2.27999, 0.36 )
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
@@ -1407,3 +1646,13 @@ root_node = NodePath("../../..")
 anims/RESET = SubResource( 82 )
 anims/circle_fade_in = SubResource( 83 )
 anims/circle_fade_out = SubResource( 84 )
+
+[node name="White" type="ColorRect" parent="UI"]
+modulate = Color( 1, 1, 1, 0 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[connection signal="pressed" from="UI/DialoguePlayer/Debug/bTime_gHits" to="UI/DialoguePlayer" method="_on_debug_pressed"]

@@ -8,6 +8,9 @@ var can_invert = false
 func _ready():
 	print("final_score")
 	print(g.final_score)
+	$YSort/PlayerOnRails/Camera2D.position = Vector2(0, 500)
+	$InvertedLich/LichEyes/RightEyeGlow.visible = false
+	$InvertedLich/LichEyes/LeftEyeGlow.visible = false
 	$SceneAnimator.play("start")
 
 
@@ -42,3 +45,4 @@ func invert():
 	$Lich.visible = false
 	$InvertedLich.visible = true
 	$TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$SceneAnimator.play("inverted")
