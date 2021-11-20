@@ -1,4 +1,4 @@
-[gd_scene load_steps=143 format=2]
+[gd_scene load_steps=144 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -462,11 +462,27 @@ func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_
 shader = ExtResource( 69 )
 shader_param/center = Vector2( 0.5, 0.5 )
 shader_param/force = 0.01
-shader_param/size = 0.5
+shader_param/size = 1.0
 shader_param/thickness = 0.047
 
-[sub_resource type="Animation" id=73]
+[sub_resource type="Animation" id=88]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.047 ]
+}
+
+[sub_resource type="Animation" id=89]
 resource_name = "invert"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/size")
 tracks/0/interp = 1
@@ -474,10 +490,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 1 ),
+"times": PoolRealArray( 0.1, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.25, 0.75 ]
+"values": [ 0.25, 1.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material:shader_param/force")
@@ -486,14 +502,27 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 1 ),
+"times": PoolRealArray( 0.1, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.1, 0.01 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.047, 0.1 ]
+}
 
 [sub_resource type="Animation" id=72]
 resource_name = "normal"
+length = 2.0
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/size")
 tracks/0/interp = 1
@@ -501,10 +530,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0.1, 1 ),
+"times": PoolRealArray( 0.1, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 0.05, 0.5 ]
+"values": [ 0.05, 1.0 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath(".:material:shader_param/force")
@@ -513,10 +542,22 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0.1, 1 ),
+"times": PoolRealArray( 0.1, 2 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ 0.002, 0.01 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.047, 0.1 ]
 }
 
 [sub_resource type="Shader" id=74]
@@ -1047,7 +1088,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 2
+frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2552,19 +2593,19 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
-frame = 2
+frame = 3
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 3
+frame = 4
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 2
+frame = 3
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
@@ -2584,6 +2625,7 @@ skelly_name = "Lich Cosplayer"
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
+frame = 1
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
@@ -2598,12 +2640,12 @@ skelly_name = "Leonardo da Skelly"
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 1
+frame = 2
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 4
+frame = 5
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
@@ -2661,7 +2703,8 @@ __meta__ = {
 }
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Shockwave"]
-anims/invert = SubResource( 73 )
+anims/RESET = SubResource( 88 )
+anims/invert = SubResource( 89 )
 anims/normal = SubResource( 72 )
 
 [node name="InvertScreen" type="ColorRect" parent="UI"]

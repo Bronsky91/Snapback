@@ -54,11 +54,11 @@ func add_coin():
 
 
 func shockwave(inverted):
-	shockwave.visible = true
 	if inverted:
 		shockwave_player.play("invert")
 	else:
 		shockwave_player.play("normal")
+	shockwave.visible = true
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
