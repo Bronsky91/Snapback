@@ -1316,7 +1316,6 @@ texture = ExtResource( 22 )
 texture = ExtResource( 19 )
 
 [node name="TileMap" type="TileMap" parent="InvertedLich"]
-modulate = Color( 0.207843, 0.207843, 0.207843, 1 )
 tile_set = ExtResource( 1 )
 cell_size = Vector2( 16, 16 )
 format = 1
@@ -1361,9 +1360,9 @@ visible = false
 anchor_top = 1.0
 anchor_bottom = 1.0
 margin_left = 137.0
-margin_top = -125.0
+margin_top = -160.0
 margin_right = 508.0
-margin_bottom = -24.0
+margin_bottom = -59.0
 skele_dialogue_file = "res://Dialogues/skeleton.json"
 in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
 

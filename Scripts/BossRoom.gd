@@ -32,3 +32,4 @@ func invert():
 	$BlackTop.visible = false
 	$Lich.visible = false
 	$InvertedLich.visible = true
+	$TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
