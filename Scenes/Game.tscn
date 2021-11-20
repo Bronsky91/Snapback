@@ -673,40 +673,50 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
-frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
+frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
+frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
+frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
+frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
+frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
+frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
+frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -714,9 +724,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
+frame = 1
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -724,9 +736,11 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
+frame = 1
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 3002, 554 )
+frame = 1
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -1088,7 +1102,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2447,9 +2461,6 @@ position = Vector2( 3354, 187 )
 [node name="SafeZone3" parent="YSort" instance=ExtResource( 11 )]
 position = Vector2( 4071, -329 )
 
-[node name="SafeZone4" parent="YSort" instance=ExtResource( 11 )]
-position = Vector2( 5104, 83 )
-
 [node name="TrashTileMap" type="TileMap" parent="YSort"]
 tile_set = SubResource( 23 )
 cell_size = Vector2( 16, 16 )
@@ -2593,7 +2604,7 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
-frame = 3
+frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
@@ -2612,7 +2623,7 @@ skelly_name = "Albert Spinestein"
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 4
+frame = 1
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -2625,7 +2636,7 @@ skelly_name = "Lich Cosplayer"
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
-frame = 1
+frame = 3
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
@@ -2633,14 +2644,13 @@ position = Vector2( 3555, 167 )
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
-frame = 2
+frame = 4
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 2
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
@@ -2693,6 +2703,30 @@ margin_bottom = -24.0
 skele_dialogue_file = "res://Dialogues/skeleton.json"
 in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
 
+[node name="Coin" type="TextureRect" parent="UI"]
+margin_left = 386.0
+margin_top = 6.0
+margin_right = 394.0
+margin_bottom = 15.0
+rect_scale = Vector2( 2, 2 )
+texture = ExtResource( 76 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="CoinCount" type="RichTextLabel" parent="UI"]
+margin_left = 411.0
+margin_top = 7.0
+margin_right = 454.0
+margin_bottom = 23.0
+theme = ExtResource( 3 )
+bbcode_enabled = true
+fit_content_height = true
+scroll_active = false
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
 material = SubResource( 11 )
@@ -2731,30 +2765,6 @@ root_node = NodePath("../../..")
 anims/RESET = SubResource( 85 )
 anims/circle_fade_in = SubResource( 87 )
 anims/circle_fade_out = SubResource( 86 )
-
-[node name="Coin" type="TextureRect" parent="UI"]
-margin_left = 386.0
-margin_top = 6.0
-margin_right = 394.0
-margin_bottom = 15.0
-rect_scale = Vector2( 2, 2 )
-texture = ExtResource( 76 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="CoinCount" type="RichTextLabel" parent="UI"]
-margin_left = 411.0
-margin_top = 7.0
-margin_right = 454.0
-margin_bottom = 23.0
-theme = ExtResource( 3 )
-bbcode_enabled = true
-fit_content_height = true
-scroll_active = false
-__meta__ = {
-"_edit_use_anchors_": false
-}
 
 [node name="PizzaTimer" type="Timer" parent="."]
 wait_time = 0.25
