@@ -1,4 +1,4 @@
-[gd_scene load_steps=148 format=2]
+[gd_scene load_steps=147 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -78,7 +78,6 @@
 [ext_resource path="res://Assets/Coin.png" type="Texture" id=76]
 [ext_resource path="res://Resources/Shaders/CircularScreenWipe.gdshader" type="Shader" id=77]
 [ext_resource path="res://Resources/Shaders/Invert.gdshader" type="Shader" id=78]
-[ext_resource path="res://Resources/Animations/Skeleboi-broom.tres" type="SpriteFrames" id=79]
 
 [sub_resource type="TileSet" id=21]
 0/name = "Decoration_001.png 0"
@@ -908,215 +907,245 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
-frame = 2
+frame = 1
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2691, -95 )
+frame = 2
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2691, -95 )
+frame = 2
 
 [node name="Torch17" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3463, -540 )
+frame = 2
 
 [node name="Torch22" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3588, -396 )
-frame = 2
+frame = 1
 
 [node name="Torch21" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3339, -539 )
-frame = 2
+frame = 1
 
 [node name="Torch20" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3691, -273 )
-frame = 2
+frame = 1
 
 [node name="Torch31" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5679, -463 )
+frame = 2
 
 [node name="Torch57" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5783, -464 )
-frame = 2
+frame = 1
 
 [node name="Torch56" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5231, 131 )
-frame = 2
+frame = 1
 
 [node name="Torch55" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5532, 128 )
+frame = 2
 
 [node name="Torch54" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5170, 63 )
-frame = 2
+frame = 1
 
 [node name="Torch53" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4920, -17 )
-frame = 2
+frame = 1
 
 [node name="Torch52" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5090, -19 )
+frame = 2
 
 [node name="Torch51" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5208, -95 )
+frame = 2
 
 [node name="Torch50" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4857, -224 )
+frame = 2
 
 [node name="Torch49" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5165, -302 )
+frame = 2
 
 [node name="Torch48" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4962, -383 )
-frame = 2
+frame = 1
 
 [node name="Torch47" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5093, -561 )
-frame = 2
+frame = 1
 
 [node name="Torch46" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5853, -841 )
-frame = 2
+frame = 1
 
 [node name="Torch45" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5604, -843 )
+frame = 2
 
 [node name="Torch44" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5632, -1018 )
-frame = 2
+frame = 1
 
 [node name="Torch43" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5382, -1020 )
+frame = 2
 
 [node name="Torch42" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 5013, -909 )
-frame = 2
+frame = 1
 
 [node name="Torch41" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4515, -941 )
-frame = 2
+frame = 1
 
 [node name="Torch40" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4180, -941 )
+frame = 2
 
 [node name="Torch38" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4741, -747 )
+frame = 2
 
 [node name="Torch39" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4891, -749 )
-frame = 2
+frame = 1
 
 [node name="Torch37" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4703, -458 )
+frame = 2
 
 [node name="Torch36" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4509, -460 )
-frame = 2
+frame = 1
 
 [node name="Torch35" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3844, -349 )
+frame = 2
 
 [node name="Torch34" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4305, -351 )
+frame = 2
 
 [node name="Torch33" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4353, -266 )
+frame = 2
 
 [node name="Torch32" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4611, -268 )
-frame = 2
+frame = 1
 
 [node name="Torch30" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4457, 256 )
-frame = 2
+frame = 1
 
 [node name="Torch29" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 4143, 256 )
+frame = 2
 
 [node name="Torch28" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3934, 143 )
-frame = 2
+frame = 1
 
 [node name="Torch27" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3788, 146 )
-frame = 2
+frame = 1
 
 [node name="Torch26" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3636, 257 )
-frame = 2
+frame = 1
 
 [node name="Torch25" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3492, 255 )
-frame = 1
 
 [node name="Torch24" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3436, 49 )
-frame = 2
+frame = 1
 
 [node name="Torch23" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3785, -269 )
-frame = 2
+frame = 1
 
 [node name="Torch18" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3218, -401 )
-frame = 2
+frame = 1
 
 [node name="Torch16" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2915, -269 )
+frame = 2
 
 [node name="Torch15" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2719, -270 )
-frame = 2
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2560, 78 )
+frame = 2
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2700, 80 )
+frame = 2
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2587, -96 )
+frame = 2
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2084, 580 )
+frame = 2
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 1767, 565 )
+frame = 2
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2280, 577 )
+frame = 2
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2098, 753 )
+frame = 2
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2441, 755 )
+frame = 2
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2520, 575 )
+frame = 2
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 314, -1 )
+frame = 2
 
 [node name="Torch19" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2862, 655 )
+frame = 2
 
 [node name="Torch58" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3006, 654 )
+frame = 2
 
 [node name="Torch59" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3500, 514 )
-frame = 2
+frame = 1
 
 [node name="Torch60" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3291, 626 )
-frame = 2
+frame = 1
 
 [node name="Torch61" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 3501, 737 )
-frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap/Torch" instance=ExtResource( 16 )]
 position = Vector2( 2159, -35 )
+frame = 2
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -1124,9 +1153,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
+frame = 2
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
+frame = 2
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -3369,15 +3400,15 @@ scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
 [node name="Item80" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 3948, 382 )
+position = Vector2( 3950, 388 )
 scale = Vector2( 0.5625, 0.5625 )
 
 [node name="Item81" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 3942, 526 )
+position = Vector2( 3948, 524 )
 scale = Vector2( 0.5625, 0.5625 )
 
 [node name="Item84" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 3974, 501 )
+position = Vector2( 3991, 508 )
 scale = Vector2( 0.5625, 0.5625 )
 
 [node name="Item83" parent="YSort/Coins" instance=ExtResource( 53 )]
@@ -3385,7 +3416,7 @@ position = Vector2( 3781, 528 )
 scale = Vector2( 0.5625, 0.5625 )
 
 [node name="Item82" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 3767, 384 )
+position = Vector2( 3766, 391 )
 scale = Vector2( 0.5625, 0.5625 )
 
 [node name="Item79" parent="YSort/Coins" instance=ExtResource( 53 )]
@@ -4056,28 +4087,25 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
+frame = 0
 skelly_name = "Aragone"
 
 [node name="Skeleboi11" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2729, -3 )
-frames = ExtResource( 79 )
-frame = 3
+frame = 0
 skelly_name = "Cinderskella"
 
 [node name="Skeleboi12" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4424, -546 )
-frames = ExtResource( 79 )
-frame = 3
+frame = 0
 flip_h = true
 
 [node name="Skeleboi13" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5409, -1105 )
-frames = ExtResource( 79 )
 frame = 2
 
 [node name="Skeleboi14" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4039, 67 )
-frames = ExtResource( 79 )
 frame = 2
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
@@ -4089,47 +4117,57 @@ skelly_name = "Catherine Zeta-Bones"
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 1
+frame = 2
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 3
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
 [node name="Skeleboi4" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3396, -620 )
 rotation = -0.00742967
+frame = 2
 skelly_status = "free"
 skelly_name = "Lich Cosplayer"
 
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
+frame = 0
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
 frames = ExtResource( 49 )
+frame = 0
 
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
-frame = 1
+frame = 4
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 1
+frame = 0
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
 frame = 3
+
+[node name="Skeleboi15" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 3906, 378 )
+frame = 2
+
+[node name="Skeleboi16" parent="YSort" instance=ExtResource( 13 )]
+position = Vector2( 5428, -934 )
+frame = 2
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )

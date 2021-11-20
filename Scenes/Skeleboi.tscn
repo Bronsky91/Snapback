@@ -1,6 +1,6 @@
 [gd_scene load_steps=8 format=2]
 
-[ext_resource path="res://Resources/Animations/Skeleboi-cosplayer.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://Resources/Animations/Skeleboi-broom.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://Assets/Audio/skelly_talk.mp3" type="AudioStream" id=2]
 [ext_resource path="res://Scripts/Skeleboi.gd" type="Script" id=4]
 [ext_resource path="res://Assets/E_001.png" type="Texture" id=5]
@@ -20,6 +20,7 @@ animations = [ {
 [node name="Skeleboi" type="AnimatedSprite"]
 light_mask = 3
 frames = ExtResource( 1 )
+frame = 1
 playing = true
 script = ExtResource( 4 )
 
@@ -33,7 +34,6 @@ shape = SubResource( 23 )
 light_mask = 3
 position = Vector2( 0, -38 )
 frames = SubResource( 24 )
-frame = 1
 speed_scale = 0.5
 playing = true
 
