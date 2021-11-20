@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=2]
+[gd_scene load_steps=58 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Scenes/ScreenShake.tscn" type="PackedScene" id=3]
@@ -11,6 +11,9 @@
 [ext_resource path="res://Assets/Lich/LichArms.png" type="Texture" id=10]
 [ext_resource path="res://Assets/Lich/LichShoulder.png" type="Texture" id=11]
 [ext_resource path="res://Assets/Lich/LichJaw.png" type="Texture" id=12]
+[ext_resource path="res://Scenes/DialoguePlayer.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Resources/Shaders/CircularScreenWipe.gdshader" type="Shader" id=14]
+[ext_resource path="res://Resources/Shaders/Shockwave.gdshader" type="Shader" id=17]
 
 [sub_resource type="Animation" id=30]
 resource_name = "Eyeroll"
@@ -667,7 +670,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=2]
 resource_name = "start"
-length = 20.0
+length = 30.0
 tracks/0/type = "animation"
 tracks/0/path = NodePath("YSort/PlayerOnRails/PlayerAnimator")
 tracks/0/interp = 1
@@ -715,6 +718,206 @@ tracks/3/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Vector2( 0, 500 ), Vector2( 0, 300 ) ]
+}
+tracks/4/type = "method"
+tracks/4/path = NodePath("UI/DialoguePlayer")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/keys = {
+"times": PoolRealArray( 21 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "lich"
+} ]
+}
+
+[sub_resource type="GDScript" id=75]
+script/source = "extends CanvasLayer
+
+onready var child_nodes = get_children()
+
+func _ready():
+	g.connect(\"invert\", self, \"_on_Player_Invert\")
+
+
+func _on_Player_Invert(inverted):
+	if inverted:
+		for n in child_nodes:
+			if n is Label:
+				n.add_color_override(\"font_color\", Color(0,0,0))
+	else:
+		for n in child_nodes:
+			if n is Label:
+				n.add_color_override(\"font_color\", Color(1,1,1))
+"
+
+[sub_resource type="ShaderMaterial" id=76]
+shader = ExtResource( 17 )
+shader_param/center = Vector2( 0.5, 0.5 )
+shader_param/force = 0.01
+shader_param/size = 1.0
+shader_param/thickness = 0.047
+
+[sub_resource type="Animation" id=77]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/thickness")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.047 ]
+}
+
+[sub_resource type="Animation" id=78]
+resource_name = "invert"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.25, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.1, 0.01 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.047, 0.1 ]
+}
+
+[sub_resource type="Animation" id=79]
+resource_name = "normal"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.05, 1.0 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:material:shader_param/force")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.002, 0.01 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath(".:material:shader_param/thickness")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0.1, 2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.047, 0.1 ]
+}
+
+[sub_resource type="Shader" id=74]
+code = "shader_type canvas_item;
+render_mode unshaded;
+
+void fragment() {
+    vec4 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgba;
+    c.r = 1.0 - c.r;
+    c.g = 1.0 - c.g;
+    c.b = 1.0 - c.b;
+    COLOR.rgba = c;
+}"
+
+[sub_resource type="ShaderMaterial" id=80]
+shader = SubResource( 74 )
+
+[sub_resource type="ShaderMaterial" id=81]
+shader = ExtResource( 14 )
+shader_param/circle_size = 0.5
+
+[sub_resource type="Animation" id=82]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ScreenWipe:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.5 ]
+}
+
+[sub_resource type="Animation" id=83]
+resource_name = "circle_fade_in"
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ScreenWipe:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 1.0, 0.0 ]
+}
+
+[sub_resource type="Animation" id=84]
+resource_name = "circle_fade_out"
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/ScreenWipe:material:shader_param/circle_size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 0.0, 1.0 ]
 }
 
 [node name="BossRoom" type="Node2D"]
@@ -875,3 +1078,56 @@ __meta__ = {
 anims/start = SubResource( 2 )
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = SubResource( 75 )
+
+[node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
+visible = false
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 137.0
+margin_top = -125.0
+margin_right = 508.0
+margin_bottom = -24.0
+skele_dialogue_file = "res://Dialogues/skeleton.json"
+in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
+
+[node name="Shockwave" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 76 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UI/Shockwave"]
+anims/RESET = SubResource( 77 )
+anims/invert = SubResource( 78 )
+anims/normal = SubResource( 79 )
+
+[node name="InvertScreen" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 80 )
+margin_right = 640.0
+margin_bottom = 480.0
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenWipe" type="ColorRect" parent="UI"]
+visible = false
+material = SubResource( 81 )
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0, 0, 0, 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="ScreenWipePlayer" type="AnimationPlayer" parent="UI/ScreenWipe"]
+root_node = NodePath("../../..")
+anims/RESET = SubResource( 82 )
+anims/circle_fade_in = SubResource( 83 )
+anims/circle_fade_out = SubResource( 84 )
