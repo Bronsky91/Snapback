@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lich_stomach_growl.mp3-abeb9fb257e55167b1eb0e218d50c202.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/lich_stomach_growl.mp3"
+dest_files=[ "res://.import/lich_stomach_growl.mp3-abeb9fb257e55167b1eb0e218d50c202.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0
