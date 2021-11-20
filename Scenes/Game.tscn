@@ -1103,6 +1103,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
+frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2701,7 +2702,7 @@ skelly_name = "Albert Spinestein"
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 2
+frame = 1
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -2722,6 +2723,7 @@ position = Vector2( 3555, 167 )
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
+frame = 4
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
