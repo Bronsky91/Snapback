@@ -1,10 +1,12 @@
 extends Node2D
 
-onready var lich_player = $InvertedLich/AnimationPlayer
+onready var lich_player = $Lich/AnimationPlayer
+onready var inverted_lich_player = $InvertedLich/AnimationPlayer
 onready var voice_gen = $UI/DialoguePlayer/VoiceGeneratorAudioStreamPlayer
 
 var track_length = 105
 var can_invert = false
+var is_talking = false
 
 
 func _ready():
@@ -20,7 +22,21 @@ func _ready():
 
 
 func _process(delta):
-	lich_player.play("Talking" if voice_gen.is_reading() and not voice_gen.is_waiting() else "Idle")
+	var should_be_talking = voice_gen.is_reading() and not voice_gen.is_waiting()
+	
+	# regular lich
+	var anim = lich_player.current_animation
+	if should_be_talking and anim != "Talking":
+		lich_player.play("Talking")
+	elif not should_be_talking and anim != "Idle":
+		lich_player.play("Idle")
+	
+	# inverted lich
+	var inverted_anim = inverted_lich_player.current_animation
+	if should_be_talking and inverted_anim != "Talking":
+		inverted_lich_player.play("Talking")
+	elif not should_be_talking and inverted_anim != "Idle":
+		inverted_lich_player.play("Idle")
 
 
 func _grumble():
