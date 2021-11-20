@@ -1,4 +1,4 @@
-[gd_scene load_steps=79 format=2]
+[gd_scene load_steps=80 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -121,10 +121,10 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 3 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0.1, 3 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ false ]
+"values": [ false, false ]
 }
 tracks/3/type = "value"
 tracks/3/path = NodePath("YSort/PlayerOnRails/Camera2D:position")
@@ -193,6 +193,9 @@ tracks/7/keys = {
 "method": "laugh"
 } ]
 }
+
+[sub_resource type="Animation" id=97]
+resource_name = "judgement"
 
 [sub_resource type="Animation" id=2]
 resource_name = "start"
@@ -1358,6 +1361,7 @@ script = ExtResource( 5 )
 [node name="SceneAnimator" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 96 )
 anims/inverted = SubResource( 91 )
+anims/judgement = SubResource( 97 )
 anims/start = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
