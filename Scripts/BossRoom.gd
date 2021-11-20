@@ -3,6 +3,7 @@ extends Node2D
 onready var lich_player = $InvertedLich/AnimationPlayer
 onready var voice_gen = $UI/DialoguePlayer/VoiceGeneratorAudioStreamPlayer
 
+var track_length = 38
 var can_invert = false
 
 func _ready():
@@ -11,6 +12,8 @@ func _ready():
 	$YSort/PlayerOnRails/Camera2D.position = Vector2(0, 500)
 	$InvertedLich/LichEyes/RightEyeGlow.visible = false
 	$InvertedLich/LichEyes/LeftEyeGlow.visible = false
+	$BGM.stream = load("res://Assets/Audio/boss.mp3")
+	$BGM.play()
 	$SceneAnimator.play("start")
 
 
@@ -46,3 +49,8 @@ func invert():
 	$InvertedLich.visible = true
 	$TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	$SceneAnimator.play("inverted")
+	# reverse background music
+	var playback_pos = $BGM.get_playback_position()
+	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
+	$BGM.stream = load("res://Assets/Audio/boss_reverse.mp3")
+	$BGM.play(reversed_pos)

@@ -1519,8 +1519,6 @@ anims/Idle = SubResource( 87 )
 anims/RESET = SubResource( 88 )
 anims/Talking = SubResource( 89 )
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
-
 [node name="UI" type="CanvasLayer" parent="."]
 script = SubResource( 75 )
 
@@ -1528,6 +1526,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 320, 250 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
@@ -1654,5 +1653,10 @@ anchor_bottom = 1.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="SFX" type="AudioStreamPlayer" parent="."]
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+volume_db = -25.0
 
 [connection signal="pressed" from="UI/DialoguePlayer/Debug/bTime_gHits" to="UI/DialoguePlayer" method="_on_debug_pressed"]
