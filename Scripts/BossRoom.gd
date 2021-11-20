@@ -10,6 +10,7 @@ var can_invert = false
 func _ready():
 	print("final_score")
 	print(g.final_score)
+	VisualServer.set_default_clear_color(Color(0.0,0.0,0.0,1.0))
 	$YSort/PlayerOnRails/Camera2D.position = Vector2(0, 500)
 	$InvertedLich/LichEyes/RightEyeGlow.visible = false
 	$InvertedLich/LichEyes/LeftEyeGlow.visible = false
