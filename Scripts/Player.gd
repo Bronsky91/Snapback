@@ -56,13 +56,10 @@ func get_input():
 			toggle_inversion(velocity)
 	
 	if Input.is_action_just_pressed("crouch"):
-		speed = sneak_speed
-		sneaking = true
-		g.emit_signal('sneak', true)
-	if Input.is_action_just_released("crouch"):
-		speed = run_speed
-		sneaking = false
-		g.emit_signal('sneak', false)
+		sneaking = !sneaking
+		speed = sneak_speed if sneaking else run_speed
+		g.emit_signal('sneak', sneaking)
+
 	
 	# store necessary information to determine which way to face player in sprite_animation()
 	# x axis

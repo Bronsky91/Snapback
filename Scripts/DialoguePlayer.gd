@@ -11,7 +11,7 @@ func _ready():
 	in_danger_dialogues = load_dialogue(in_danger_skele_dialogue_file)
 
 
-func skele_play(status, skelly_name, skelly_text):
+func skele_play(status, skelly_name, skelly_text = ""):
 	randomize()
 	var dialogues_array = concat_arrays(dialogues, in_danger_dialogues) if status == 'in danger' else dialogues
 	var dialogue_count = dialogues_array.size()

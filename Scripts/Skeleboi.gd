@@ -31,12 +31,12 @@ func find_and_use_dialogue():
 
 
 func _on_Area2D_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	if area.get_parent().name == "Player":
+	if area and area.get_parent().name == "Player":
 		player_present = true
 
 
 func _on_Area2D_area_shape_exited(area_rid, area, area_shape_index, local_shape_index):
-	if area.get_parent().name == "Player":
+	if area and area.get_parent().name == "Player":
 		player_present = false
 		dialogue_player.hide()
 		dialog_open = false

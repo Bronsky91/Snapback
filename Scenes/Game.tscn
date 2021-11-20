@@ -1,4 +1,4 @@
-[gd_scene load_steps=146 format=2]
+[gd_scene load_steps=145 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -77,6 +77,7 @@
 [ext_resource path="res://Scenes/BossDoor.tscn" type="PackedScene" id=75]
 [ext_resource path="res://Assets/Coin.png" type="Texture" id=76]
 [ext_resource path="res://Resources/Shaders/CircularScreenWipe.gdshader" type="Shader" id=77]
+[ext_resource path="res://Resources/Shaders/Invert.gdshader" type="Shader" id=78]
 
 [sub_resource type="TileSet" id=21]
 0/name = "Decoration_001.png 0"
@@ -462,7 +463,7 @@ _data = {
 
 [sub_resource type="Curve2D" id=40]
 _data = {
-"points": PoolVector2Array( 0, 0, 0, 0, 3247, 434, 0, 0, 0, 0, 3520, 434, 0, 0, 0, 0, 3522, 438, 0, 0, 0, 0, 3247, 439, 0, 0, 0, 0, 3247, 434 )
+"points": PoolVector2Array( 0, 0, 0, 0, 3247, 434, 0, 0, 0, 0, 3520, 434, 0, 0, 0, 0, 3522, 438, 0, 0, 0, 0, 3389.53, 436.766, 0, 0, 0, 0, 3247, 439, 0, 0, 0, 0, 3247, 434 )
 }
 
 [sub_resource type="Curve2D" id=41]
@@ -638,19 +639,6 @@ _data = {
 0/shapes = [  ]
 0/z_index = 0
 
-[sub_resource type="GDScript" id=90]
-script/source = "extends Node2D
-
-
-export(String, 'Watch', 'Coin') var type = 'Coin'
-
-
-func _ready():
-	$Sprite.texture = load('res://Assets/' + type + '.png')
-
-
-"
-
 [sub_resource type="StreamTexture" id=26]
 load_path = "res://.import/Shelf_003.png-9485a0b63eb08d09b2eeb294b1feedb4.stex"
 
@@ -808,20 +796,8 @@ tracks/2/keys = {
 "values": [ 0.047, 0.1 ]
 }
 
-[sub_resource type="Shader" id=90]
-code = "shader_type canvas_item;
-render_mode unshaded;
-
-void fragment() {
-    vec4 c = textureLod(SCREEN_TEXTURE, SCREEN_UV, 0.0).rgba;
-    c.r = 1.0 - c.r;
-    c.g = 1.0 - c.g;
-    c.b = 1.0 - c.b;
-    COLOR.rgba = c;
-}"
-
 [sub_resource type="ShaderMaterial" id=75]
-shader = SubResource( 90 )
+shader = ExtResource( 78 )
 
 [sub_resource type="ShaderMaterial" id=84]
 shader = ExtResource( 77 )
@@ -1336,7 +1312,6 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -1544,7 +1519,6 @@ position = Vector2( 837, -10 )
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D13/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 80
 
 [node name="Path2D14" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 1627, -361 )
@@ -1555,7 +1529,6 @@ position = Vector2( 837, -10 )
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D14/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 80
 
 [node name="Path2D15" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 1627, -293 )
@@ -1566,8 +1539,6 @@ position = Vector2( 837, -10 )
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D15/PathFollow2D" instance=ExtResource( 7 )]
-pat_speed = 80
-run_speed = 80
 
 [node name="Path2D2" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 1, -2 )
@@ -1697,8 +1668,6 @@ offset = 397.65
 rotate = false
 
 [node name="SkullGhost" parent="Navigation2D/Enemies/Path2D4/PathFollow2D" instance=ExtResource( 9 )]
-pat_speed = 100
-run_speed = 50
 
 [node name="Path2D5" type="Path2D" parent="Navigation2D/Enemies"]
 curve = SubResource( 31 )
@@ -2052,7 +2021,6 @@ offset = 1202.1
 rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D31/PathFollow2D4" instance=ExtResource( 54 )]
-visible = false
 
 [node name="Path2D32" type="Path2D" parent="Navigation2D/Enemies"]
 position = Vector2( 20, 41 )
@@ -2746,6 +2714,7 @@ wall_top = 3
 
 [node name="Item2" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 1547, 870 )
+type = "Watch"
 
 [node name="Item3" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 3025, 837 )
@@ -2796,18 +2765,6 @@ type = "Inverted_Coin"
 position = Vector2( 423, 2 )
 scale = Vector2( 0.5, 0.5 )
 
-[node name="Item2" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 1328, 437 )
-scale = Vector2( 0.5, 0.5 )
-script = SubResource( 90 )
-type = "Watch"
-
-[node name="Item192" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 1326, 367 )
-scale = Vector2( 0.5, 0.5 )
-script = SubResource( 90 )
-type = "Watch"
-
 [node name="Item3" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 1654, 668 )
 scale = Vector2( 0.5, 0.5 )
@@ -2815,6 +2772,14 @@ type = "Inverted_Coin"
 
 [node name="Item4" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 1328, 504 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Item192" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 1329, 407 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Item193" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 1329, 458 )
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Item5" parent="YSort/Coins" instance=ExtResource( 53 )]
@@ -2943,6 +2908,51 @@ type = "Inverted_Coin"
 
 [node name="Item179" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 2277, -302 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item200" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2639, -163 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item201" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2639, -235 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item202" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2639, -301 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item206" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3095, -270 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item207" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3092, -347 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item208" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2910, -266 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item205" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2909, -343 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item203" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2754, -350 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item204" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 2753, -270 )
 scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
@@ -3090,6 +3100,31 @@ type = "Inverted_Coin"
 
 [node name="Item45" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 3394, 552 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item195" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3535, 386 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item199" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3247, 494 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item196" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3532, 495 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item197" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3247, 383 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item198" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 3536, 612 )
 scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
@@ -3391,7 +3426,7 @@ scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
 [node name="Item127" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 5193, -1082 )
+position = Vector2( 5193, -1063 )
 scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
@@ -3406,7 +3441,7 @@ scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
 [node name="Item126" parent="YSort/Coins" instance=ExtResource( 53 )]
-position = Vector2( 5193, -1022 )
+position = Vector2( 5193, -1016 )
 scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
@@ -3697,24 +3732,26 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
+frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 1
+frame = 3
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
+frame = 2
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 1
+frame = 2
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -3727,7 +3764,7 @@ skelly_name = "Lich Cosplayer"
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
-frame = 2
+frame = 3
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
@@ -3735,19 +3772,17 @@ position = Vector2( 3555, 167 )
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
-frame = 4
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 3
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 2
+frame = 4
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
@@ -3886,11 +3921,12 @@ __meta__ = {
 margin_left = 2.0
 margin_top = 3.0
 margin_right = 280.0
-margin_bottom = 31.0
+margin_bottom = 50.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Use WASD or Arrow keys to move[/center]"
 text = "Use WASD or Arrow keys to move"
+scroll_active = false
 
 [node name="Shift Key" type="RichTextLabel" parent="Tutorial"]
 margin_left = 370.0
@@ -3899,8 +3935,9 @@ margin_right = 606.0
 margin_bottom = 83.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
-bbcode_text = "[center]Hold Shift to sneak past, making it harder for the enemies to see you[/center]"
-text = "Hold Shift to sneak past, making it harder for the enemies to see you"
+bbcode_text = "[center]Press Shift to toggle sneak, making it harder for the enemies to see you[/center]"
+text = "Press Shift to toggle sneak, making it harder for the enemies to see you"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3914,6 +3951,7 @@ theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Space bar to flip from the Corporeal Realm to the Ethereal Realm[/center]"
 text = "Space bar to flip from the Corporeal Realm to the Ethereal Realm"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3922,11 +3960,12 @@ __meta__ = {
 margin_left = 1158.0
 margin_top = 4.0
 margin_right = 1346.0
-margin_bottom = 44.0
+margin_bottom = 79.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]There are enemies in both realms[/center]"
 text = "There are enemies in both realms"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3935,11 +3974,12 @@ __meta__ = {
 margin_left = 1457.0
 margin_top = 5.0
 margin_right = 1757.0
-margin_bottom = 45.0
+margin_bottom = 90.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Braziers are safe zones, enemies will not attack. They are also checkpoints.[/center]"
 text = "Braziers are safe zones, enemies will not attack. They are also checkpoints."
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -3948,11 +3988,12 @@ __meta__ = {
 margin_left = 1866.0
 margin_top = -3.0
 margin_right = 2005.0
-margin_bottom = 36.0
+margin_bottom = 76.0
 theme = ExtResource( 3 )
 bbcode_enabled = true
 bbcode_text = "[center]Find the end, time is ticking![/center]"
 text = "Find the end, time is ticking!"
+scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
 }

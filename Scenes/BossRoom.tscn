@@ -1354,7 +1354,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 320, 250 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
