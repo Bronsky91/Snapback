@@ -17,7 +17,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Inverse":
 		$Pizzaboy/AnimationPlayer.play("IdleReverse")
 	else:
-		$InvertScreen.visible = false
+		$CanvasLayer/InvertScreen.visible = false
 		$Pizzaboy/AnimationPlayer.play("Idle")
 
 
@@ -27,6 +27,11 @@ func _on_Timer_timeout():
 		flip_it()
 
 func flip_it():
-	var animation_name = 'Inverse' if not $InvertScreen.visible else 'Reverse'
+	var animation_name = 'Inverse' if not $CanvasLayer/InvertScreen.visible else 'Reverse'
 	$Pizzaboy/AnimationPlayer.play(animation_name)
-	$InvertScreen.visible = animation_name == 'Inverse'
+	$CanvasLayer/InvertScreen.visible = animation_name == 'Inverse'
+
+
+func _on_StartGame_pressed():
+	print('hi')
+	get_tree().change_scene("res://Scenes/Game.tscn")
