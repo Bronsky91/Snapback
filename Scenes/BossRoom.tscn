@@ -50,13 +50,24 @@ tracks/1/keys = {
 "update": 0,
 "values": [ 5.0 ]
 }
-tracks/2/type = "value"
-tracks/2/path = NodePath("UI/White:modulate")
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
+"times": PoolRealArray(  ),
+"transitions": PoolRealArray(  ),
+"values": [  ]
+}
+tracks/3/type = "value"
+tracks/3/path = NodePath("UI/White:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
@@ -138,17 +149,22 @@ tracks/5/keys = {
 "update": 0,
 "values": [ 0.0, 5.0 ]
 }
-tracks/6/type = "value"
-tracks/6/path = NodePath("UI/White:modulate")
+tracks/6/type = "method"
+tracks/6/path = NodePath(".")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/imported = false
 tracks/6/enabled = true
 tracks/6/keys = {
-"times": PoolRealArray( 5.5, 7.1 ),
+"times": PoolRealArray( 7, 8.5 ),
 "transitions": PoolRealArray( 1, 1 ),
-"update": 0,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+"values": [ {
+"args": [  ],
+"method": "_lightswitch"
+}, {
+"args": [  ],
+"method": "uninvert"
+} ]
 }
 
 [sub_resource type="Animation" id=2]
@@ -1526,7 +1542,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 320, 250 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
@@ -1655,8 +1670,10 @@ __meta__ = {
 }
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
+volume_db = -25.0
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -25.0
 
 [connection signal="pressed" from="UI/DialoguePlayer/Debug/bTime_gHits" to="UI/DialoguePlayer" method="_on_debug_pressed"]
+[connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]

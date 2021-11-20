@@ -6,6 +6,7 @@ onready var voice_gen = $UI/DialoguePlayer/VoiceGeneratorAudioStreamPlayer
 var track_length = 38
 var can_invert = false
 
+
 func _ready():
 	print("final_score")
 	print(g.final_score)
@@ -43,7 +44,7 @@ func invert():
 	$UI/Shockwave/AnimationPlayer.play("invert")
 	$UI/Shockwave.visible = true
 	$YSort/PlayerOnRails/PlayerAnimator.play("InverseIdleBack")
-	$UI/InvertScreen.show()
+	$UI/InvertScreen.visible = true
 	$BlackTop.visible = false
 	$Lich.visible = false
 	$InvertedLich.visible = true
@@ -54,3 +55,37 @@ func invert():
 	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
 	$BGM.stream = load("res://Assets/Audio/boss_reverse.mp3")
 	$BGM.play(reversed_pos)
+
+
+func uninvert():
+	$UI/Shockwave/AnimationPlayer.play("normal")
+	$UI/Shockwave.visible = true
+	$YSort/PlayerOnRails/PlayerAnimator.play("IdleBack")
+	$UI/InvertScreen.visible = false
+	$BlackTop.visible = false
+	$Lich/LichBody.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich/LichShoulder.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich/LichJaw.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich/LichHead.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich/LichArms.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich/TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$Lich.visible = true
+	$InvertedLich.visible = false
+	$UI/White.visible = false
+	# $TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	# $SceneAnimator.play("inverted")
+	# reverse background music
+	var playback_pos = $BGM.get_playback_position()
+	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
+	$BGM.stream = load("res://Assets/Audio/boss.mp3")
+	$BGM.play(reversed_pos)
+
+
+func _lightswitch():
+	$SFX.stream = load("res://Assets/Audio/switch.mp3")
+	$SFX.play()
+	$UI/White.modulate = Color(1.0, 1.0, 1.0, 0.75)
+
+
+func _on_ShockwavePlayer_animation_finished(anim_name):
+	$UI/Shockwave.visible = false
