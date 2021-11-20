@@ -1,4 +1,4 @@
-[gd_scene load_steps=145 format=2]
+[gd_scene load_steps=147 format=2]
 
 [ext_resource path="res://Scenes/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Scripts/Music.gd" type="Script" id=2]
@@ -616,6 +616,16 @@ _data = {
 "points": PoolVector2Array( -17.8583, 19.4457, 17.8583, -19.4457, 4112, -296, -23.0173, -14.2866, 23.0173, 14.2866, 4185, -290, 7.54015, -15.4772, -7.54015, 15.4772, 4222, -208, 10.715, 24.6047, -10.715, -24.6047, 4128, -232, -11.1118, 17.4614, 11.1118, -17.4614, 4112, -296 )
 }
 
+[sub_resource type="Curve2D" id=92]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 4708, -403, 0, 0, 0, 0, 4708, -441, 0, 0, 0, 0, 5359, -439, 0, 0, 0, 0, 5360, -404, 0, 0, 0, 0, 4708, -403 )
+}
+
+[sub_resource type="Curve2D" id=93]
+_data = {
+"points": PoolVector2Array( 0, 0, 0, 0, 4711, -153, 0, 0, 0, 0, 4712, -85, 0, 0, 0, 0, 5341, -84, 0, 0, 0, 0, 5341, -155, 0, 0, 0, 0, 4711, -153 )
+}
+
 [sub_resource type="TileSet" id=23]
 0/name = "Garbage_001.png 0"
 0/texture = ExtResource( 19 )
@@ -897,40 +907,50 @@ texture = ExtResource( 17 )
 
 [node name="Torch" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( -4, -100 )
-frame = 2
 
 [node name="Torch4" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2687, -195 )
+frame = 1
 
 [node name="Torch11" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2583, -196 )
+frame = 1
 
 [node name="Torch5" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2080, 480 )
+frame = 1
 
 [node name="Torch12" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 1763, 465 )
+frame = 1
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2276, 477 )
+frame = 1
 
 [node name="Torch9" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2094, 653 )
+frame = 1
 
 [node name="Torch10" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2437, 655 )
+frame = 1
 
 [node name="Torch8" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2516, 475 )
+frame = 1
 
 [node name="Torch2" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 310, -101 )
+frame = 1
 
 [node name="Torch3" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2155, -135 )
+frame = 1
 
 [node name="Painting011" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2190, -464 )
@@ -938,9 +958,11 @@ texture = ExtResource( 35 )
 
 [node name="Torch7" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( -92, 0 )
+frame = 1
 
 [node name="Torch6" parent="Navigation2D/TileMap/DecoTileMap/Painting011" instance=ExtResource( 16 )]
 position = Vector2( 92, -1 )
+frame = 1
 
 [node name="Banner001b" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2884, 559 )
@@ -948,9 +970,11 @@ texture = ExtResource( 67 )
 
 [node name="Torch14" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 2858, 555 )
+frame = 1
 
 [node name="Torch13" parent="Navigation2D/TileMap/DecoTileMap" instance=ExtResource( 16 )]
 position = Vector2( 3002, 554 )
+frame = 1
 
 [node name="Painting019" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 2826, 562 )
@@ -2644,6 +2668,27 @@ rotate = false
 
 [node name="Skeleton" parent="Navigation2D/Enemies/Path2D35/PathFollow2D" instance=ExtResource( 54 )]
 
+[node name="Path2D48" type="Path2D" parent="Navigation2D/Enemies"]
+curve = SubResource( 92 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D48"]
+position = Vector2( 4708, -403 )
+rotation = 0.00308641
+rotate = false
+
+[node name="CuteGhost" parent="Navigation2D/Enemies/Path2D48/PathFollow2D" instance=ExtResource( 32 )]
+
+[node name="Path2D" type="Path2D" parent="Navigation2D"]
+curve = SubResource( 93 )
+
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Path2D"]
+position = Vector2( 5338.59, -154.739 )
+rotation = 0.0015906
+offset = 767.76
+rotate = false
+
+[node name="SkullGhost" parent="Navigation2D/Path2D/PathFollow2D" instance=ExtResource( 9 )]
+
 [node name="PlayerStart" type="Position2D" parent="."]
 visible = false
 
@@ -2718,17 +2763,21 @@ type = "Watch"
 
 [node name="Item3" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 3025, 837 )
+type = "Watch"
 
 [node name="Item4" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 2911, -305 )
 rotation = 0.0267729
+type = "Watch"
 
 [node name="Item5" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 3397, -576 )
 rotation = -0.00742967
+type = "Watch"
 
 [node name="Item6" parent="YSort/Watches" instance=ExtResource( 53 )]
 position = Vector2( 3862, 523 )
+type = "Watch"
 
 [node name="Coins" type="Node2D" parent="YSort"]
 
@@ -3220,6 +3269,94 @@ scale = Vector2( 0.5625, 0.5625 )
 position = Vector2( 4796, -515 )
 scale = Vector2( 0.5625, 0.5625 )
 
+[node name="Item209" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4789, -297 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item212" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4784, -374 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item210" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4895, -300 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item211" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4896, -357 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item216" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4913, -488 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item217" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5058, -523 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item218" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5118, -526 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item219" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5186, -526 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item220" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5065, -195 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item221" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5103, -160 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item222" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4783, -121 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item231" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4794, 72 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item232" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4793, 23 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item233" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4859, 76 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item234" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4907, 76 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item235" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5102, -7 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item236" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5163, -6 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item213" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5208, -319 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item228" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5063, -309 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item214" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5248, -274 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item215" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5211, -239 )
+scale = Vector2( 0.5625, 0.5625 )
+
+[node name="Item229" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5234, -160 )
+scale = Vector2( 0.5625, 0.5625 )
+
 [node name="Item147" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 5308, 78 )
 scale = Vector2( 0.5625, 0.5625 )
@@ -3306,6 +3443,36 @@ type = "Inverted_Coin"
 
 [node name="Item146" parent="YSort/Coins" instance=ExtResource( 53 )]
 position = Vector2( 4783, -223 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item230" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5227, -51 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item223" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4843, -225 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item224" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4924, -225 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item225" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 4951, -312 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item226" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5239, -473 )
+scale = Vector2( 0.5625, 0.5625 )
+type = "Inverted_Coin"
+
+[node name="Item227" parent="YSort/Coins" instance=ExtResource( 53 )]
+position = Vector2( 5239, -524 )
 scale = Vector2( 0.5625, 0.5625 )
 type = "Inverted_Coin"
 
@@ -3738,20 +3905,19 @@ skelly_name = "Aragone"
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 3
+frame = 2
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 2
+frame = 1
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 2
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -3772,6 +3938,7 @@ position = Vector2( 3555, 167 )
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
+frame = 3
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
@@ -3782,7 +3949,7 @@ frames = ExtResource( 49 )
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 4
+frame = 3
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )
