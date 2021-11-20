@@ -8,6 +8,7 @@ var final_score = {
 	"time": 0,
 	"coins": 0,
 	"slices_lost": 0,
+	"skellies_talked_to": 0,
 }
 
 signal sneak(sneaking)

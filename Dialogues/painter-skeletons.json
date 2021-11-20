@@ -1,15 +1,16 @@
 [
-  "Get Skunked.",
   "Look what the cat dragged in.",
-  "Tick tock tick tock tick tock...",
   "I'm going to enjoy this",
   "He's over here!",
   "Why the rush?!",
-  "Do you smell it.... that smell... that smelly smell that smells... smelly",
   "INSERT COIN TO OPERATE",
   "Ah! You scared me.",
+  "This will be my masterpiece!",
+  "Stop moving around!",
+  "I'm trying to capture your essence.",
   "Took you long enough!",
   "Where did you come from?",
+  "These ghosts would be easier to paint if you could see them.",
   "Huehuehue, you smell delicious... why don't you come a little closer?",
   "Do you ever feel like you're just a <if event.is_action_pressed('interact') and player_present:>"
 ]

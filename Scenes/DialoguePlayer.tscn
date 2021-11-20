@@ -16,6 +16,9 @@ script = ExtResource( 3 )
 __meta__ = {
 "_edit_use_anchors_": false
 }
+skele_dialogue_file = "res://Dialogues/skeleton.json"
+in_danger_skele_dialogue_file = "res://Dialogues/in-danger-skeleton.json"
+painter_dialogue_file = "res://Dialogues/painter-skeletons.json"
 
 [node name="Name" type="RichTextLabel" parent="."]
 margin_left = 7.0
