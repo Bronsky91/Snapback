@@ -7,6 +7,7 @@ onready var shockwave_player: AnimationPlayer = get_node("UI/Shockwave/Animation
 onready var coin_count_label: RichTextLabel = get_node("UI/CoinCount")
 
 var pizza_time = 1800 # 1800 seconds in 30 min
+var clock_running = true
 var coin_count = 0
 var free_pizza = false
 
@@ -21,21 +22,22 @@ func format_time():
 
 func respawn():
 	$UI/ScreenWipe.visible = true
-	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")
+	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")	
 
 
-# .5 seconds is 1 second in game
-func _on_PizzaTimer_timeout():		
-	pizza_time -= 1
-	if pizza_time < 0:
-		pizza_timer_label.bbcode_text = '[color=red] - ' + format_time()
-		if not free_pizza:
-			free_pizza = true
-			$SFX.stream = load("res://Assets/Audio/lich_stomach_growl.mp3")
-			$SFX.play()
-			g.emit_signal('shake', 3, 18, 18, 0)
-	else:
-		pizza_timer_label.bbcode_text = format_time()
+# .25 seconds is 1 second in game
+func _on_PizzaTimer_timeout():
+	if clock_running:
+		pizza_time -= 1
+		if pizza_time < 0:
+			pizza_timer_label.bbcode_text = '[color=red] - ' + format_time()
+			if not free_pizza:
+				free_pizza = true
+				$SFX.stream = load("res://Assets/Audio/lich_stomach_growl.mp3")
+				$SFX.play()
+				g.emit_signal('shake', 3, 18, 18, 0)
+		else:
+			pizza_timer_label.bbcode_text = format_time()
 
 
 func reset_pizza_time():

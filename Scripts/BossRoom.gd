@@ -6,6 +6,8 @@ onready var voice_gen = $UI/DialoguePlayer/VoiceGeneratorAudioStreamPlayer
 var can_invert = false
 
 func _ready():
+	print("final_score")
+	print(g.final_score)
 	$SceneAnimator.play("start")
 
 

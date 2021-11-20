@@ -1,5 +1,7 @@
 extends Node2D
 
+onready var game_scene: Node = get_node('/root/Game')
+
 var player = null
 
 func _ready():
@@ -7,6 +9,10 @@ func _ready():
 
 func _input(event):
 	if event.is_action_pressed("interact") and player:
+		game_scene.clock_running = false
+		g.final_score.coins = game_scene.coin_count
+		g.final_score.time = game_scene.pizza_time
+		g.final_score.slices_lost = player.slices_lost
 		player.play_sfx('open_gate')
 		SceneChanger.change_scene("res://Scenes/BossRoom.tscn", 0.5)
 

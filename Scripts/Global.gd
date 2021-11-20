@@ -3,8 +3,12 @@ extends Node
 var inverted = false
 var normal_enemies = ['Skeleton', 'GrimReaper']
 var inverted_enemies = ['SkullGhost', 'CuteGhost', 'GrimReaper']
-
 var player
+var final_score = {
+	"time": 0,
+	"coins": 0,
+	"slices_lost": 0,
+}
 
 signal sneak(sneaking)
 signal invert(inverted)
