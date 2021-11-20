@@ -63,7 +63,6 @@ func invert():
 func uninvert():
 	$YSort/PlayerOnRails/PlayerAnimator.play("IdleBack")
 	$UI/InvertScreen.visible = false
-	$BlackTop.visible = false
 	$Lich/LichBody.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	$Lich/LichShoulder.modulate = Color(1.0, 1.0, 1.0, 1.0)
 	$Lich/LichJaw.modulate = Color(1.0, 1.0, 1.0, 1.0)

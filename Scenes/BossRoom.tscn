@@ -121,7 +121,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 0.1 ),
+"times": PoolRealArray( 3 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
 "values": [ false ]
@@ -179,6 +179,20 @@ tracks/6/keys = {
 "method": "uninvert"
 } ]
 }
+tracks/7/type = "method"
+tracks/7/path = NodePath("UI/DialoguePlayer")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "laugh"
+} ]
+}
 
 [sub_resource type="Animation" id=2]
 resource_name = "start"
@@ -212,7 +226,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 10, 23.1 ),
+"times": PoolRealArray( 10, 25.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1557,8 +1571,9 @@ script = SubResource( 75 )
 
 [node name="Space" type="AnimatedSprite" parent="UI"]
 visible = false
-position = Vector2( 320, 250 )
+position = Vector2( 420, 445 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]

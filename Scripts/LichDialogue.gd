@@ -19,26 +19,24 @@ func _ready():
 	voice_gen.pitch_scale = 0.8
 
 
-func start():
-	var message = "You arrive at last..."
-	$Name.bbcode_text = "???"
-	$Message.bbcode_text = message
+func play_message(msg):
 	self.visible = true
-	voice_gen.read(message)
+	$Message.bbcode_text = msg
+	voice_gen.read(msg)
+
+
+func start():
+	$Name.bbcode_text = "???"
+	play_message("You arrive at last...")
+
+
+func laugh():
+	$Name.bbcode_text = "Lucian L. Lich"
+	play_message("Oh ho ho...")
 
 
 func uninvert():
-	var message = "And not a moment too soon, I'm starving to death"
-	$Name.bbcode_text = "Lucian L. Lich"
-	$Message.bbcode_text = message
-	voice_gen.read(message)
-
-
-func opening_dialogue():
-	var message = "And not a moment too soon, I'm starving to death"
-	$Name.bbcode_text = "Lucian L. Lich"
-	$Message.bbcode_text = message
-	voice_gen.read(message)
+	play_message("And not a moment too soon, I'm starving to death")
 
 
 func play_dialogue(arr):
