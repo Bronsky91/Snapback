@@ -22,7 +22,9 @@ func format_time():
 
 func respawn():
 	$UI/ScreenWipe.visible = true
-	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")	
+	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")
+	$SFX.stream = load("res://Assets/Audio/rez.mp3")
+	$SFX.play()
 
 
 # .25 seconds is 1 second in game

@@ -61,8 +61,6 @@ func invert():
 
 
 func uninvert():
-	$UI/Shockwave/AnimationPlayer.play("normal")
-	$UI/Shockwave.visible = true
 	$YSort/PlayerOnRails/PlayerAnimator.play("IdleBack")
 	$UI/InvertScreen.visible = false
 	$BlackTop.visible = false
@@ -87,6 +85,8 @@ func _lightswitch():
 	$SFX.stream = load("res://Assets/Audio/lich_switch.mp3")
 	$SFX.play()
 	$UI/White.modulate = Color(1.0, 1.0, 1.0, 0.75)
+	$UI/Shockwave/AnimationPlayer.play("normal")
+	$UI/Shockwave.visible = true
 
 
 func _on_ShockwavePlayer_animation_finished(anim_name):
