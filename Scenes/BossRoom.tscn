@@ -1671,7 +1671,6 @@ __meta__ = {
 }
 
 [node name="SFX" type="AudioStreamPlayer" parent="."]
-volume_db = -25.0
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
