@@ -134,6 +134,7 @@ func toggle_inversion(velocity):
 	
 	if g.inverted:
 		invert_screen.show()
+		play_sfx("flip")
 		# change layer
 		set_collision_layer_bit(3, false) # player_normal
 		set_collision_layer_bit(4, true)  # player_inverted
@@ -144,6 +145,7 @@ func toggle_inversion(velocity):
 		set_collision_mask_bit(7, true)   # enemy_inverted
 	else:
 		invert_screen.hide()
+		play_sfx("flip_reverse")
 		# change layer
 		set_collision_layer_bit(3, true) # player_normal
 		set_collision_layer_bit(4, false)  # player_inverted
