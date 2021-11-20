@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/lich_switch.mp3-e95cf31da0d752a214b73592bc8e2ac7.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/lich_switch.mp3"
+dest_files=[ "res://.import/lich_switch.mp3-e95cf31da0d752a214b73592bc8e2ac7.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

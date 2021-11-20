@@ -73,7 +73,8 @@ func uninvert():
 	$Lich.visible = true
 	$InvertedLich.visible = false
 	$UI/White.visible = false
-	# $TileMap.modulate = Color(1.0, 1.0, 1.0, 1.0)
+	$SFX.stream = load("res://Assets/Audio/lich_switch.mp3")
+	$SFX.play()
 	# $SceneAnimator.play("inverted")
 	# reverse background music
 	var playback_pos = $BGM.get_playback_position()
