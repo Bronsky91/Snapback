@@ -28,6 +28,7 @@ var facing: String = "Right"
 var animation: String = "Idle"
 var new_facing: String = facing
 var movement_enabled = true
+var current_coin = null
 
 
 func _ready():
@@ -123,6 +124,8 @@ func _physics_process(delta):
 
 func toggle_inversion(velocity):
 	g.inverted = !g.inverted
+	# If the player is on a coin during switch, pick it up
+	pick_up_coin() 
 	game_scene.shockwave(g.inverted)
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
@@ -152,6 +155,7 @@ func toggle_inversion(velocity):
 		set_collision_mask_bit(2, false)   # walls_inverted
 		set_collision_mask_bit(6, true)  # enemy_normal
 		set_collision_mask_bit(7, false)   # enemy_inverted
+		
 	g.emit_signal('invert', g.inverted)
 	inverse_ready = false
 	$InverseCooldown.start()
@@ -184,17 +188,31 @@ func attacked(attacker):
 func play_sfx(name):
 	$SFX.stream = load("res://Assets/Audio/"+name+".mp3")
 	$SFX.play()
-
-func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
-	if area.name == 'ItemArea':
-		if area.get_parent().type == "Coin":
+	
+func pick_up_coin():
+	if current_coin:
+		if current_coin.type == "Coin" and not g.inverted:
 			# TODO: Play coin sound
 			play_sfx('pick_up')
 			game_scene.add_coin()
+			current_coin.queue_free()
+			current_coin = null
+		elif current_coin.type == 'Inverted_Coin' and g.inverted:
+			play_sfx('pick_up')
+			game_scene.add_coin()
+			current_coin.queue_free()
+			current_coin = null
+	
+
+func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
+	if area and area.name == 'ItemArea':
+		if "Coin" in area.get_parent().type:
+			current_coin = area.get_parent()
+			pick_up_coin()
 		if area.get_parent().type == "Watch":
 			play_sfx('pick_up')
 			game_scene.add_time()
-		area.get_parent().queue_free()
+			area.get_parent().queue_free()
 		
 	if area.name == 'SafeZoneArea':
 		safe = true

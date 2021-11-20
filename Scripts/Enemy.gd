@@ -29,14 +29,25 @@ var facing = "Right"
 var not_patroling = false
 
 func _ready():
+	if "Ghost" in name:
+		print('export var ranges')
+		print(vision_range)
+	detection_shape.shape.radius = vision_range
+	alert_shape.shape.radius = alert_range
+	if "Ghost" in name:
+		print('actual ranges')
+		print(detection_shape.shape.radius)
+		print(alert_shape.shape.radius)
+		
 	last_patrol_pos = global_position
 	not_patroling = not pathfollow is PathFollow2D
 	g.connect("sneak", self, "_on_Player_sneak")
 	g.connect("invert", self, "_on_Player_invert")
 	g.connect("go_home", self, "_on_Player_damaged")
+	
 	invert(g.inverted)
-	detection_shape.shape.radius = vision_range
-	alert_shape.shape.radius = alert_range
+	
+
 
 func _process(delta):
 	if state == 'patrol':
