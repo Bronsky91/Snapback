@@ -1336,7 +1336,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -3900,24 +3900,26 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
+frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 1
+frame = 6
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
+frame = 5
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 3
+frame = 1
 skelly_status = "free"
 skelly_name = "Claude Bonet"
 
@@ -3930,29 +3932,27 @@ skelly_name = "Lich Cosplayer"
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
-frame = 2
+frame = 3
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
 frames = ExtResource( 49 )
-frame = 1
+frame = 2
 
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
-frame = 1
+frame = 4
 skelly_status = "free"
 skelly_name = "Leonardo da Skelly"
 
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 3
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 2
 
 [node name="Gate002" type="Sprite" parent="YSort"]
 position = Vector2( 4928, -856 )

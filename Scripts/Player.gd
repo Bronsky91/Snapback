@@ -194,7 +194,7 @@ func pick_up_coin():
 			current_coin.queue_free()
 			current_coin = null
 		elif current_coin.type == 'Inverted_Coin' and g.inverted:
-			play_sfx('coin')
+			play_sfx('coin_reverse')
 			game_scene.add_coin()
 			current_coin.queue_free()
 			current_coin = null
