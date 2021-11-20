@@ -35,6 +35,7 @@ func _ready():
 	last_checkpoint_pos = player_start_node.global_position
 	slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
+
 func get_input():
 	velocity = Vector2()
 	if Input.is_action_pressed("right"):
@@ -157,6 +158,7 @@ func toggle_inversion(velocity):
 	
 func attacked(attacker):
 	if !is_invulnerable:
+		is_invulnerable = true
 		play_sfx('getting_hit')
 		slices_lost += 1
 		g.emit_signal('shake', 0.2, 15, 16, 0)
@@ -165,9 +167,9 @@ func attacked(attacker):
 			# Respawn at checkpoint
 			slices_count = 4
 			movement_enabled = false
+			game_scene.respawn()
 		else:
 			slices_count -= 1
-			is_invulnerable = true
 			# unset layer
 			set_collision_layer_bit(3, false) # player_normal
 			set_collision_layer_bit(4, false)  # player_inverted

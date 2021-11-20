@@ -17,7 +17,13 @@ func _ready():
 
 func format_time():
 	return str(abs(ceil(pizza_time/60))).pad_zeros(2) + ":" + str("%01d" % abs(ceil(pizza_time % 60))).pad_zeros(2)
-	
+
+
+func respawn():
+	$UI/ScreenWipe.visible = true
+	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")
+
+
 # .5 seconds is 1 second in game
 func _on_PizzaTimer_timeout():		
 	pizza_time -= 1
@@ -31,17 +37,21 @@ func _on_PizzaTimer_timeout():
 	else:
 		pizza_timer_label.bbcode_text = format_time()
 
+
 func reset_pizza_time():
 	pizza_time = 1800
 	pizza_timer_label.bbcode_text = "30:00"
+
 
 func add_time():
 	pizza_time += 120
 	pizza_timer_label.bbcode_text = format_time()
 
+
 func add_coin():
 	coin_count += 1
 	coin_count_label.bbcode_text = str(coin_count)
+
 
 func shockwave(inverted):
 	shockwave.visible = true
@@ -53,3 +63,10 @@ func shockwave(inverted):
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	shockwave.visible = false
+
+
+func _on_ScreenWipePlayer_animation_finished(anim_name):
+	if anim_name == "circle_fade_in":
+		$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_out")
+	elif anim_name == "circle_fade_out":
+		$UI/ScreenWipe.visible = false
