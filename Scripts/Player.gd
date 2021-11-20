@@ -189,13 +189,12 @@ func play_sfx(name):
 func pick_up_coin():
 	if current_coin:
 		if current_coin.type == "Coin" and not g.inverted:
-			# TODO: Play coin sound
-			play_sfx('pick_up')
+			play_sfx('coin')
 			game_scene.add_coin()
 			current_coin.queue_free()
 			current_coin = null
 		elif current_coin.type == 'Inverted_Coin' and g.inverted:
-			play_sfx('pick_up')
+			play_sfx('coin')
 			game_scene.add_coin()
 			current_coin.queue_free()
 			current_coin = null
