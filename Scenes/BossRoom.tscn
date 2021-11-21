@@ -235,10 +235,22 @@ tracks/16/keys = {
 "update": 0,
 "values": [ Vector2( 0, 500 ) ]
 }
+tracks/17/type = "value"
+tracks/17/path = NodePath("YSort:position")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, -100 ) ]
+}
 
 [sub_resource type="Animation" id=97]
 resource_name = "high_score"
-length = 10.0
+length = 100.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Pizzabox:visible")
 tracks/0/interp = 1
@@ -342,11 +354,14 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 3.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 3.5, 80.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "wapeesh"
+}, {
+"args": [  ],
+"method": "mad_lich"
 } ]
 }
 tracks/9/type = "value"
@@ -548,10 +563,10 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 2.1, 10 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 2.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Vector2( 0, -100 ), Vector2( 0, -260 ) ]
+"values": [ Vector2( 0, -100 ), Vector2( 0, -100 ), Vector2( 0, -260 ) ]
 }
 tracks/2/type = "method"
 tracks/2/path = NodePath(".")
@@ -695,7 +710,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "inverseIdleBack"
-length = 0.375
+length = 0.7
 tracks/0/type = "value"
 tracks/0/path = NodePath("Sprite:frame")
 tracks/0/interp = 1
@@ -1281,7 +1296,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="StreamTexture" id=92]
-flags = 4
 load_path = "res://.import/LichEyes.png-d3e7173460d6bdbbd2313e3e68cf12b4.stex"
 
 [sub_resource type="CanvasItemMaterial" id=93]
@@ -1747,7 +1761,7 @@ position = Vector2( -1, 626 )
 texture = ExtResource( 24 )
 
 [node name="YSort" type="YSort" parent="."]
-position = Vector2( 0, -113 )
+position = Vector2( 0, -100 )
 
 [node name="PlayerOnRails" type="KinematicBody2D" parent="YSort"]
 script = SubResource( 28 )
@@ -1949,6 +1963,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1978,7 +1993,6 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
-frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
@@ -2024,8 +2038,8 @@ margin_bottom = -400.0
 [node name="Credits" parent="UI" instance=ExtResource( 29 )]
 visible = false
 margin_top = 500.0
-margin_right = 1280.0
-margin_bottom = 1460.0
+margin_right = 2560.0
+margin_bottom = 2420.0
 
 [node name="ScreenWipe" type="ColorRect" parent="UI"]
 visible = false

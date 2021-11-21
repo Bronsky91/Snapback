@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=2]
+[gd_scene load_steps=42 format=2]
 
 [ext_resource path="res://Assets/Receipt.png" type="Texture" id=1]
 [ext_resource path="res://Assets/Theme.tres" type="Theme" id=2]
@@ -55,43 +55,51 @@ default_font = SubResource( 13 )
 size = 10
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=26]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
-
-[sub_resource type="DynamicFont" id=27]
+[sub_resource type="DynamicFont" id=46]
 size = 10
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=28]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
+[sub_resource type="DynamicFontData" id=47]
+font_path = "res://Assets/Fonts/alagard.ttf"
 
-[sub_resource type="DynamicFont" id=29]
+[sub_resource type="DynamicFont" id=48]
+font_data = SubResource( 47 )
+
+[sub_resource type="DynamicFontData" id=49]
+font_path = "res://Assets/Fonts/alagard.ttf"
+
+[sub_resource type="DynamicFont" id=50]
+font_data = SubResource( 49 )
+
+[sub_resource type="Theme" id=51]
+default_font = SubResource( 50 )
+/fonts/Alagard = SubResource( 48 )
+
+[sub_resource type="DynamicFont" id=52]
 size = 10
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=30]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
+[sub_resource type="Theme" id=53]
+default_font = SubResource( 50 )
+/fonts/Alagard = SubResource( 48 )
 
-[sub_resource type="DynamicFont" id=31]
+[sub_resource type="DynamicFont" id=54]
 size = 10
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=32]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
+[sub_resource type="Theme" id=55]
+default_font = SubResource( 50 )
+/fonts/Alagard = SubResource( 48 )
 
-[sub_resource type="DynamicFont" id=33]
+[sub_resource type="DynamicFont" id=56]
 size = 10
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=34]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
+[sub_resource type="Theme" id=57]
+default_font = SubResource( 50 )
+/fonts/Alagard = SubResource( 48 )
 
-[sub_resource type="DynamicFont" id=35]
+[sub_resource type="DynamicFont" id=58]
 size = 10
 font_data = ExtResource( 3 )
 
@@ -102,11 +110,11 @@ default_font = SubResource( 13 )
 [sub_resource type="DynamicFont" id=37]
 font_data = ExtResource( 3 )
 
-[sub_resource type="Theme" id=38]
-default_font = SubResource( 13 )
-/fonts/Alagard = SubResource( 16 )
+[sub_resource type="Theme" id=59]
+default_font = SubResource( 50 )
+/fonts/Alagard = SubResource( 48 )
 
-[sub_resource type="DynamicFont" id=39]
+[sub_resource type="DynamicFont" id=60]
 font_data = ExtResource( 3 )
 
 [sub_resource type="Theme" id=40]
@@ -235,7 +243,7 @@ margin_bottom = 112.0
 theme = SubResource( 22 )
 custom_fonts/normal_font = SubResource( 23 )
 bbcode_enabled = true
-text = "Skelebois"
+text = "Skelefriends"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
@@ -256,82 +264,72 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Coins" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Coins" type="Label" parent="NinePatchRect"]
 margin_left = 104.0
 margin_top = 48.0
 margin_right = 168.0
 margin_bottom = 64.0
-theme = SubResource( 26 )
-custom_fonts/normal_font = SubResource( 27 )
-bbcode_enabled = true
-bbcode_text = "[right]2[/right]"
+theme = ExtResource( 2 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 46 )
 text = "2"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Slices" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Slices" type="Label" parent="NinePatchRect"]
 margin_left = 104.0
 margin_top = 64.0
 margin_right = 168.0
 margin_bottom = 80.0
-theme = SubResource( 28 )
-custom_fonts/normal_font = SubResource( 29 )
-bbcode_enabled = true
-bbcode_text = "[right]20[/right]"
+theme = SubResource( 51 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 52 )
 text = "20"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Time" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Time" type="Label" parent="NinePatchRect"]
 margin_left = 104.0
 margin_top = 80.0
 margin_right = 168.0
 margin_bottom = 96.0
-theme = SubResource( 30 )
-custom_fonts/normal_font = SubResource( 31 )
-bbcode_enabled = true
-bbcode_text = "[right]5:00[/right]"
+theme = SubResource( 53 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 54 )
 text = "5:00"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Skelebois" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Skelebois" type="Label" parent="NinePatchRect"]
 margin_left = 104.0
 margin_top = 96.0
 margin_right = 168.0
 margin_bottom = 112.0
-theme = SubResource( 32 )
-custom_fonts/normal_font = SubResource( 33 )
-bbcode_enabled = true
-bbcode_text = "[right]500 pts[/right]"
+theme = SubResource( 55 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 56 )
 text = "500 pts"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Inverted" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Inverted" type="Label" parent="NinePatchRect"]
 margin_left = 104.0
 margin_top = 112.0
 margin_right = 168.0
 margin_bottom = 128.0
-theme = SubResource( 34 )
-custom_fonts/normal_font = SubResource( 35 )
-bbcode_enabled = true
-bbcode_text = "[right]20 times[/right]"
+theme = SubResource( 57 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 58 )
 text = "20 times"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -366,18 +364,16 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="Score" type="RichTextLabel" parent="NinePatchRect"]
-modulate = Color( 0, 0, 0, 1 )
+[node name="Score" type="Label" parent="NinePatchRect"]
 margin_left = 92.0
 margin_top = 176.0
 margin_right = 164.0
 margin_bottom = 192.0
-theme = SubResource( 38 )
-custom_fonts/normal_font = SubResource( 39 )
-bbcode_enabled = true
-bbcode_text = "[right]1000[/right]"
+theme = SubResource( 59 )
+custom_colors/font_color = Color( 0, 0, 0, 1 )
+custom_fonts/font = SubResource( 60 )
 text = "1000"
-scroll_active = false
+align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }

@@ -9,13 +9,10 @@ var moving = false
 func _ready():
 	pass
 
-func open_or_close_gate():
+func open_gate():
 	if closed:
 		$AnimationPlayer.play("GateOpen")
 		closed = false
-	else:
-		$AnimationPlayer.play("GateClose")
-		closed = true
 	moving = true
 
 
@@ -25,7 +22,3 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 		$Locked.disabled = true
 		$OpenLeft.disabled = false
 		$OpenRight.disabled = false
-	if anim_name == 'GateClose':
-		$Locked.disabled = false
-		$OpenLeft.disabled = true
-		$OpenRight.disabled = true

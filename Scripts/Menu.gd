@@ -26,7 +26,6 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 func _on_Timer_timeout():
 	seconds = seconds + 0.5
-	print(seconds)
 	if flip_intervals.has(seconds):
 		flip_it()
 	if reverse_intervals.has(seconds):

@@ -26,7 +26,6 @@ func skele_play(status, skelly_name, skelly_text = ""):
 		
 	var dialogue_count = dialogues_array.size()
 	var random_dialogue = dialogues_array[randi() % dialogue_count]
-	print(random_dialogue)
 	$Name.bbcode_text = skelly_name
 	$Message.bbcode_text = skelly_text if skelly_text else random_dialogue
 	show()

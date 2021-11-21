@@ -10,12 +10,11 @@ var is_talking = false
 
 
 func _ready():
-	print("final_score")
-	print(g.final_score)
 	VisualServer.set_default_clear_color(Color(0.0,0.0,0.0,1.0))
 	$YSort/PlayerOnRails/Camera2D.position = Vector2(0, 500)
 	$InvertedLich/LichEyes/RightEyeGlow.visible = false
 	$InvertedLich/LichEyes/LeftEyeGlow.visible = false
+	$UI/Pizzabox.visible = false
 	$BGM.stream = load("res://Assets/Audio/boss.mp3")
 	$BGM.play()
 	$SceneAnimator.play("start")
@@ -77,6 +76,7 @@ func invert():
 
 
 func uninvert():
+	$YSort/PlayerOnRails/Sprite.texture = load('Assets/Player_001.png')
 	$YSort/PlayerOnRails/PlayerAnimator.play("IdleBack")
 	$UI/InvertScreen.visible = false
 	$Lich/LichBody.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -114,8 +114,13 @@ func high_score():
 
 
 func wapeesh():
-	$BGM.stream = load("res://Assets/Audio/snapback.mp3")
-	$BGM.play(10)
+	$BGM.stream = load("res://Assets/Audio/snapback_credits.mp3")
+	$BGM.play()
+
+
+func mad_lich():
+	$BGM.stream = load("res://Assets/Audio/mad_lich.mp3")
+	$BGM.play()
 
 
 func _on_ShockwavePlayer_animation_finished(anim_name):
@@ -123,6 +128,9 @@ func _on_ShockwavePlayer_animation_finished(anim_name):
 
 
 func _on_PlayerAnimator_animation_finished(anim_name):
+	if anim_name == "InverseIdleBack":
+		$YSort/PlayerOnRails/Sprite.texture = load('Assets/Player_002.png')
+		$YSort/PlayerOnRails/Sprite.frame = 3
 	if anim_name == "Pizza":
 		$YSort/PlayerOnRails/PlayerAnimator.play("PizzalessIdle")
 

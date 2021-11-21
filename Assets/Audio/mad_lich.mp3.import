@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mad_lich.mp3-2b176be7b8f66a911d75215e3b4805aa.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/mad_lich.mp3"
+dest_files=[ "res://.import/mad_lich.mp3-2b176be7b8f66a911d75215e3b4805aa.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

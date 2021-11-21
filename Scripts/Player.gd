@@ -10,6 +10,7 @@ onready var player_start_node: Position2D = get_node("/root/Game/PlayerStart")
 onready var slices_icon: TextureRect = get_node("/root/Game/UI/PizzaSlices")
 onready var invert_screen: ColorRect = get_node('/root/Game/UI/InvertScreen')
 
+var inversion_count: int = 0
 var slices_count: int = 4
 var slices_lost: int = 0
 var safe = false
@@ -122,6 +123,7 @@ func _physics_process(delta):
 
 func toggle_inversion(velocity):
 	g.inverted = !g.inverted
+	inversion_count += 1
 	# If the player is on a coin during switch, pick it up
 	pick_up_coin() 
 	attacked()
@@ -191,8 +193,11 @@ func attacked():
 			slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func play_sfx(name):
-	$SFX.stream = load("res://Assets/Audio/"+name+".mp3")
-	$SFX.play()
+	var sfx_player = AudioStreamPlayer2D.new()
+	sfx_player.stream = load("res://Assets/Audio/"+name+".mp3")
+	sfx_player.connect("finished", sfx_player, "queue_free")
+	add_child(sfx_player)
+	sfx_player.play()
 	
 func pick_up_coin():
 	if current_coin:
