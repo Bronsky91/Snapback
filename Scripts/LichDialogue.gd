@@ -87,8 +87,9 @@ func next_line():
 	$E.visible = false
 	line_index += 1
 	if line_index >= lines.size():
-		print("out of lines!")
-		# TODO trigger high score
+		interactive_dialogue = false
+		self.visible = false
+		boss_room.high_score()
 	else:
 		play_message(lines[line_index])
 		start_idle_timer()
@@ -102,7 +103,7 @@ func _input(event):
 		next_line()
 
 
-# Lich must be done talking for consistent 1 second before we allow going to next line
+# Lich must be done talking for consistent length of the idle timer before we allow going to next line
 func _process(delta):
 	if interactive_dialogue and not can_next_line:
 		if waiting_for_idle:
