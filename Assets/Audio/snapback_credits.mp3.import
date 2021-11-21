@@ -11,5 +11,5 @@ dest_files=[ "res://.import/snapback_credits.mp3-2b4de0fa7cb3fe2ca58b4b48620455e
 
 [params]
 
-loop=true
+loop=false
 loop_offset=0
