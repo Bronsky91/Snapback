@@ -1,4 +1,4 @@
-[gd_scene load_steps=88 format=2]
+[gd_scene load_steps=89 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -28,6 +28,7 @@
 [ext_resource path="res://Assets/E_001.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Pizzabox.png" type="Texture" id=27]
 [ext_resource path="res://Scenes/ReceiptScore.tscn" type="PackedScene" id=28]
+[ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=29]
 
 [sub_resource type="Animation" id=96]
 length = 0.001
@@ -210,10 +211,34 @@ tracks/14/keys = {
 "update": 0,
 "values": [ null ]
 }
+tracks/15/type = "value"
+tracks/15/path = NodePath("UI/Credits:visible")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ false ]
+}
+tracks/16/type = "value"
+tracks/16/path = NodePath("UI/Credits:rect_position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Vector2( 0, 500 ) ]
+}
 
 [sub_resource type="Animation" id=97]
 resource_name = "high_score"
-length = 5.0
+length = 10.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Pizzabox:visible")
 tracks/0/interp = 1
@@ -305,10 +330,10 @@ tracks/7/loop_wrap = true
 tracks/7/imported = false
 tracks/7/enabled = true
 tracks/7/keys = {
-"times": PoolRealArray( 0, 3.5 ),
-"transitions": PoolRealArray( 1, 1 ),
-"update": 1,
-"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ) ]
+"times": PoolRealArray( 0, 3.4, 3.5, 7.1 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.392157 ), Color( 1, 1, 1, 1 ) ]
 }
 tracks/8/type = "method"
 tracks/8/path = NodePath(".")
@@ -323,6 +348,30 @@ tracks/8/keys = {
 "args": [  ],
 "method": "wapeesh"
 } ]
+}
+tracks/9/type = "value"
+tracks/9/path = NodePath("UI/Credits:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/keys = {
+"times": PoolRealArray( 0, 7 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+tracks/10/type = "value"
+tracks/10/path = NodePath("UI/Credits:rect_position")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/keys = {
+"times": PoolRealArray( 0, 7, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( 0, 500 ), Vector2( 0, 500 ), Vector2( 0, 50 ) ]
 }
 
 [sub_resource type="Animation" id=91]
@@ -1900,6 +1949,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1929,7 +1979,6 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
-frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
@@ -1971,6 +2020,12 @@ margin_left = 80.0
 margin_top = -400.0
 margin_right = 80.0
 margin_bottom = -400.0
+
+[node name="Credits" parent="UI" instance=ExtResource( 29 )]
+visible = false
+margin_top = 500.0
+margin_right = 640.0
+margin_bottom = 980.0
 
 [node name="ScreenWipe" type="ColorRect" parent="UI"]
 visible = false
