@@ -1718,6 +1718,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1751,8 +1752,11 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
-frame = 1
 playing = true
+
+[node name="JudgementTimer" type="Timer" parent="UI/DialoguePlayer"]
+wait_time = 2.0
+one_shot = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
@@ -1807,9 +1811,11 @@ __meta__ = {
 volume_db = -15.0
 
 [node name="PizzaTimer" type="Timer" parent="."]
+wait_time = 3.0
 one_shot = true
 
 [connection signal="animation_finished" from="YSort/PlayerOnRails/PlayerAnimator" to="." method="_on_PlayerAnimator_animation_finished"]
 [connection signal="timeout" from="UI/DialoguePlayer/IdleTimer" to="UI/DialoguePlayer" method="_on_IdleTimer_timeout"]
+[connection signal="timeout" from="UI/DialoguePlayer/JudgementTimer" to="UI/DialoguePlayer" method="_on_JudgementTimer_timeout"]
 [connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]
 [connection signal="timeout" from="PizzaTimer" to="." method="_on_PizzaTimer_timeout"]

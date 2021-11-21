@@ -4055,36 +4055,34 @@ texture = ExtResource( 29 )
 [node name="Skeleboi" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2179, -107 )
 frames = ExtResource( 49 )
-frame = 1
 skelly_name = "Aragone"
 
 [node name="Skeleboi11" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2729, -3 )
-frame = 1
 skelly_status = "free"
 skelly_name = "Cinderskella"
 
 [node name="Skeleboi12" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4424, -546 )
-frame = 1
 flip_h = true
 skelly_status = "free"
 skelly_name = "Johhny Rotten"
 
 [node name="Skeleboi14" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4039, 67 )
-frame = 1
 skelly_status = "free"
 skelly_name = "Boney Stark"
 
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
+frame = 5
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
+frame = 5
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
@@ -4107,13 +4105,11 @@ skelly_text = "Lu is THE coolest boss in the world. Amazing taste in art. Amazin
 [node name="Skeleboi6" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2928, 575 )
 frames = ExtResource( 49 )
-frame = 1
 skelly_name = "Giovanni Ribsi"
 
 [node name="Skeleboi8" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3555, 167 )
 frames = ExtResource( 49 )
-frame = 1
 skelly_name = "Jason Sternum"
 
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
@@ -4126,24 +4122,21 @@ skelly_name = "Leonardo da Skelly"
 [node name="Skeleboi10" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5174, -1104 )
 frames = ExtResource( 49 )
-frame = 1
 skelly_name = "Severot Snape"
 
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 0
+frame = 2
 skelly_name = "Pelvis Presley"
 
 [node name="Skeleboi15" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 3906, 378 )
-frame = 1
 skelly_status = "free"
 skelly_name = "Ace Ventibia"
 
 [node name="Skeleboi16" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5428, -934 )
-frame = 1
 skelly_status = "free"
 skelly_name = "Jonah Kill"
 

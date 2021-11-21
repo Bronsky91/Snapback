@@ -9,8 +9,6 @@ var current_dialogue = [""]
 var minutes = str(abs(ceil(g.final_score.time/60))).pad_zeros(2)
 var line_index = 0
 var interactive_dialogue = false
-var waiting_for_idle = false
-var idle_check_passed = false
 var can_next_line = false
 
 var time_good = [
@@ -79,10 +77,7 @@ func laugh():
 
 
 func judgement():
-	$Name.bbcode_text = "Lucian L. Lich"
-	play_message(lines[line_index])
-	boss_room.pizza()
-	interactive_dialogue = true
+	$JudgementTimer.start()
 
 
 func next_line():
@@ -98,35 +93,25 @@ func next_line():
 
 
 func _input(event):
-	if interactive_dialogue and not can_next_line and event.is_action_pressed("interact"):
+	if interactive_dialogue and event.is_action_pressed("interact"):
 		voice_gen.read("")
-	
-	if interactive_dialogue and can_next_line and event.is_action_pressed("interact"):
-		next_line()
-
-
-# Lich must be done talking for consistent length of the idle timer before we allow going to next line
-func _process(delta):
-	if interactive_dialogue and not can_next_line:
-		if waiting_for_idle:
-			is_talking = voice_gen.is_reading() and not voice_gen.is_waiting()
-			if is_talking:
-				idle_check_passed = false
-		else:
-			start_idle_timer()
+		if can_next_line:
+			next_line()
 
 
 func _on_IdleTimer_timeout():
-	if idle_check_passed:
-		waiting_for_idle = false
-		can_next_line = true
-		$E.visible = true
-	else:
-		start_idle_timer()
+	can_next_line = true
+	$E.visible = true
 
 
 func start_idle_timer():
 	can_next_line = false
-	waiting_for_idle = true
-	idle_check_passed = true
 	$IdleTimer.start()
+
+
+func _on_JudgementTimer_timeout():
+	$Name.bbcode_text = "Lucian L. Lich"
+	play_message(lines[line_index])
+	boss_room.pizza()
+	interactive_dialogue = true
+	start_idle_timer()
