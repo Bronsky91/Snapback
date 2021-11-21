@@ -113,6 +113,11 @@ func high_score():
 	$SceneAnimator.play("high_score")
 
 
+func wapeesh():
+	$BGM.stream = load("res://Assets/Audio/snapback.mp3")
+	$BGM.play(10)
+
+
 func _on_ShockwavePlayer_animation_finished(anim_name):
 	$UI/Shockwave.visible = false
 
