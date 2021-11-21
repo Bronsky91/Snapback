@@ -36,9 +36,9 @@ __meta__ = {
 }
 
 [node name="CreditsLabel" type="RichTextLabel" parent="."]
-margin_top = 3.0
+margin_top = 13.0
 margin_right = 320.0
-margin_bottom = 25.0
+margin_bottom = 35.0
 theme = SubResource( 17 )
 bbcode_enabled = true
 bbcode_text = "[center]CREDITS[/center]"
@@ -86,29 +86,29 @@ __meta__ = {
 }
 
 [node name="Chained" type="AnimatedSprite" parent="."]
-position = Vector2( 47, 404 )
+position = Vector2( 47, 354 )
 frames = ExtResource( 6 )
 playing = true
 
 [node name="Easel" type="AnimatedSprite" parent="."]
-position = Vector2( 220, 407 )
+position = Vector2( 220, 357 )
 frames = ExtResource( 4 )
 frame = 4
 playing = true
 
 [node name="Hanged" type="AnimatedSprite" parent="."]
-position = Vector2( 274, 398 )
+position = Vector2( 274, 350 )
 frames = ExtResource( 5 )
 playing = true
 
 [node name="LichFan" type="AnimatedSprite" parent="."]
-position = Vector2( 162, 406 )
+position = Vector2( 154, 356 )
 frames = ExtResource( 7 )
 frame = 1
 playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 114, 404 )
+position = Vector2( 104, 354 )
 frames = ExtResource( 3 )
 frame = 1
 playing = true

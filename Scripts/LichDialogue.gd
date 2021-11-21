@@ -13,8 +13,8 @@ var can_next_line = false
 
 var time_good = [
 	"Wow… you actually got here in " + minutes + " minutes….. (I’ll have to talk to my guards…)",
-	"Wait, I wasn’t expecting you for another " + str(30 - int(minutes)) + " minutes! Marvelous! Wait here and I will get… YOUR REWARD! HAHAHAHA!",
-	"Wow, this is actually still hot! You were quick, human. Here’s your tip.  Now leave me! I have some unfinished business with this cheesy pie!",
+	"Wait, I wasn’t expecting you for another " + str(30 - int(minutes)) + " minutes! Marvelous!",
+	"Wow, this is actually still hot! You were quick, human. Now leave me! I have some unfinished business with this cheesy pie!",
 	"How did you get here so fast? Did you find my ghost wall secret bypass tunnel?! Er… I mean, nevermind- Thanks for the Pizza, mortal!",
 ]
 var time_bad = [
@@ -24,7 +24,7 @@ var time_bad = [
 	"I had ordered that  so long ago, I had forgotten I even placed the order. I guess cold pizza is ok, but i won’t be ordering from you anymore, enjoy your journey home human",
 ]
 var slices_good = [
-	"So beautiful, So cheesy, not one slice missing! I am pleased, mortal. Now for your reward HAHAHAHA",
+	"So beautiful, So cheesy, not one slice missing! I am pleased, mortal.",
 	"I don’t know what is harder to believe, that you are in one piece or that you managed to get my pizza though all of my minions without losing any of that ooey gooey goodness! Keep the change!",
 	"Excellent, I figured I would have a slice or two for myself, but I didn’t expect you’d get that hot baked za to me without any pieces stolen, very impressive",
 ]
@@ -36,14 +36,14 @@ var slices_bad = [
 ]
 var coins_good = [
 	"Oh wonderful! Just let me get my wallet… uh oh, I swear I had all my coins in here, but it looks like there is a hole in the bottom… Will you take a card?",
-	"Ah I can hear from the jingle of your pockets that you found the tip I left for you! I’m glad your greed ushered you to my chambers with such haste!",
-	"HAHAHA, you’ve found all of my gold and now I get all of your gold… Golden deliciously good pizza that is! Well done mortal!",
+	"Ah I can hear from the jingle of your pockets that you found the tip I left for you!",
+	"You’ve found all of my gold and now I get all of your gold… Golden deliciously good pizza that is! Well done mortal!",
 ]
 var coins_bad = [
 	"You only collected " + str(g.final_score.coins) + " coins? That was your tip. No worries, you get what you deserve.",
 	"So scared of my minions you didn’t bother to grab your tip, a pity…",
-	"I hope you grabbed enough coin to pay the ferryman back across the river Styx? No? Well then best make yourself comfortable HAHAHAHAHA!",
-	"Seems like this pizza is on the house. It’s not my fault if you failed to grab the tip I left out for you. Goodbye, mortal.",
+	"I hope you grabbed enough coin to pay the ferryman back across the river Styx? No? Well then best make yourself comfortable!",
+	"Seems like this pizza is on the house. It’s not my fault if you failed to grab the coin I left out for you. Goodbye, mortal.",
 ]
 
 var lines = []
@@ -52,11 +52,11 @@ var lines = []
 func _ready():
 	voice_gen.pitch_scale = 0.8
 	lines = [
-		"...",
+		"Let me look at the time...",
 		time_good[randi() % time_good.size()] if g.final_score.time >= 0 else time_bad[randi() % time_bad.size()],
-		"...",
+		"Let's see how the pizza looks...",
 		slices_good[randi() % slices_good.size()] if g.final_score.slices_lost < 4 else slices_bad[randi() % slices_bad.size()],
-		"...",
+		"About your payment...",
 		coins_good[randi() % coins_good.size()] if g.final_score.coins >= 100 else coins_bad[randi() % coins_bad.size()],
 	]
 
@@ -68,7 +68,7 @@ func play_message(msg):
 
 func start():
 	$Name.bbcode_text = "???"
-	play_message("Well well well, you arrive at last...")
+	play_message("Well, well, well. You arrive at last...")
 
 
 func laugh():
