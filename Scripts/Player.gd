@@ -29,6 +29,7 @@ var animation: String = "Idle"
 var new_facing: String = facing
 var movement_enabled = true
 var current_coin = null
+var current_enemy = null
 
 
 func _ready():
@@ -123,6 +124,7 @@ func toggle_inversion(velocity):
 	g.inverted = !g.inverted
 	# If the player is on a coin during switch, pick it up
 	pick_up_coin() 
+	attacked()
 	game_scene.shockwave(g.inverted)
 	if "Idle" in animation:
 		anim_player.play("Inverse" + animation + facing)
@@ -159,30 +161,34 @@ func toggle_inversion(velocity):
 	inverse_ready = false
 	$InverseCooldown.start()
 	
-func attacked(attacker):
-	if !is_invulnerable:
-		is_invulnerable = true
-		play_sfx('getting_hit')
-		slices_lost += 1
-		g.emit_signal('shake', 0.2, 15, 16, 0)
-		g.emit_signal('go_home', attacker)
-		if slices_count == 1:
-			# Respawn at checkpoint
-			slices_count = 4
-			movement_enabled = false
-			game_scene.respawn()
-		else:
-			slices_count -= 1
-			# unset layer
-			set_collision_layer_bit(3, false) # player_normal
-			set_collision_layer_bit(4, false)  # player_inverted
-			# unset masks
-			set_collision_mask_bit(6, false)  # enemy_normal
-			set_collision_mask_bit(7, false)   # enemy_inverted
-		
-		$FlashTimer.start()
-		$InvulnerabilityTimer.start()
-		slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
+func attacked():
+	if not current_enemy:
+		return
+	var enemy_name = current_enemy.name.rstrip("0123456789")
+	if (not g.inverted and enemy_name in g.normal_enemies) or (g.inverted and enemy_name in g.inverted_enemies):
+		if !is_invulnerable:
+			is_invulnerable = true
+			play_sfx('getting_hit')
+			slices_lost += 1
+			g.emit_signal('shake', 0.2, 15, 16, 0)
+			g.emit_signal('go_home', current_enemy)
+			if slices_count == 1:
+				# Respawn at checkpoint
+				slices_count = 4
+				movement_enabled = false
+				game_scene.respawn()
+			else:
+				slices_count -= 1
+				# unset layer
+				set_collision_layer_bit(3, false) # player_normal
+				set_collision_layer_bit(4, false)  # player_inverted
+				# unset masks
+				set_collision_mask_bit(6, false)  # enemy_normal
+				set_collision_mask_bit(7, false)   # enemy_inverted
+			
+			$FlashTimer.start()
+			$InvulnerabilityTimer.start()
+			slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func play_sfx(name):
 	$SFX.stream = load("res://Assets/Audio/"+name+".mp3")
@@ -216,7 +222,6 @@ func _on_PickupArea_area_shape_entered(area_rid, area, area_shape_index, local_s
 		safe = true
 		if last_checkpoint_pos != area.get_parent().get_node('Checkpoint').global_position:
 			# Only play the first time they enter the checkpoint
-			# TODO: Show floating text telling the player they've got to a checkpoint?
 			play_sfx('save')
 			area.get_parent().float_text('Checkpoint Reached!')
 		last_checkpoint_pos = area.get_parent().get_node('Checkpoint').global_position
@@ -239,10 +244,11 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_PickupArea_body_entered(body):
-	var enemy_name = body.name.rstrip("0123456789")
-	if (not g.inverted and enemy_name in g.normal_enemies) or (g.inverted and enemy_name in g.inverted_enemies):
-		attacked(body)
+	current_enemy = body
+	attacked()
 
+func _on_PickupArea_body_exited(body):
+	current_enemy = null
 
 func _on_InvulnerabilityTimer_timeout():
 	if not movement_enabled:
@@ -275,3 +281,4 @@ func _on_FlashTimer_timeout():
 		$FlashTimer.start()
 	else:
 		modulate = Color(1,1,1,1) # normal
+

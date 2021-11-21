@@ -1524,7 +1524,7 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 1
+frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -2867,16 +2867,16 @@ rotate = false
 
 [node name="CuteGhost" parent="Navigation2D/Enemies/Path2D48/PathFollow2D" instance=ExtResource( 32 )]
 
-[node name="Path2D" type="Path2D" parent="Navigation2D"]
+[node name="Path2D49" type="Path2D" parent="Navigation2D/Enemies"]
 curve = SubResource( 93 )
 
-[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Path2D"]
+[node name="PathFollow2D" type="PathFollow2D" parent="Navigation2D/Enemies/Path2D49"]
 position = Vector2( 5338.59, -154.739 )
 rotation = 0.0015906
 offset = 767.76
 rotate = false
 
-[node name="SkullGhost" parent="Navigation2D/Path2D/PathFollow2D" instance=ExtResource( 9 )]
+[node name="SkullGhost" parent="Navigation2D/Enemies/Path2D49/PathFollow2D" instance=ExtResource( 9 )]
 
 [node name="PlayerStart" type="Position2D" parent="."]
 visible = false
@@ -2886,6 +2886,7 @@ visible = false
 [node name="Player" parent="YSort" instance=ExtResource( 1 )]
 
 [node name="Camera2D" type="Camera2D" parent="YSort/Player"]
+current = true
 
 [node name="ScreenShake" parent="YSort/Player/Camera2D" instance=ExtResource( 15 )]
 
@@ -4125,7 +4126,7 @@ skelly_name = "Albert Spinestein"
 [node name="Skeleboi3" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 1777, 644 )
 frames = ExtResource( 47 )
-frame = 4
+frame = 2
 skelly_status = "painter"
 skelly_name = "Claude Bonet"
 
@@ -4153,7 +4154,7 @@ skelly_name = "Jason Sternum"
 [node name="Skeleboi9" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 5580, 40 )
 frames = ExtResource( 47 )
-frame = 2
+frame = 0
 skelly_status = "painter"
 skelly_name = "Leonardo da Skelly"
 
