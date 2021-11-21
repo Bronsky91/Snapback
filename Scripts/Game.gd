@@ -75,3 +75,7 @@ func _on_ScreenWipePlayer_animation_finished(anim_name):
 		$SFX.play()
 	elif anim_name == "circle_fade_out":
 		$UI/ScreenWipe.visible = false
+
+
+func _on_Button_pressed():
+	OS.window_fullscreen = !OS.window_fullscreen

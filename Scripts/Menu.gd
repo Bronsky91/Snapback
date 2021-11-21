@@ -14,6 +14,8 @@ func _input(event):
 
 
 func _on_StartGame_button_up():
+	$AudioStreamPlayer.stop()
+	yield(get_tree().create_timer(.5), "timeout")
 	get_tree().change_scene("res://Scenes/Game.tscn")
 
 
@@ -41,7 +43,4 @@ func flip_it():
 	if animation_name == 'Inverse':
 		$CanvasLayer/InvertScreen.visible = true
 
-
-func _on_StartGame_pressed():
-	get_tree().change_scene("res://Scenes/Game.tscn")
 
