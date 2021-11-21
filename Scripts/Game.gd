@@ -23,8 +23,6 @@ func format_time():
 func respawn():
 	$UI/ScreenWipe.visible = true
 	$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_in")
-	$SFX.stream = load("res://Assets/Audio/rez.mp3")
-	$SFX.play()
 
 
 # .25 seconds is 1 second in game
@@ -72,5 +70,7 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 func _on_ScreenWipePlayer_animation_finished(anim_name):
 	if anim_name == "circle_fade_in":
 		$UI/ScreenWipe/ScreenWipePlayer.play("circle_fade_out")
+		$SFX.stream = load("res://Assets/Audio/rez.mp3")
+		$SFX.play()
 	elif anim_name == "circle_fade_out":
 		$UI/ScreenWipe.visible = false

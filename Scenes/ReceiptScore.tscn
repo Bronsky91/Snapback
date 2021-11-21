@@ -1,0 +1,20 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/Receipt.png" type="Texture" id=1]
+
+[node name="Node2D" type="Control"]
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="NinePatchRect" type="NinePatchRect" parent="."]
+margin_right = 40.0
+margin_bottom = 40.0
+texture = ExtResource( 1 )
+patch_margin_left = 2
+patch_margin_top = 3
+patch_margin_right = 5
+patch_margin_bottom = 10
+__meta__ = {
+"_edit_use_anchors_": false
+}
