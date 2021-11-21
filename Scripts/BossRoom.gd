@@ -78,6 +78,7 @@ func invert():
 
 
 func uninvert():
+	$YSort/PlayerOnRails/Sprite.texture = load('Assets/Player_001.png')
 	$YSort/PlayerOnRails/PlayerAnimator.play("IdleBack")
 	$UI/InvertScreen.visible = false
 	$Lich/LichBody.modulate = Color(1.0, 1.0, 1.0, 1.0)
@@ -124,6 +125,9 @@ func _on_ShockwavePlayer_animation_finished(anim_name):
 
 
 func _on_PlayerAnimator_animation_finished(anim_name):
+	if anim_name == "InverseIdleBack":
+		$YSort/PlayerOnRails/Sprite.texture = load('Assets/Player_002.png')
+		$YSort/PlayerOnRails/Sprite.frame = 3
 	if anim_name == "Pizza":
 		$YSort/PlayerOnRails/PlayerAnimator.play("PizzalessIdle")
 
