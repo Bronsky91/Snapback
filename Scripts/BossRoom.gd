@@ -53,6 +53,8 @@ func _input(event):
 	if event.is_action_pressed("invert") and can_invert:
 		can_invert = false
 		invert()
+	if event.is_action_pressed("ui_cancel") and OS.window_fullscreen:
+		OS.window_fullscreen = false
 
 
 func invert():
@@ -134,3 +136,7 @@ func _on_PlayerAnimator_animation_finished(anim_name):
 	if anim_name == "Pizza":
 		$YSort/PlayerOnRails/PlayerAnimator.play("PizzalessIdle")
 
+
+
+func _on_Button_button_up():
+	OS.window_fullscreen = !OS.window_fullscreen

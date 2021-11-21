@@ -1,4 +1,4 @@
-[gd_scene load_steps=89 format=2]
+[gd_scene load_steps=90 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -29,6 +29,7 @@
 [ext_resource path="res://Assets/Pizzabox.png" type="Texture" id=27]
 [ext_resource path="res://Scenes/ReceiptScore.tscn" type="PackedScene" id=28]
 [ext_resource path="res://Scenes/Credits.tscn" type="PackedScene" id=29]
+[ext_resource path="res://Assets/enlarge.svg" type="Texture" id=30]
 
 [sub_resource type="Animation" id=96]
 length = 0.001
@@ -2030,16 +2031,16 @@ __meta__ = {
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 80.0
+margin_left = 400.0
 margin_top = -400.0
-margin_right = 80.0
+margin_right = 400.0
 margin_bottom = -400.0
 
 [node name="Credits" parent="UI" instance=ExtResource( 29 )]
 visible = false
 margin_top = 500.0
-margin_right = 4480.0
-margin_bottom = 3860.0
+margin_right = 5760.0
+margin_bottom = 4820.0
 
 [node name="ScreenWipe" type="ColorRect" parent="UI"]
 visible = false
@@ -2065,6 +2066,19 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
+[node name="Button" type="Button" parent="UI"]
+modulate = Color( 1, 1, 1, 0.12549 )
+margin_left = 618.0
+margin_top = 458.0
+margin_right = 1338.0
+margin_bottom = 1172.0
+rect_scale = Vector2( 0.03, 0.03 )
+icon = ExtResource( 30 )
+flat = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="SFX" type="AudioStreamPlayer" parent="."]
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
@@ -2073,3 +2087,4 @@ volume_db = -15.0
 [connection signal="animation_finished" from="YSort/PlayerOnRails/PlayerAnimator" to="." method="_on_PlayerAnimator_animation_finished"]
 [connection signal="timeout" from="UI/DialoguePlayer/IdleTimer" to="UI/DialoguePlayer" method="_on_IdleTimer_timeout"]
 [connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]
+[connection signal="button_up" from="UI/Button" to="." method="_on_Button_button_up"]

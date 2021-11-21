@@ -20,7 +20,6 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_cancel") and OS.window_fullscreen:
 		OS.window_fullscreen = false
-		$UI/FullScreenButton.show()
 
 func format_time():
 	return str(abs(ceil(pizza_time/60))).pad_zeros(2) + ":" + str("%01d" % abs(ceil(pizza_time % 60))).pad_zeros(2)
@@ -84,4 +83,3 @@ func _on_ScreenWipePlayer_animation_finished(anim_name):
 
 func _on_Button_pressed():
 	OS.window_fullscreen = !OS.window_fullscreen
-	$UI/FullScreenButton.visible = !OS.window_fullscreen

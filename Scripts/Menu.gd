@@ -11,6 +11,8 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed('ui_accept'):
 		get_tree().change_scene("res://Scenes/Game.tscn")
+	if event.is_action_pressed("ui_cancel") and OS.window_fullscreen:
+		OS.window_fullscreen = false
 
 
 func _on_StartGame_button_up():
@@ -44,3 +46,5 @@ func flip_it():
 		$CanvasLayer/InvertScreen.visible = true
 
 
+func _on_Button_button_up():
+	OS.window_fullscreen = !OS.window_fullscreen
