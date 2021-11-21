@@ -23,7 +23,6 @@ func _input(event):
 		
 		
 func find_and_use_dialogue():
-	print(g.final_score['skellies_talked_to'])
 	dialogue_player.skele_play(skelly_status, skelly_name, skelly_text)
 	dialog_open = true
 	$AudioStreamPlayer2D.play()
