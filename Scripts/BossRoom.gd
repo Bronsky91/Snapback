@@ -88,13 +88,13 @@ func uninvert():
 	$Lich.visible = true
 	$InvertedLich.visible = false
 	$UI/White.visible = false
-	$SceneAnimator.play("judgement")
 	# reverse background music
 	var playback_pos = $BGM.get_playback_position()
 	var reversed_pos = track_length - playback_pos if track_length - playback_pos >= 0 else 0
 	$BGM.stream = load("res://Assets/Audio/boss.mp3")
 	$BGM.play(reversed_pos)
-	
+	# begin judgement dialogue
+	$UI/DialoguePlayer.judgement()
 
 
 func _lightswitch():

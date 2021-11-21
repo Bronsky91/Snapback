@@ -12,7 +12,12 @@ func _input(event):
 		game_scene.clock_running = false
 		g.final_score.coins = game_scene.coin_count
 		g.final_score.time = game_scene.pizza_time
+		if game_scene.pizza_time < 0:
+			g.final_score.timestamp = '[color=red] - ' + game_scene.format_time()
+		else:
+			g.final_score.timestamp = '[color=green] ' + game_scene.format_time()
 		g.final_score.slices_lost = player.slices_lost
+		
 		player.play_sfx('open_gate')
 		SceneChanger.change_scene("res://Scenes/BossRoom.tscn", 0.5)
 

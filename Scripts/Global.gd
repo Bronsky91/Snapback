@@ -6,6 +6,7 @@ var inverted_enemies = ['SkullGhost', 'CuteGhost', 'GrimReaper']
 var player
 var final_score = {
 	"time": 0,
+	"timestamp": "00:00",
 	"coins": 0,
 	"slices_lost": 0,
 	"skellies_talked_to": 0,
