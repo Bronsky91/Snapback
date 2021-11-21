@@ -243,7 +243,7 @@ margin_bottom = 112.0
 theme = SubResource( 22 )
 custom_fonts/normal_font = SubResource( 23 )
 bbcode_enabled = true
-text = "Skelebois"
+text = "Skelefriends"
 scroll_active = false
 __meta__ = {
 "_edit_use_anchors_": false
