@@ -1524,7 +1524,6 @@ texture = ExtResource( 41 )
 [node name="Crack001" type="AnimatedSprite" parent="Navigation2D/TileMap/DecoTileMap"]
 position = Vector2( 1921, -456 )
 frames = SubResource( 24 )
-frame = 2
 playing = true
 
 [node name="Banner003" type="Sprite" parent="Navigation2D/TileMap/DecoTileMap"]
@@ -4113,13 +4112,11 @@ skelly_name = "Boney Stark"
 [node name="Skeleboi2" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2156, 452 )
 frames = ExtResource( 48 )
-frame = 5
 skelly_name = "Catherine Zeta-Bones"
 
 [node name="Skeleboi5" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 2402, 449 )
 frames = SubResource( 80 )
-frame = 5
 script = SubResource( 81 )
 skelly_name = "Albert Spinestein"
 
@@ -4167,7 +4164,7 @@ skelly_name = "Severot Snape"
 [node name="Skeleboi7" parent="YSort" instance=ExtResource( 13 )]
 position = Vector2( 4499, 168 )
 frames = ExtResource( 48 )
-frame = 2
+frame = 0
 skelly_name = "Pelvis Presley"
 
 [node name="Skeleboi15" parent="YSort" instance=ExtResource( 13 )]

@@ -12,6 +12,7 @@ var coin_count = 0
 var free_pizza = false
 
 func _ready():
+	$YSort/Player/Camera2D.current = true
 	pizza_timer.start()
 	pizza_timer_label.bbcode_text = "30:00"
 	coin_count_label.bbcode_text = str(coin_count)
