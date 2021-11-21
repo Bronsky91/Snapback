@@ -12,11 +12,12 @@ func _input(event):
 	if event.is_action_pressed("interact") and player:
 		var gates = get_tree().get_nodes_in_group('gates')
 		for gate in gates:
-			if gate.code == gate_code and not gate.moving:
-				gate.open_or_close_gate()
+			if gate.code == gate_code and not gate.moving and gate.closed:
+				gate.open_gate()
 				$LeverSprite.play('default', $LeverSprite.frame == 2)
 				var gate_sound = 'close_gate' if gate.closed else 'open_gate'
 				player.play_sfx(gate_sound)
+				$AnimatedSprite2.visible = false
 
 
 func _on_InteractionArea_area_shape_entered(area_rid, area, area_shape_index, local_shape_index):
