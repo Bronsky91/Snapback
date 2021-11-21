@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=2]
+[gd_scene load_steps=88 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -112,7 +112,7 @@ tracks/6/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ Vector2( 320, 425 ) ]
+"values": [ Vector2( 320, 350 ) ]
 }
 tracks/7/type = "value"
 tracks/7/path = NodePath("UI/Pizzabox:rotation_degrees")
@@ -164,7 +164,7 @@ tracks/1/keys = {
 "times": PoolRealArray( 0, 3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ Vector2( 320, 425 ), Vector2( 320, 200 ) ]
+"values": [ Vector2( 320, 350 ), Vector2( 320, 200 ) ]
 }
 tracks/2/type = "value"
 tracks/2/path = NodePath("UI/Pizzabox:rotation_degrees")
@@ -295,6 +295,53 @@ tracks/7/keys = {
 "values": [ {
 "args": [  ],
 "method": "laugh"
+} ]
+}
+
+[sub_resource type="Animation" id=101]
+resource_name = "judgement"
+length = 15.0
+tracks/0/type = "method"
+tracks/0/path = NodePath("UI/DialoguePlayer")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 2, 10.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "Hand it over" ],
+"method": "play_message"
+}, {
+"args": [  ],
+"method": "judgement"
+} ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/DialoguePlayer:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 5.1 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/2/type = "method"
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 7.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "pizza"
 } ]
 }
 
@@ -1501,6 +1548,7 @@ script = ExtResource( 5 )
 anims/RESET = SubResource( 96 )
 anims/high_score = SubResource( 97 )
 anims/inverted = SubResource( 91 )
+anims/judgement = SubResource( 101 )
 anims/start = SubResource( 2 )
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -1723,7 +1771,7 @@ playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
 visible = false
-position = Vector2( 320, 425 )
+position = Vector2( 320, 350 )
 rotation = 18.8496
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 27 )
@@ -1753,10 +1801,6 @@ visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
 playing = true
-
-[node name="JudgementTimer" type="Timer" parent="UI/DialoguePlayer"]
-wait_time = 2.0
-one_shot = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
@@ -1810,12 +1854,6 @@ __meta__ = {
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
 
-[node name="PizzaTimer" type="Timer" parent="."]
-wait_time = 3.0
-one_shot = true
-
 [connection signal="animation_finished" from="YSort/PlayerOnRails/PlayerAnimator" to="." method="_on_PlayerAnimator_animation_finished"]
 [connection signal="timeout" from="UI/DialoguePlayer/IdleTimer" to="UI/DialoguePlayer" method="_on_IdleTimer_timeout"]
-[connection signal="timeout" from="UI/DialoguePlayer/JudgementTimer" to="UI/DialoguePlayer" method="_on_JudgementTimer_timeout"]
 [connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]
-[connection signal="timeout" from="PizzaTimer" to="." method="_on_PizzaTimer_timeout"]

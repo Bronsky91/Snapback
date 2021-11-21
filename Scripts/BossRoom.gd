@@ -94,7 +94,7 @@ func uninvert():
 	$BGM.stream = load("res://Assets/Audio/boss.mp3")
 	$BGM.play(reversed_pos)
 	# begin judgement dialogue
-	$UI/DialoguePlayer.judgement()
+	$SceneAnimator.play("judgement")
 
 
 func _lightswitch():
@@ -106,7 +106,7 @@ func _lightswitch():
 
 
 func pizza():
-	$PizzaTimer.start()
+	$YSort/PlayerOnRails/PlayerAnimator.play("Pizza")
 
 
 func high_score():
@@ -121,6 +121,3 @@ func _on_PlayerAnimator_animation_finished(anim_name):
 	if anim_name == "Pizza":
 		$YSort/PlayerOnRails/PlayerAnimator.play("PizzalessIdle")
 
-
-func _on_PizzaTimer_timeout():
-	$YSort/PlayerOnRails/PlayerAnimator.play("Pizza")
