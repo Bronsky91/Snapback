@@ -105,8 +105,12 @@ func _lightswitch():
 	$UI/Shockwave.visible = true
 
 
+func pizza():
+	$PizzaTimer.start()
+
+
 func high_score():
-	$YSort/PlayerOnRails/PlayerAnimator.play("Pizza")
+	$SceneAnimator.play("high_score")
 
 
 func _on_ShockwavePlayer_animation_finished(anim_name):
@@ -116,5 +120,7 @@ func _on_ShockwavePlayer_animation_finished(anim_name):
 func _on_PlayerAnimator_animation_finished(anim_name):
 	if anim_name == "Pizza":
 		$YSort/PlayerOnRails/PlayerAnimator.play("PizzalessIdle")
-	elif anim_name == "PizzalessIdle":
-		$SceneAnimator.play("high_score")
+
+
+func _on_PizzaTimer_timeout():
+	$YSort/PlayerOnRails/PlayerAnimator.play("Pizza")

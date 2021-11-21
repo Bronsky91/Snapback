@@ -54,6 +54,7 @@ var lines = []
 func _ready():
 	voice_gen.pitch_scale = 0.8
 	lines = [
+		"Now hand it over",
 		"...",
 		time_good[randi() % time_good.size()] if g.final_score.time >= 0 else time_bad[randi() % time_bad.size()],
 		"...",
@@ -80,6 +81,7 @@ func laugh():
 func judgement():
 	$Name.bbcode_text = "Lucian L. Lich"
 	play_message(lines[line_index])
+	boss_room.pizza()
 	interactive_dialogue = true
 
 
