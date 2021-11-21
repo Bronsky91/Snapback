@@ -140,3 +140,7 @@ func _on_PlayerAnimator_animation_finished(anim_name):
 
 func _on_Button_button_up():
 	OS.window_fullscreen = !OS.window_fullscreen
+
+
+func _on_Playagain_button_up():
+	get_tree().change_scene("res://Scenes/Menu.tscn")

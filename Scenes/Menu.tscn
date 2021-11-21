@@ -478,7 +478,6 @@ __meta__ = {
 [node name="AnimatedSprite" type="AnimatedSprite" parent="Main"]
 position = Vector2( 66, 337 )
 frames = SubResource( 23 )
-frame = 5
 playing = true
 
 [node name="SplashScreen" type="Node2D" parent="."]
