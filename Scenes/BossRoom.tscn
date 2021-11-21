@@ -1948,6 +1948,7 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
+frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1977,7 +1978,6 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
-frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]

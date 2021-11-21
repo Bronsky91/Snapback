@@ -16,6 +16,7 @@ func _ready():
 	$YSort/PlayerOnRails/Camera2D.position = Vector2(0, 500)
 	$InvertedLich/LichEyes/RightEyeGlow.visible = false
 	$InvertedLich/LichEyes/LeftEyeGlow.visible = false
+	$UI/Pizzabox.visible = false
 	$BGM.stream = load("res://Assets/Audio/boss.mp3")
 	$BGM.play()
 	$SceneAnimator.play("start")
