@@ -88,26 +88,28 @@ __meta__ = {
 [node name="Chained" type="AnimatedSprite" parent="."]
 position = Vector2( 47, 404 )
 frames = ExtResource( 6 )
-frame = 3
 playing = true
 
 [node name="Easel" type="AnimatedSprite" parent="."]
-position = Vector2( 110, 405 )
+position = Vector2( 220, 407 )
 frames = ExtResource( 4 )
-frame = 1
+frame = 4
 playing = true
 
 [node name="Hanged" type="AnimatedSprite" parent="."]
-position = Vector2( 164, 400 )
+position = Vector2( 274, 398 )
 frames = ExtResource( 5 )
-frame = 6
 playing = true
 
 [node name="LichFan" type="AnimatedSprite" parent="."]
-position = Vector2( 216, 408 )
+position = Vector2( 162, 406 )
 frames = ExtResource( 7 )
+frame = 1
+playing = true
 
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
-position = Vector2( 263, 405 )
+position = Vector2( 114, 404 )
 frames = ExtResource( 3 )
+frame = 1
 playing = true
+flip_h = true
