@@ -12,4 +12,4 @@ dest_files=[ "res://.import/snapback.mp3-8bdaddaa7bb3054122e2f592d43e51bd.mp3str
 [params]
 
 loop=true
-loop_offset=0
+loop_offset=0.41

@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=34 format=2]
 
 [ext_resource path="res://Scripts/Menu.gd" type="Script" id=1]
 [ext_resource path="res://Resources/Shaders/Invert.gdshader" type="Shader" id=2]
@@ -7,6 +7,36 @@
 [ext_resource path="res://Assets/Lich/pizzaboy_Idle_Head.png" type="Texture" id=5]
 [ext_resource path="res://Assets/Lich/pizzaboy_Idle_Shoulder.png" type="Texture" id=6]
 [ext_resource path="res://Assets/Lich/pizzaboy_Idle_Body1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/ArrowRight.png" type="Texture" id=8]
+[ext_resource path="res://Assets/Lich/LichEyes.png" type="Texture" id=9]
+
+[sub_resource type="Animation" id=27]
+resource_name = "LichEyeBounce"
+length = 10.0
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 3, 7.1, 9.9 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ Vector2( -247, -69 ), Vector2( -247, -73 ), Vector2( -247, -64 ), Vector2( -247, -69 ) ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1, 5.1, 10 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 resource_name = "Idle"
@@ -302,6 +332,38 @@ font_data = SubResource( 1 )
 [sub_resource type="ShaderMaterial" id=12]
 shader = ExtResource( 2 )
 
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=21]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=22]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=26]
+atlas = ExtResource( 8 )
+region = Rect2( 64, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=25]
+atlas = ExtResource( 8 )
+region = Rect2( 32, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=24]
+atlas = ExtResource( 8 )
+region = Rect2( 0, 0, 32, 32 )
+
+[sub_resource type="SpriteFrames" id=23]
+animations = [ {
+"frames": [ SubResource( 20 ), SubResource( 21 ), SubResource( 22 ), SubResource( 26 ), SubResource( 25 ), SubResource( 24 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [node name="Menu" type="Node"]
 script = ExtResource( 1 )
 
@@ -329,6 +391,14 @@ vframes = 10
 texture = ExtResource( 6 )
 vframes = 10
 
+[node name="LichEyes" type="Sprite" parent="Pizzaboy"]
+modulate = Color( 1, 1, 1, 0 )
+position = Vector2( -247, -69 )
+texture = ExtResource( 9 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Pizzaboy/LichEyes"]
+anims/LichEyeBounce = SubResource( 27 )
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Pizzaboy"]
 autoplay = "Idle"
 anims/Idle = SubResource( 5 )
@@ -355,6 +425,7 @@ __meta__ = {
 }
 
 [node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 autostart = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
@@ -382,6 +453,11 @@ mouse_filter = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 66, 337 )
+frames = SubResource( 23 )
+playing = true
 
 [connection signal="animation_finished" from="Pizzaboy/AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
