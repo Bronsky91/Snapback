@@ -16,16 +16,16 @@ func _input(event):
 
 
 func _on_StartGame_button_up():
-	$AudioStreamPlayer.stop()
+	$Main/AudioStreamPlayer.stop()
 	yield(get_tree().create_timer(.5), "timeout")
 	get_tree().change_scene("res://Scenes/Game.tscn")
 
 
 func _on_AnimationPlayer_animation_finished(anim_name):
 	if anim_name == "Inverse":
-		$Pizzaboy/AnimationPlayer.play("IdleReverse")
+		$Main/Pizzaboy/AnimationPlayer.play("IdleReverse")
 	else:
-		$Pizzaboy/AnimationPlayer.play("Idle")
+		$Main/Pizzaboy/AnimationPlayer.play("Idle")
 
 
 func _on_Timer_timeout():
@@ -33,18 +33,24 @@ func _on_Timer_timeout():
 	if flip_intervals.has(seconds):
 		flip_it()
 	if reverse_intervals.has(seconds):
-		$CanvasLayer/InvertScreen.visible = false
+		$Main/CanvasLayer/InvertScreen.visible = false
 	if seconds == 41.00:
-		$Pizzaboy/LichEyes/AnimationPlayer.play("LichEyeBounce")
+		$Main/Pizzaboy/LichEyes/AnimationPlayer.play("LichEyeBounce")
 	if seconds ==  77.0:
 		seconds = 0
 
 func flip_it():
-	var animation_name = 'Inverse' if not $CanvasLayer/InvertScreen.visible else 'Reverse'
-	$Pizzaboy/AnimationPlayer.play(animation_name)
+	var animation_name = 'Inverse' if not $Main/CanvasLayer/InvertScreen.visible else 'Reverse'
+	$Main/Pizzaboy/AnimationPlayer.play(animation_name)
 	if animation_name == 'Inverse':
-		$CanvasLayer/InvertScreen.visible = true
+		$Main/CanvasLayer/InvertScreen.visible = true
 
 
 func _on_Button_button_up():
 	OS.window_fullscreen = !OS.window_fullscreen
+
+
+func _on_SplashTimer_timeout():
+	$SplashScreen.hide()
+	$Main.show()
+	$Main/CanvasLayer/StartGame.show()

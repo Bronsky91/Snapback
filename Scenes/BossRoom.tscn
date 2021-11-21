@@ -1964,7 +1964,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1994,6 +1993,7 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
+frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
@@ -2031,9 +2031,9 @@ __meta__ = {
 visible = false
 anchor_left = 0.5
 anchor_right = 0.5
-margin_left = 400.0
+margin_left = 80.0
 margin_top = -400.0
-margin_right = 400.0
+margin_right = 80.0
 margin_bottom = -400.0
 
 [node name="Credits" parent="UI" instance=ExtResource( 29 )]
