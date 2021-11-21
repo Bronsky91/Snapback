@@ -4,10 +4,14 @@ onready var boss_room = get_node('/root/BossRoom')
 onready var voice_gen = $VoiceGeneratorAudioStreamPlayer
 
 var is_talking = false
-var skip = false
 var current_dialogue_index = 0
 var current_dialogue = [""]
 var minutes = str(abs(ceil(g.final_score.time/60))).pad_zeros(2)
+var line_index = 0
+var interactive_dialogue = false
+var waiting_for_idle = false
+var idle_check_passed = false
+var can_next_line = false
 
 var time_good = [
 	"Wow… you actually got here in " + minutes + " minutes….. (I’ll have to talk to my guards…)",
@@ -41,20 +45,22 @@ var coins_bad = [
 	"You only collected " + str(g.final_score.coins) + " coins? That was your tip. No worries, you get what you deserve.",
 	"So scared of my minions you didn’t bother to grab your tip, a pity…",
 	"I hope you grabbed enough coin to pay the ferryman back across the river Styx? No? Well then best make yourself comfortable HAHAHAHAHA!",
-	"Seems like this pizza is on the house. It’s not my fault if you failed to grab the payment I left out for you. Goodbye, mortal.",
+	"Seems like this pizza is on the house. It’s not my fault if you failed to grab the tip I left out for you. Goodbye, mortal.",
 ]
 
-var lines = [
-	time_good[randi() % time_good.size()] if g.final_score.time >= 0 else time_bad[randi() % time_bad.size()],
-	slices_good[randi() % slices_good.size()] if g.final_score.slices_lost < 4 else slices_bad[randi() % slices_bad.size()],
-	coins_good[randi() % coins_good.size()] if g.final_score.coins >= 100 else coins_bad[randi() % coins_bad.size()],
-]
+var lines = []
 
 
 func _ready():
 	voice_gen.pitch_scale = 0.8
-	print("lines")
-	print(lines)
+	lines = [
+		"...",
+		time_good[randi() % time_good.size()] if g.final_score.time >= 0 else time_bad[randi() % time_bad.size()],
+		"...",
+		slices_good[randi() % slices_good.size()] if g.final_score.slices_lost < 4 else slices_bad[randi() % slices_bad.size()],
+		"...",
+		coins_good[randi() % coins_good.size()] if g.final_score.coins >= 100 else coins_bad[randi() % coins_bad.size()],
+	]
 
 
 func play_message(msg):
@@ -64,54 +70,60 @@ func play_message(msg):
 
 func start():
 	$Name.bbcode_text = "???"
-	play_message("You arrive at last...")
+	play_message("Well well well, you arrive at last...")
 
 
 func laugh():
-	$Name.bbcode_text = "Lucian L. Lich"
 	play_message("Oh ho ho...")
 
 
-func uninvert():
-	play_message("And not a moment too soon, I'm starving to death")
-
-
 func judgement():
-	pass
+	$Name.bbcode_text = "Lucian L. Lich"
+	play_message(lines[line_index])
+	interactive_dialogue = true
 
 
 func next_line():
-	pass
+	$E.visible = false
+	line_index += 1
+	if line_index >= lines.size():
+		print("out of lines!")
+		# TODO trigger high score
+	else:
+		play_message(lines[line_index])
+		start_idle_timer()
+
 
 func _input(event):
-	if event.is_action_pressed("invert") and is_talking:
-		skip = true
-
-
-func _process(delta):
-	is_talking = voice_gen.is_reading() and not voice_gen.is_waiting()
-	if skip:
+	if interactive_dialogue and not can_next_line and event.is_action_pressed("interact"):
 		voice_gen.read("")
-		skip = false
+	
+	if interactive_dialogue and can_next_line and event.is_action_pressed("interact"):
+		next_line()
 
 
-func show_debug():
-	$Name.bbcode_text = ""
-	$Message.bbcode_text = ""
-	$Debug.visible = true
+# Lich must be done talking for consistent 1 second before we allow going to next line
+func _process(delta):
+	if interactive_dialogue and not can_next_line:
+		if waiting_for_idle:
+			is_talking = voice_gen.is_reading() and not voice_gen.is_waiting()
+			if is_talking:
+				idle_check_passed = false
+		else:
+			start_idle_timer()
 
 
-func debug(t, s, c):
-	g.final_score.time = t
-	g.final_score.lost_slices = s
-	g.final_score.coins = c
-	print("debug_final_score")
-	print(g.final_score)
+func _on_IdleTimer_timeout():
+	if idle_check_passed:
+		waiting_for_idle = false
+		can_next_line = true
+		$E.visible = true
+	else:
+		start_idle_timer()
 
 
-func _on_debug_pressed():
-	var c = $Debug/Coins.text
-	var s = $Debug/Slices.text
-	var t = $Debug/Time.text
-	debug(t, s, c)
-	$Debug.visible = false
+func start_idle_timer():
+	can_next_line = false
+	waiting_for_idle = true
+	idle_check_passed = true
+	$IdleTimer.start()

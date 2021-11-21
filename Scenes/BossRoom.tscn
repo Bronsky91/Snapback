@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=2]
+[gd_scene load_steps=83 format=2]
 
 [ext_resource path="res://Assets/Tilesets/DungeonTileset.tres" type="TileSet" id=1]
 [ext_resource path="res://Assets/Space_001.png" type="Texture" id=2]
@@ -24,6 +24,8 @@
 [ext_resource path="res://Assets/Lich/Inverted/LichBody.png" type="Texture" id=22]
 [ext_resource path="res://addons/VoiceGeneratorAudioStreamPlayer.tscn" type="PackedScene" id=23]
 [ext_resource path="res://Assets/Door1.png" type="Texture" id=24]
+[ext_resource path="res://Assets/E_002.png" type="Texture" id=25]
+[ext_resource path="res://Assets/E_001.png" type="Texture" id=26]
 
 [sub_resource type="Animation" id=96]
 length = 0.001
@@ -229,7 +231,7 @@ tracks/2/loop_wrap = true
 tracks/2/imported = false
 tracks/2/enabled = true
 tracks/2/keys = {
-"times": PoolRealArray( 10, 25.1 ),
+"times": PoolRealArray( 10, 27.1 ),
 "transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
@@ -1189,6 +1191,14 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="SpriteFrames" id=98]
+animations = [ {
+"frames": [ ExtResource( 26 ), ExtResource( 25 ) ],
+"loop": true,
+"name": "default",
+"speed": 5.0
+} ]
+
 [sub_resource type="ShaderMaterial" id=76]
 shader = ExtResource( 17 )
 shader_param/center = Vector2( 0.5, 0.5 )
@@ -1577,7 +1587,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
@@ -1592,71 +1601,15 @@ script = ExtResource( 20 )
 
 [node name="VoiceGeneratorAudioStreamPlayer" parent="UI/DialoguePlayer" instance=ExtResource( 23 )]
 
-[node name="Debug" type="Control" parent="UI/DialoguePlayer"]
+[node name="IdleTimer" type="Timer" parent="UI/DialoguePlayer"]
+one_shot = true
+
+[node name="E" type="AnimatedSprite" parent="UI/DialoguePlayer"]
 visible = false
-margin_right = 40.0
-margin_bottom = 40.0
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="bTime_gHits" type="Button" parent="UI/DialoguePlayer/Debug"]
-margin_left = 247.0
-margin_top = 71.0
-margin_right = 377.0
-margin_bottom = 91.0
-rect_scale = Vector2( 0.759999, 1 )
-__meta__ = {
-"_edit_use_anchors_": false
-}
-
-[node name="Label" type="Label" parent="UI/DialoguePlayer/Debug/bTime_gHits"]
-margin_top = 3.0
-margin_right = 175.0
-margin_bottom = 17.0
-rect_scale = Vector2( 0.732918, 1 )
-text = "debug"
-align = 1
-valign = 1
-uppercase = true
-
-[node name="CoinsLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
-margin_right = 40.0
-margin_bottom = 14.0
-text = "Coins"
-
-[node name="SlicesLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
-margin_top = 18.0
-margin_right = 68.0
-margin_bottom = 32.0
-text = "Slices Lost"
-
-[node name="TimeLabel" type="Label" parent="UI/DialoguePlayer/Debug"]
-margin_top = 34.0
-margin_right = 40.0
-margin_bottom = 48.0
-text = "Time"
-
-[node name="Coins" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
-margin_left = 79.0
-margin_top = 3.0
-margin_right = 119.0
-margin_bottom = 43.0
-rect_scale = Vector2( 2.28055, 0.360259 )
-
-[node name="Slices" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
-margin_left = 79.0
-margin_top = 19.0
-margin_right = 119.0
-margin_bottom = 59.0
-rect_scale = Vector2( 2.28, 0.36 )
-
-[node name="Time" type="TextEdit" parent="UI/DialoguePlayer/Debug"]
-margin_left = 80.0
-margin_top = 34.0
-margin_right = 120.0
-margin_bottom = 74.0
-rect_scale = Vector2( 2.27999, 0.36 )
+position = Vector2( 359, 89 )
+frames = SubResource( 98 )
+frame = 1
+playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]
 visible = false
@@ -1710,5 +1663,5 @@ __meta__ = {
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 volume_db = -15.0
 
-[connection signal="pressed" from="UI/DialoguePlayer/Debug/bTime_gHits" to="UI/DialoguePlayer" method="_on_debug_pressed"]
+[connection signal="timeout" from="UI/DialoguePlayer/IdleTimer" to="UI/DialoguePlayer" method="_on_IdleTimer_timeout"]
 [connection signal="animation_finished" from="UI/Shockwave/AnimationPlayer" to="." method="_on_ShockwavePlayer_animation_finished"]
