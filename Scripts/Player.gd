@@ -239,7 +239,8 @@ func _on_AnimationPlayer_animation_finished(anim_name):
 
 
 func _on_PickupArea_body_entered(body):
-	if (not g.inverted and body.name in g.normal_enemies) or (g.inverted and body.name in g.inverted_enemies):
+	var enemy_name = body.name.rstrip("0123456789")
+	if (not g.inverted and enemy_name in g.normal_enemies) or (g.inverted and enemy_name in g.inverted_enemies):
 		attacked(body)
 
 

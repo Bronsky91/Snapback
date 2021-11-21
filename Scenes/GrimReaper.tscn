@@ -8,7 +8,7 @@
 [ext_resource path="res://Assets/eyes.png" type="Texture" id=6]
 
 [sub_resource type="CapsuleShape2D" id=1]
-radius = 6.0
+radius = 8.0
 
 [sub_resource type="CircleShape2D" id=2]
 radius = 80.0
@@ -242,3 +242,4 @@ one_shot = true
 [connection signal="body_exited" from="DetectionArea" to="." method="_on_DetectionArea_body_exited"]
 [connection signal="body_entered" from="AlertArea" to="." method="_on_AlertArea_body_entered"]
 [connection signal="body_exited" from="AlertArea" to="." method="_on_AlertArea_body_exited"]
+[connection signal="timeout" from="HandsTimer" to="." method="_on_HandsTimer_timeout"]
