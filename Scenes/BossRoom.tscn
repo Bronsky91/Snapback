@@ -27,7 +27,7 @@
 [ext_resource path="res://Assets/E_002.png" type="Texture" id=25]
 [ext_resource path="res://Assets/E_001.png" type="Texture" id=26]
 [ext_resource path="res://Assets/Pizzabox.png" type="Texture" id=27]
-[ext_resource path="res://Assets/Receipt.png" type="Texture" id=28]
+[ext_resource path="res://Scenes/ReceiptScore.tscn" type="PackedScene" id=28]
 
 [sub_resource type="Animation" id=96]
 length = 0.001
@@ -1766,7 +1766,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1776,9 +1775,7 @@ rotation = 18.8496
 scale = Vector2( 0.03, 0.03 )
 texture = ExtResource( 27 )
 
-[node name="Receipt" type="Sprite" parent="UI"]
-visible = false
-texture = ExtResource( 28 )
+[node name="ReceiptScore" parent="UI" instance=ExtResource( 28 )]
 
 [node name="DialoguePlayer" parent="UI" instance=ExtResource( 13 )]
 visible = false
@@ -1800,6 +1797,7 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
+frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]

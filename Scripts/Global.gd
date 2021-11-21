@@ -10,6 +10,7 @@ var final_score = {
 	"coins": 0,
 	"slices_lost": 0,
 	"skellies_talked_to": 0,
+	"inversions": 0
 }
 
 signal sneak(sneaking)
