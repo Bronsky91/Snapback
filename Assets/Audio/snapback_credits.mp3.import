@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/snapback_credits.mp3-2b4de0fa7cb3fe2ca58b4b48620455e6.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/snapback_credits.mp3"
+dest_files=[ "res://.import/snapback_credits.mp3-2b4de0fa7cb3fe2ca58b4b48620455e6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

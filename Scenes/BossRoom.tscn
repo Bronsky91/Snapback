@@ -1281,7 +1281,6 @@ tracks/3/keys = {
 }
 
 [sub_resource type="StreamTexture" id=92]
-flags = 4
 load_path = "res://.import/LichEyes.png-d3e7173460d6bdbbd2313e3e68cf12b4.stex"
 
 [sub_resource type="CanvasItemMaterial" id=93]

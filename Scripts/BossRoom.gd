@@ -114,8 +114,8 @@ func high_score():
 
 
 func wapeesh():
-	$BGM.stream = load("res://Assets/Audio/snapback.mp3")
-	$BGM.play(10)
+	$BGM.stream = load("res://Assets/Audio/snapback_credits.mp3")
+	$BGM.play()
 
 
 func _on_ShockwavePlayer_animation_finished(anim_name):
