@@ -193,8 +193,11 @@ func attacked():
 			slices_icon.texture = load('Assets/Slices' + str(slices_count) + '.png')
 
 func play_sfx(name):
-	$SFX.stream = load("res://Assets/Audio/"+name+".mp3")
-	$SFX.play()
+	var sfx_player = AudioStreamPlayer2D.new()
+	sfx_player.stream = load("res://Assets/Audio/"+name+".mp3")
+	sfx_player.connect("finished", sfx_player, "queue_free")
+	add_child(sfx_player)
+	sfx_player.play()
 	
 func pick_up_coin():
 	if current_coin:

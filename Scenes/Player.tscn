@@ -533,9 +533,6 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
-[node name="SFX" type="AudioStreamPlayer" parent="."]
-volume_db = -10.0
-
 [connection signal="area_shape_entered" from="PickupArea" to="." method="_on_PickupArea_area_shape_entered"]
 [connection signal="area_shape_exited" from="PickupArea" to="." method="_on_PickupArea_area_shape_exited"]
 [connection signal="body_entered" from="PickupArea" to="." method="_on_PickupArea_body_entered"]
