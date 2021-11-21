@@ -238,7 +238,7 @@ tracks/16/keys = {
 
 [sub_resource type="Animation" id=97]
 resource_name = "high_score"
-length = 10.0
+length = 100.0
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/Pizzabox:visible")
 tracks/0/interp = 1
@@ -342,11 +342,14 @@ tracks/8/loop_wrap = true
 tracks/8/imported = false
 tracks/8/enabled = true
 tracks/8/keys = {
-"times": PoolRealArray( 3.5 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 3.5, 80.1 ),
+"transitions": PoolRealArray( 1, 1 ),
 "values": [ {
 "args": [  ],
 "method": "wapeesh"
+}, {
+"args": [  ],
+"method": "mad_lich"
 } ]
 }
 tracks/9/type = "value"
@@ -1948,7 +1951,6 @@ script = SubResource( 75 )
 visible = false
 position = Vector2( 420, 445 )
 frames = SubResource( 85 )
-frame = 1
 playing = true
 
 [node name="Pizzabox" type="Sprite" parent="UI"]
@@ -1978,6 +1980,7 @@ one_shot = true
 visible = false
 position = Vector2( 359, 89 )
 frames = SubResource( 98 )
+frame = 1
 playing = true
 
 [node name="Shockwave" type="ColorRect" parent="UI"]

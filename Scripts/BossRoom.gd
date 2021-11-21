@@ -118,6 +118,11 @@ func wapeesh():
 	$BGM.play()
 
 
+func mad_lich():
+	$BGM.stream = load("res://Assets/Audio/mad_lich.mp3")
+	$BGM.play()
+
+
 func _on_ShockwavePlayer_animation_finished(anim_name):
 	$UI/Shockwave.visible = false
 
